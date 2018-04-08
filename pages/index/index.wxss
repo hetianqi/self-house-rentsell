@@ -1,0 +1,35 @@
+/**index.wxss**/
+@import '/fonts/iconfont.wxss';
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.zoom-in,
+.zoom-out,
+.locate {
+  position: relative;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #aaa, -1px -1px 1px #aaa;
+  color: #666;
+}
+.zoom-in {
+  top: 300rpx;
+  left: calc(100% - 100rpx);
+  font-weight: bold;
+}
+.zoom-out {
+  top: 320rpx;
+  left: calc(100% - 100rpx);
+  font-weight: bold;
+}
+.locate {
+  top: 400rpx;
+  left: calc(100% - 100rpx);
+}

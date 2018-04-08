@@ -1,0 +1,14 @@
+<view class="container">
+    <map 
+    id="map"
+    class="map"
+    latitude="{{location.latitude}}"
+    longitude="{{location.longitude}}"
+    scale="{{scale}}"
+    bindupdated="onRegionChange"
+    show-location>
+      <cover-view class="zoom-in iconfont icon-plus" bindtap="zoomIn"></cover-view>
+      <cover-view class="zoom-out iconfont icon-minus" bindtap="zoomOut"></cover-view>
+      <cover-view class="locate iconfont icon-dingwei" bindtap="locate"></cover-view>
+    </map>  
+</view>

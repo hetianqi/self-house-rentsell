@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#3191F1",
+    "navigationBarTitleText": "自主看房",
+    "navigationBarTextStyle":"#fff"
+  }
+}
