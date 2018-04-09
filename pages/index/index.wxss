@@ -1,15 +1,44 @@
 /**index.wxss**/
-@import '/fonts/iconfont.wxss';
+.container {
+  position: relative;
+}
 
 .map {
   width: 100%;
   height: 100%;
 }
 
+.search {
+  position: absolute;
+  left: 20rpx;
+  top: 18rpx;
+  display: flex;
+  width: calc(100% - 40rpx);
+  height: 100rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+}
+
+.search .iconfont {
+  padding: 35rpx 40rpx;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 40rpx;
+  color: #333;
+}
+.search-tips {
+  flex: 1;
+  padding: 35rpx 20rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999;
+}
+
 .zoom-in,
 .zoom-out,
 .locate {
-  position: relative;
+  position: absolute;
+  right: 30rpx;
   width: 60rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -20,16 +49,26 @@
   color: #666;
 }
 .zoom-in {
-  top: 300rpx;
-  left: calc(100% - 100rpx);
+  top: 290rpx;
   font-weight: bold;
 }
 .zoom-out {
-  top: 320rpx;
-  left: calc(100% - 100rpx);
+  top: 362rpx;
   font-weight: bold;
 }
 .locate {
-  top: 400rpx;
-  left: calc(100% - 100rpx);
+  top: 472rpx;
+}
+
+.my-applications,
+.scan-code {
+  position: absolute;
+  bottom: 80rpx;
+  width: 258rpx;
+}
+.my-applications {
+  left: calc((100% - 570rpx) / 2);
+}
+.scan-code {
+  right: calc((100% - 570rpx) / 2);
 }

@@ -4,11 +4,23 @@
     class="map"
     latitude="{{location.latitude}}"
     longitude="{{location.longitude}}"
-    scale="{{scale}}"
-    bindupdated="onRegionChange"
+    scale="{{scale + 2}}"
     show-location>
+      <cover-view class="search">
+        <cover-view class="iconfont icon-plus"></cover-view>
+        <cover-view class="search-tips">请输入想要搜索的楼盘</cover-view>
+        <cover-view class="iconfont icon-plus"></cover-view>
+      </cover-view>
       <cover-view class="zoom-in iconfont icon-plus" bindtap="zoomIn"></cover-view>
       <cover-view class="zoom-out iconfont icon-minus" bindtap="zoomOut"></cover-view>
       <cover-view class="locate iconfont icon-dingwei" bindtap="locate"></cover-view>
+      <cover-view class="button my-applications" bindtap="gotoMyApplications">
+        <cover-view class="button-icon iconfont icon-plus"></cover-view>
+        <cover-view class="button-text">我 的 申 请</cover-view>
+      </cover-view>
+      <cover-view class="button scan-code" bindtap="scanCode">
+        <cover-view class="button-icon iconfont icon-plus"></cover-view>
+        <cover-view class="button-text">扫 码 进 入</cover-view>
+      </cover-view>
     </map>  
 </view>
