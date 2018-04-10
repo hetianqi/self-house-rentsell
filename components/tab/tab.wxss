@@ -1,0 +1,6 @@
+/* components/tab/tab.wxss */
+tab {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #cad4d8;
+}

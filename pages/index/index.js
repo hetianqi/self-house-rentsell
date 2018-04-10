@@ -1,4 +1,6 @@
-//index.js
+// 首页
+
+import { apiUrl } from '../../libs/config.js';
 
 // 地图上下文
 let mapCtx;
@@ -6,29 +8,57 @@ let mapCtx;
 Page({
   data: {
     location: {},
-    scale: 16 // map组件bug?传递给map组件的scale值比mapCtx.getScale返回的值大2
+    scale: 16, // map组件bug?传递给map组件的scale值比mapCtx.getScale返回的值大2
+    markers: []
   },  
   onReady() {
     wx.getLocation({
       success: location => {
+        console.log(location);
         this.setData({ location });
       }
     });
     mapCtx = wx.createMapContext('map');
-    setTimeout(() => {
-      mapCtx.getScale({
-        success(...args) {
-          console.log(args);
+    this.getMapData();
+  },
+  // 获取房源数据
+  getMapData() {
+    let _this = this;
+    _this.getScale()
+    .then(() => {
+      wx.request({
+        url: apiUrl + '/getMapData',
+        method: 'GET',
+        data: {
+          scale: _this.data.scale
         },
-        fail(...args) {
-          console.log(args);
+        success({ data }) {
+          _this.setData({
+            markers: (data.data || []).map(item => ({
+              id: item.id,
+              latitude: item.latitude,
+              longitude: item.longitude,
+              width: 0,
+              height: 0,
+              iconPath: '../../icons/marker.png',
+              label: {
+                content: item.name + `${item.count}(套)`,
+                x: -40,
+                y: -25,
+                bgColor: '#f75001',
+                color: '#fff',
+                borderRadius: 100,
+                padding: 3
+              }
+            }))
+          });
+          console.log(data.data);
         }
       });
-    }, 1000);
+    });
   },
-  // 搜索
-  search(e) {
-    console.log(e.detail.value);
+  onRegionChange(e) {
+    console.log(e)
   },
   // 地图放大
   zoomIn() {
@@ -61,10 +91,18 @@ Page({
       });
     });
   },
+  // 获取我的当前位置
+  locate() {
+    wx.getLocation({
+      success: location => {
+        this.setData({ location });
+      }
+    });
+  },
   // 跳转到我的申请页
   gotoMyApplications() {
     wx.navigateTo({
-      url: 'pages/mp-applications/index'
+      url: '../mp-applications/index'
     });
   },
   // 扫码进入

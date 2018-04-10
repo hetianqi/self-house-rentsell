@@ -1,0 +1,2 @@
+<!--components/tab/tab.wxml-->
+<slot></slot>

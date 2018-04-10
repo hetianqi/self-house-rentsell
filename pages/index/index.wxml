@@ -5,6 +5,9 @@
     latitude="{{location.latitude}}"
     longitude="{{location.longitude}}"
     scale="{{scale + 2}}"
+    markers="{{markers}}"
+    bindregionchange="onRegionChange"
+    catchtap="onRegionChange"
     show-location>
       <cover-view class="search">
         <cover-view class="iconfont icon-plus"></cover-view>

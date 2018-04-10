@@ -1,0 +1,6 @@
+<!--components/tab/tab-item.wxml-->
+<view class="tab-item {{active ? 'active' : ''}}">
+  <text class="tab-item-text" catchtap="onTap">
+    <slot></slot>
+  </text>
+</view>

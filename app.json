@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/mp-applications/index",
     "pages/index/index"
   ],
   "window":{

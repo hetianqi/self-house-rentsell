@@ -1,0 +1,31 @@
+/* pages/mp-applications/index.wxss */
+.tab {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #cad4d8;
+}
+.tab-item {
+  flex: auto;
+  text-align: center;
+  font-size: 34rpx;
+  color: #999899;
+  line-height: 84rpx;
+}
+.tab-item.active {
+  color: #3893ee;
+}
+.tab-item .tab-item-text {
+  line-height: 1;
+}
+.tab-item.active .tab-item-text {
+  position: relative;
+}
+.tab-item.active .tab-item-text::after {
+  content: "";
+  position: absolute;
+  bottom: -20rpx;
+  left: 0;
+  width: 100%;
+  height: 5rpx;
+  background-color: #3893ee;
+}
