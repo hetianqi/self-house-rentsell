@@ -42,6 +42,8 @@ Component({
 
     // 设置子节点激活
     setActiveItem(index) {
+      // 如果点击的是当前已激活的tab则不做处理
+      if (index === this.data.activeIndex) return;
       if (index !== undefined) {
         this.data.activeIndex = index;
       }
@@ -49,6 +51,8 @@ Component({
       nodes.forEach((node, index) => {
         node.setData({ active: index === this.data.activeIndex });
       });
+      // 出发自定义事件供调用者知晓tab切换
+      this.triggerEvent('tabchange', { index: this.data.activeIndex });
     }
   },
 

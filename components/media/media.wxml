@@ -1,0 +1,2 @@
+<!--components/media/media.wxml-->
+<slot></slot>

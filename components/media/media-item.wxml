@@ -1,0 +1,13 @@
+<!--components/media/media-item.wxml-->
+
+<view class="media-item">
+  <view class="media-left">
+    <image src="{{iconPath}}"></image>
+  </view>
+  <view class="media-center">
+    <slot></slot>
+  </view>
+  <view class="media-right">
+    <slot name="right"></slot>
+  </view>
+</view>

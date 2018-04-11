@@ -29,3 +29,35 @@
   height: 5rpx;
   background-color: #3893ee;
 }
+
+.apply-list {
+  margin-top: 20rpx;
+}
+.apply-list .title,
+.apply-list .desc {
+  display: block;
+  margin-bottom: 15rpx;
+  line-height: 1;
+}
+.apply-list .title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #212121;
+}
+.apply-list .desc {
+  font-size: 26rpx;
+  color: #545454;
+}
+.apply-list .state {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.apply-list .state-0 {
+  color: #959595;
+}
+.apply-list .state-1 {
+  color: #ff6600;
+}
+.apply-list .state-2 {
+  color: #3893ee;
+}

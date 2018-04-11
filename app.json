@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/mp-applications/index",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/apply/index"
   ],
   "window":{
     "backgroundTextStyle":"dark",

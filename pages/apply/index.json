@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "tab": "../../components/tab/tab",
+    "tab-item": "../../components/tab/tab-item",
+    "media": "../../components/media/media",
+    "media-item": "../../components/media/media-item"
+  }
+}

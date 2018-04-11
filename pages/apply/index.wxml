@@ -1,0 +1,17 @@
+<!--pages/mp-applications/index.wxml-->
+<view class="container">
+  <tab active-index="{{activeIndex}}" bindtabchange="onTabChange">
+    <tab-item>求租</tab-item>
+    <tab-item>求购</tab-item>
+  </tab>
+
+  <media class="apply-list">
+    <media-item wx:for="{{list}}" wx:key="id" icon-path="{{item.icon}}">
+      <text class="title">{{item.name}}</text>
+      <text class="desc">{{item.dong + '栋' + item.danyuan + '单元' + item.hao}}</text>
+      <text class="desc" wx:if="{{item.state === 2}}">授权开房事件：</text>
+      <text class="desc" wx:if="{{item.state === 2}}">{{item.startTime + '---' + item.endTime}}</text>
+      <text class="state state-{{item.state}}" slot="right">{{stateMap[item.state]}}</text>
+    </media-item>
+  </media>
+</view>

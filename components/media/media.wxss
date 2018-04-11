@@ -1,0 +1,5 @@
+/* components/media/media.wxss */
+media {
+  display: block;
+  border: 1px solid #cad4d8;
+}
