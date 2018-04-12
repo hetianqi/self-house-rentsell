@@ -1,12 +1,14 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/apply/index"
+    "pages/apply/apply",
+    "pages/pay-deposit/pay-deposit",
+    "pages/self-house/self-house"
   ],
-  "window":{
-    "backgroundTextStyle":"dark",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#3191F1",
     "navigationBarTitleText": "自主看房",
-    "navigationBarTextStyle":"#fff"
+    "navigationBarTextStyle": "#fff"
   }
 }

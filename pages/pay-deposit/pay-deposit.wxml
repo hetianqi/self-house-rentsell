@@ -1,0 +1,7 @@
+<!--pages/apply/pay-deposit.wxml-->
+<group>
+  <cell>
+    <view>押金缴纳</view>
+    <view>299</view>
+  </cell>
+</group>

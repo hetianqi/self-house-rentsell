@@ -1,4 +1,4 @@
-// pages/logs/index.js
+// pages/apply/self-house.js
 Page({
 
   /**

@@ -4,5 +4,6 @@
     "tab-item": "../../components/tab/tab-item",
     "media": "../../components/media/media",
     "media-item": "../../components/media/media-item"
-  }
+  },
+  "navigationBarTitleText": "我的申请"
 }

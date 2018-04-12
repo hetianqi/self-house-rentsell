@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "结算",
+  "usingComponents": {
+    "group": "../../components/group/group",
+    "cell": "../../components/cell/cell"
+  }
+}

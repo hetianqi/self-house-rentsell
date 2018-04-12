@@ -27,7 +27,7 @@ Page({
     _this.getScale()
     .then(() => {
       wx.request({
-        url: apiUrl + '/getMapData',
+        url: apiUrl + '/house/areas',
         method: 'GET',
         data: {
           scale: _this.data.scale
@@ -40,7 +40,7 @@ Page({
               longitude: item.longitude,
               width: 0,
               height: 0,
-              iconPath: '../../icons/marker.png',
+              iconPath: '../../images/marker.png',
               label: {
                 content: item.name + `${item.count}(套)`,
                 x: -40,
@@ -102,7 +102,7 @@ Page({
   // 跳转到我的申请页
   gotoMyApplications() {
     wx.navigateTo({
-      url: '../mp-applications/index'
+      url: '../apply/apply'
     });
   },
   // 扫码进入

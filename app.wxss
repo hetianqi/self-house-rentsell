@@ -52,8 +52,9 @@ page {
   display: inline-block;
 }
 
-.button {
+.btn {
   display: inline-block;
+  width: 258rpx;
   padding: 20rpx 0;
   line-height: 1;
   text-align: center;
@@ -62,13 +63,17 @@ page {
   background-color: #3191f1;
   font-size: 32rpx;
 }
-.button-icon {
+.btn-block {
+  display: block;
+  width: 100%;
+}
+.btn-icon {
   display: inline-block;
   line-height: 1;
   margin-right: 14rpx;
   vertical-align: top;
 }
-.button-text {
+.btn-text {
   display: inline;
   line-height: 1;
   vertical-align: top;

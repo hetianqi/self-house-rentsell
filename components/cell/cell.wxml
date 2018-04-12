@@ -1,0 +1,9 @@
+<!--components/cell/cell.wxml-->
+<view class="cell">
+  <view class="cell-left">
+    <slot></slot>
+  </view>
+  <view class="cell-right">
+    <slot name="right"></slot>
+  </view>
+</view>

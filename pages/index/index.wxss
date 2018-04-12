@@ -60,13 +60,13 @@
   top: 472rpx;
 }
 
-.my-applications,
+.my-apply,
 .scan-code {
   position: absolute;
   bottom: 80rpx;
   width: 258rpx;
 }
-.my-applications {
+.my-apply {
   left: calc((100% - 570rpx) / 2);
 }
 .scan-code {

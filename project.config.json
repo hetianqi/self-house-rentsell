@@ -1,15 +1,15 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.94",
-	"appid": "touristappid",
+	"libVersion": "1.6.6",
+	"appid": "wx3ce65cd4f0f91171",
 	"projectname": "self-house-rentsell",
 	"condition": {
 		"search": {
@@ -29,13 +29,18 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "我的申请",
 					"pathName": "pages/apply/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "结算",
+					"pathName": "pages/pay-deposit/pay-deposit"
 				}
 			]
 		}

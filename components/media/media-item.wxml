@@ -1,5 +1,4 @@
 <!--components/media/media-item.wxml-->
-
 <view class="media-item">
   <view class="media-left">
     <image src="{{iconPath}}"></image>
