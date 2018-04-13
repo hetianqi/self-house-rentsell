@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "结算",
-  "usingComponents": {
-    "group": "../../components/group/group",
-    "cell": "../../components/cell/cell"
-  }
+  "navigationBarTitleText": "交纳押金"
 }

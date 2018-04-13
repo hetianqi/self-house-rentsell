@@ -38,9 +38,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "结算",
-					"pathName": "pages/pay-deposit/pay-deposit"
+					"id": 1,
+					"name": "交纳押金",
+					"pathName": "pages/pay-deposit/pay-deposit",
+					"query": ""
 				}
 			]
 		}
