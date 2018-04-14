@@ -2,8 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/apply/apply",
-    "pages/pay-deposit/pay-deposit",
-    "pages/self-house/self-house"
+    "pages/deposit/pay",
+    "pages/deposit/pay-result",
+    "pages/house/self-house",
+    "pages/house/unlock-example"
   ],
   "window": {
     "backgroundTextStyle": "dark",

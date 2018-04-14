@@ -1,0 +1,21 @@
+/* pages/pay-deposit/pay-deposit-result.wxss */
+.tips {
+  margin-top: 148rpx;
+  text-align: center;
+}
+.tips icon {
+  margin-right: 16rpx;
+  vertical-align: middle;
+}
+.tips text {
+  display: inline-block;
+  font-size: 36rpx;
+  color: #444;
+  vertical-align: middle;
+}
+
+.opt {
+  display: flex;
+  margin-top: 130rpx;
+  padding: 0 30rpx;
+}

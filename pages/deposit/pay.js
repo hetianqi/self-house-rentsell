@@ -1,6 +1,5 @@
 // pages/apply/pay-deposit.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -17,7 +16,10 @@ Page({
     self.setData({ loading: true });
     setTimeout(() => {
       self.setData({ loading: false });
-    }, 10000);
+      wx.navigateTo({
+        url: './pay-result?result=' + (Math.random() < 0.5 ? 0 : 1),
+      });
+    }, 1000);
     return;
     wx.request({
       url: paymentUrl,
@@ -42,4 +44,4 @@ Page({
       }
     });
   }
-})
+});

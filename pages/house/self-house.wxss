@@ -1,0 +1,35 @@
+/* pages/apply/self-house.wxss */
+.tips-1 {
+  margin-top: 80rpx;
+  line-height: 1;
+  text-align: center;
+  font-size: 38rpx;
+  color: #3191f1;
+}
+.tips-2 {
+  margin-top: 44rpx;
+  line-height: 1;
+  text-align: center;
+  font-size: 34rpx;
+  color: #3191f1;
+}
+
+.opt-1 {
+  margin-top: 66rpx;
+  text-align: center;
+}
+.opt-1 .btn {
+  width: 320rpx;
+  background-color: #d6d6d6;
+  color: #8d8d8d;
+}
+.opt-2 {
+  margin-top: 54rpx;
+  padding: 0 30rpx;
+  text-align: center;
+}
+.opt-2 .opt-tips {
+  margin-top: 50rpx;
+  font-size: 36rpx;
+  color: #999899;
+}

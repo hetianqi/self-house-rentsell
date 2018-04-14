@@ -65,6 +65,10 @@ page {
   background-color: #3191f1;
   font-size: 32rpx;
 }
+/* 去掉button的border */
+.btn::after {
+  display: none;
+}
 .btn-lg {
   font-size: 38rpx;
 }
@@ -84,4 +88,15 @@ page {
 .btn[loading] {  
   color:rgba(255, 255, 255, 0.6);
   background-color: #2183E8;
+}
+.btn[loading]::before {
+  position: relative;
+  top: -4rpx;
+}
+.btn-gray {
+  background-color: #e9eaeb;
+  color: #999;
+}
+.btn.button-hover {
+  opacity: 0.7;
 }

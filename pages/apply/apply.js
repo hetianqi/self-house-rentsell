@@ -51,7 +51,7 @@ Page({
 
     if (item.state !== 2) return;
     Math.random() >= 0.5 ? wx.navigateTo({
-      url: '../pay-deposit/pay-deposit?houseId=' + item.id
+      url: '../deposit/pay?houseId=' + item.id
     }) : wx.navigateTo({
       url: '../self-house/self-house?houseId=' + item.id
     });

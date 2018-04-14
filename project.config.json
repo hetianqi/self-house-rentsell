@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -40,7 +40,13 @@
 				{
 					"id": 1,
 					"name": "交纳押金",
-					"pathName": "pages/pay-deposit/pay-deposit",
+					"pathName": "pages/deposit/pay",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "自主看房",
+					"pathName": "pages/house/self-house",
 					"query": ""
 				}
 			]
