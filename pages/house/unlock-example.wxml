@@ -1,2 +1,33 @@
 <!--pages/house/unlock-example.wxml-->
-<text>pages/house/unlock-example.wxml</text>
+<view class="container">
+  <view class="title">密码开锁示意流程</view>
+  <view class="step-list">
+    <view class="step-item">
+      <view class="step-title">
+        <text class="step-num"></text>
+        <text class="step-text">在密码盘手动输入密码</text>
+      </view>
+      <view class="step-img">
+        <image src="../../images/unlock-1.png"></image>
+      </view>
+      <view class="step-desc">
+        <text>按着设置的密码</text>
+        <text>正确的顺序输入</text>
+      </view>
+    </view>
+    <view class="step-item">
+      <view class="step-title">
+        <text class="step-num"></text>
+        <text class="step-text">握紧密码盘转动半圈</text>
+      </view>
+      <view class="step-img">
+        <image src="../../images/unlock-2.png"></image>
+      </view>
+      <view class="step-desc">
+        <text>用手轻轻握紧密码盘</text>
+        <text>将密码盘按箭头方向</text>
+        <text>逆时针转动开锁</text>
+      </view>
+    </view>
+  </view>
+</view>

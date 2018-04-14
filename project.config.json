@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -48,6 +48,11 @@
 					"name": "自主看房",
 					"pathName": "pages/house/self-house",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "开锁示意图",
+					"pathName": "pages/house/unlock-example"
 				}
 			]
 		}

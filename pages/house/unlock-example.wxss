@@ -1,1 +1,22 @@
 /* pages/house/unlock-example.wxss */
+.container {
+  padding: 30rpx;
+}
+
+.title {
+  border: solid #f4f4f4;
+  border-width: 10rpx 12rpx;
+  background-color: #d7d7d7;
+  text-align: center;
+  font-size: 30rpx;
+  color: #5f5f5f;
+}
+
+.step-list {
+  display: flex;
+  margin-top: 22rpx;
+  border: 1px solid #ddd;
+}
+.step-item {
+  flex: 1;
+}
