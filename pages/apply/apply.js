@@ -53,7 +53,7 @@ Page({
     Math.random() >= 0.5 ? wx.navigateTo({
       url: '../deposit/pay?houseId=' + item.id
     }) : wx.navigateTo({
-      url: '../self-house/self-house?houseId=' + item.id
+      url: '../house/self-house?houseId=' + item.id
     });
   }
 });
