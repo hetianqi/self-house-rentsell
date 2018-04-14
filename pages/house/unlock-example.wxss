@@ -4,8 +4,9 @@
 }
 
 .title {
-  border: solid #f4f4f4;
+  border: solid #eee;
   border-width: 10rpx 12rpx;
+  line-height: 50rpx;
   background-color: #d7d7d7;
   text-align: center;
   font-size: 30rpx;
@@ -15,8 +16,56 @@
 .step-list {
   display: flex;
   margin-top: 22rpx;
-  border: 1px solid #ddd;
+  margin-bottom: 30rpx;
+  border: 2px solid #DEDFDF;
 }
 .step-item {
   flex: 1;
+  height: 626rpx;
+  border-left: 2px solid #DEDFDF;
+}
+.step-item:first-child {
+  border-left-width: 0;
+}
+.step-title {
+  border-bottom: 2px solid #DEDFDF;
+  text-align: center;
+  line-height: 50rpx;
+  background-color: #fff5ea;
+}
+.step-num {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 14rpx;
+  border-radius: 50%;  
+  line-height: 36rpx;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  background-color: #fb8100;
+}
+.step-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24rpx;
+  color: #fa8300;
+}
+.step-img {
+  margin-top: 98rpx;
+  text-align: center;
+}
+.step-img image {
+  width: 256rpx;
+  height: 300rpx;
+}
+.step-desc {
+  margin-top: 50rpx;
+  font-size: 24rpx;
+  color: #6c6c6c;
+  text-align: center;
+}
+.step-desc text {
+  display: block;
 }

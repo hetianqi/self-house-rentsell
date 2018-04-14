@@ -29,30 +29,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "我的申请",
-					"pathName": "pages/apply/index",
+					"name": "房源详情",
+					"pathName": "pages/house/detail",
 					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "交纳押金",
-					"pathName": "pages/deposit/pay",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "自主看房",
-					"pathName": "pages/house/self-house",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "开锁示意图",
-					"pathName": "pages/house/unlock-example"
 				}
 			]
 		}

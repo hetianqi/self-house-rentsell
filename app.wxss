@@ -54,6 +54,10 @@ page {
   display: inline-block;
 }
 
+.block {
+  display: block;
+}
+
 .btn {
   display: inline-block;
   width: 258rpx;
@@ -99,4 +103,13 @@ page {
 }
 .btn.button-hover {
   opacity: 0.7;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-item {
+  flex: 1;
 }

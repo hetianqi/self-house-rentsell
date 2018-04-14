@@ -13,7 +13,7 @@
     <view class="opt-tips">注意: 开锁只能开一次</view>
   </view>
   <view class="opt-2">
-    <button class="btn btn-lg btn-block">押金退款</button>
+    <navigator class="btn btn-lg btn-block" url="../deposit/refund">押金退款</navigator>
     <view class="opt-tips">注: 押金退款需要上传关门照片</view>
   </view>
 </view>

@@ -107,6 +107,18 @@ Page({
   },
   // 扫码进入
   scanCode() {
-    
+    wx.scanCode({
+      scanType: ['qrCode'],
+      success({ result }) {
+        wx.showLoading({
+          title: '获取房源数据...',
+        });
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '../house/detail?id=1'
+          });
+        }, 1000);
+      }
+    });
   }
 });
