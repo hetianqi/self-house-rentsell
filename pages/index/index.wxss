@@ -64,7 +64,6 @@
 .scan-code {
   position: absolute;
   bottom: 80rpx;
-  width: 258rpx;
 }
 .my-apply {
   left: calc((100% - 570rpx) / 2);

@@ -19,11 +19,11 @@
       <cover-view class="locate iconfont icon-dingwei" bindtap="locate"></cover-view>
       <cover-view class="btn my-apply" bindtap="gotoMyApplications">
         <cover-view class="btn-icon iconfont icon-plus"></cover-view>
-        <cover-view class="btn-text">我 的 申 请</cover-view>
+        <cover-view class="btn-text">我的申请</cover-view>
       </cover-view>
       <cover-view class="btn scan-code" bindtap="scanCode">
         <cover-view class="btn-icon iconfont icon-plus"></cover-view>
-        <cover-view class="btn-text">扫 码 进 入</cover-view>
+        <cover-view class="btn-text">扫码进入</cover-view>
       </cover-view>
     </map>  
 </view>

@@ -2,5 +2,5 @@
 tab {
   display: flex;
   background-color: #fff;
-  border-bottom: 1px solid #cad4d8;
+  border-bottom: 1px solid #e8e8e8;
 }

@@ -40,6 +40,8 @@ web-view {
 page {
   height: 100%;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  font-size: 26rpx;
+  line-height: 1.5;
 }
 
 .container {
@@ -47,11 +49,13 @@ page {
   height: 100%;
   background-color: #f5f5f5;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .iconfont {
   font-size: inherit;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .block {
@@ -60,21 +64,18 @@ page {
 
 .btn {
   display: inline-block;
-  width: 258rpx;
-  padding: 20rpx 0;
-  line-height: 1.2em;
+  width: 260rpx;
+  padding: 22rpx 0;
+  line-height: 1;
   text-align: center;
   border-radius: 8rpx;
   color: #fff;
   background-color: #3191f1;
-  font-size: 32rpx;
+  font-size: 36rpx;
 }
 /* 去掉button的border */
 .btn::after {
   display: none;
-}
-.btn-lg {
-  font-size: 38rpx;
 }
 .btn-block {
   display: block;
@@ -84,10 +85,12 @@ page {
   display: inline-block;
   margin-right: 14rpx;
   vertical-align: top;
+  line-height: inherit;
 }
 .btn-text {
   display: inline;
   vertical-align: top;
+  line-height: inherit;
 }
 .btn[loading] {  
   color:rgba(255, 255, 255, 0.6);

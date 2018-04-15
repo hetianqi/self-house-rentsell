@@ -25,12 +25,16 @@
   background-color: rgba(0, 0, 0, .5);
 }
 
+.house-brief {
+  background-color: #fff;
+}
 .house-brief-item {
   display: flex;
   height: 112rpx;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #e8e8e8;
   border-right-width: 0;
   align-items: center;
+  line-height: 1.2;
 }
 .house-brief-item:first-child {
   border-left-width: 0;
@@ -44,4 +48,72 @@
   display: inline-block;
   font-size: 24rpx;
   color: #5a5a5a;
+}
+
+.area {
+  background-color: #fff;
+}
+.area-title {
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 32rpx;
+  color: #3191f1;
+}
+.area-title .text::before {
+  content: "|";
+  display: inline-block;
+  width: 10rpx;
+  margin-right: 24rpx;  
+  background-color: #3191f1;
+  border-radius: 4rpx;
+  font-size: 30rpx;
+}
+.area-title .icon {
+  float: right;
+  font-size: 40rpx;
+}
+.area-content {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.field {
+  display: flex;
+  font-size: 26rpx;
+  padding: 10rpx 0;
+}
+.field-name {
+  color: #999899;
+  margin-right: 5rpx;
+}
+.field-value {
+  flex: 1;
+}
+
+.message-list {
+  padding: 0;
+}
+.message-item {
+  display: flex;
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #e8e8e8;
+}
+.message-item .date {
+  width: 140rpx;
+  color: #999899;
+}
+.message-item .text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.message-item .reply {
+  width: 80rpx;
+  text-align: right;
+  color: #3191f1;
+}
+
+.opt {
+  margin: 56rpx 30rpx 150rpx 30rpx;
 }

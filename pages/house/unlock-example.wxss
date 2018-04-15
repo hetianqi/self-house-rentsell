@@ -17,18 +17,18 @@
   display: flex;
   margin-top: 22rpx;
   margin-bottom: 30rpx;
-  border: 2px solid #DEDFDF;
+  border: 2px solid #e8e8e8;
 }
 .step-item {
   flex: 1;
   height: 626rpx;
-  border-left: 2px solid #DEDFDF;
+  border-left: 2px solid #e8e8e8;
 }
 .step-item:first-child {
   border-left-width: 0;
 }
 .step-title {
-  border-bottom: 2px solid #DEDFDF;
+  border-bottom: 2px solid #e8e8e8;
   text-align: center;
   line-height: 50rpx;
   background-color: #fff5ea;
