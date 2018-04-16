@@ -6,7 +6,7 @@
       <text>押金支付成功</text>
     </view>
     <view class="opt">  
-      <button class="btn btn-lg btn-block" bindtap="toHouse">去看房</button>
+      <button class="btn btn-block" bindtap="toHouse">去看房</button>
     </view>
   </view>
   <view class="error" wx:else>
@@ -15,8 +15,8 @@
       <text>押金支付失败</text>
     </view>
     <view class="opt">  
-      <button class="btn btn-lg" bindtap="rePayment">重新支付</button>
-      <button class="btn btn-lg btn-gray" bindtap="contactUs">联系我们</button>
+      <button class="btn" bindtap="rePayment">重新支付</button>
+      <button class="btn btn-gray" bindtap="contactUs">联系我们</button>
     </view>
   </view>
 </view>

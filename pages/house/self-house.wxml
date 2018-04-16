@@ -3,17 +3,17 @@
   <view class="tips-1">欢迎使用放盘自主看房小程序！</view>
   <view class="tips-2">请选择你的下一步操作</view>
   <view class="opt-1">
-    <navigator class="btn btn-lg" url="./unlock-example">
+    <navigator class="btn" url="./unlock-example">
       <text class="btn-icon iconfont icon-plus"></text>
       <text class="btn-text">开锁示意图>></text>
     </navigator>
   </view>
   <view class="opt-2">
-    <button class="btn btn-lg btn-block">蓝牙开锁</button>
+    <button class="btn btn-block">蓝牙开锁</button>
     <view class="opt-tips">注意: 开锁只能开一次</view>
   </view>
   <view class="opt-2">
-    <navigator class="btn btn-lg btn-block" url="../deposit/refund">押金退款</navigator>
+    <navigator class="btn btn-block" url="../deposit/refund">押金退款</navigator>
     <view class="opt-tips">注: 押金退款需要上传关门照片</view>
   </view>
 </view>

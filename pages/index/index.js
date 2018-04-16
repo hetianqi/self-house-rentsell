@@ -118,6 +118,16 @@ Page({
             url: '../house/detail?id=1'
           });
         }, 1000);
+      },
+      fail() {
+        wx.showLoading({
+          title: '获取房源数据...',
+        });
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '../house/detail?id=1'
+          });
+        }, 1000);
       }
     });
   }

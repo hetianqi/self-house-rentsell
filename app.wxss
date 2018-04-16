@@ -44,6 +44,10 @@ page {
   line-height: 1.5;
 }
 
+navigator {
+  display: inline;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -77,19 +81,22 @@ page {
 .btn::after {
   display: none;
 }
-.btn-block {
-  display: block;
-  width: 100%;
+.btn-gray {
+  background-color: #e9eaeb;
+  color: #999;
+}
+.btn-success {
+  background-color: #82c97e;
 }
 .btn-icon {
   display: inline-block;
   margin-right: 14rpx;
-  vertical-align: top;
+  vertical-align: middle;
   line-height: inherit;
 }
 .btn-text {
   display: inline;
-  vertical-align: top;
+  vertical-align: middle;
   line-height: inherit;
 }
 .btn[loading] {  
@@ -100,9 +107,9 @@ page {
   position: relative;
   top: -4rpx;
 }
-.btn-gray {
-  background-color: #e9eaeb;
-  color: #999;
+.btn-block {
+  display: block;
+  width: 100%;
 }
 .btn.button-hover {
   opacity: 0.7;
@@ -115,4 +122,9 @@ page {
 }
 .flex-item {
   flex: 1;
+}
+
+.p {
+  display: block;
+  margin-bottom: 10rpx;
 }

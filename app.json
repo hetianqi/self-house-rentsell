@@ -7,7 +7,12 @@
     "pages/deposit/refund",
     "pages/house/self-house",
     "pages/house/unlock-example",
-    "pages/house/detail"
+    "pages/house/detail",
+    "pages/auth/verify",
+    "pages/auth/mobile-verify",
+    "pages/auth/clause",
+    "pages/auth/real-name-auth",
+    "pages/auth/upload-idcard-photo"
   ],
   "window": {
     "backgroundTextStyle": "dark",

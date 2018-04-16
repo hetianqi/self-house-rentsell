@@ -9,6 +9,6 @@
     <text>3-5个工作日退换押金</text>
   </view>
   <view class="opt">  
-    <button class="btn btn-lg btn-block" loading="{{loading}}" bindtap="requestPayment">立即支付</button>
+    <button class="btn btn-block" loading="{{loading}}" bindtap="requestPayment">立即支付</button>
   </view>
 </view>

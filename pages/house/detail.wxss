@@ -115,5 +115,5 @@
 }
 
 .opt {
-  margin: 56rpx 30rpx 150rpx 30rpx;
+  margin: 56rpx 30rpx 100rpx;
 }

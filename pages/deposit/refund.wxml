@@ -13,6 +13,6 @@
   </view>
   <view class="tips-3">点击上传关门照片</view>
   <view class="opt">
-    <button class="btn btn-lg btn-block" bindtap="confirmRefund">确认退款</button>
+    <button class="btn btn-block" bindtap="confirmRefund">确认退款</button>
   </view>
 </view>
