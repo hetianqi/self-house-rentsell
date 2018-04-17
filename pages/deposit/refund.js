@@ -16,7 +16,8 @@ Page({
 
   // 上传照片
   uploadPhoto() {
-    var _this = this;
+    let _this = this;
+    
     wx.chooseImage({
       count: 1,
       success({ tempFilePaths }) {

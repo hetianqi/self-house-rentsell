@@ -1,0 +1,20 @@
+<!--pages/auth/real-name-auth.wxml-->
+<view class="container">
+  <view class="tips">
+    <text class="block">为了保障你和房东的合法权益</text>
+    <text class="block">需要你完成实名认证</text>
+  </view>
+  <form class="form" bindsubmit="submit">
+    <view class="form-title">姓名</view>
+    <view class="form-control-wraper">
+      <input class="form-control" name="name" placeholder="请输入真是姓名"></input>
+    </view>
+    <view class="form-title">身份证</view>
+    <view class="form-control-wraper">
+      <input class="form-control" type="idcard" name="idcard" placeholder="请输入身份证号"></input>
+    </view>    
+    <view class="opt">
+      <button class="btn btn-block" form-type="submit">实名认证</button>
+    </view>
+  </form>
+</view>

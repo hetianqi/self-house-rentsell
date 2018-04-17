@@ -1,0 +1,29 @@
+<!--pages/auth/mobile-verify.wxml-->
+<view class="container">
+  <view class="house-photos">
+    <swiper bindchange="">
+      <swiper-item wx:for="{{photos}}" wx:key="*this">
+        <image src="{{item}}"></image>
+      </swiper-item>
+    </swiper>
+    <text class="desc" space="nbsp">{{date}}    {{index}}/{{photos.length}}</text>
+  </view>
+  <view class="form">
+    <view class="form-item">
+      <text class="form-title">手机号码</text>
+      <input class="form-control" placeholder="填写手机号"></input>
+      <button class="form-opt get-code">获取验证码</button>
+    </view>
+    <view class="form-item">
+      <text class="form-title">验证码</text>
+      <input class="form-control" placeholder="输入验证码"></input>
+    </view>
+  </view>
+  <view class="opt">
+    <button class="btn btn-success btn-block" bindtap="login">登录</button>
+  </view>
+  <view class="tips">
+    <text>点击登录，即表示已阅读并同意</text>
+    <navigator url="./clause"><text style="color: #636886;">《自主看房条款》</text></navigator>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<!--pages/auth/upload-idcard-photo.wxml-->
+<!--pages/auth/real-name-auth.wxml-->
+<view class="container">
+  <view class="tips">
+    <text class="block">以下证件内容仅用于自主看房验证账</text>
+    <text class="block">号信息，并将收到严格保密。</text>
+  </view>
+  <view class="upload-form">
+    <view class="field">
+      <text class="field-name" space="emsp">姓  名：</text>
+      <text class="field-value">张三</text>
+    </view>
+    <view class="field">
+      <text class="field-name">身份证号：</text>
+      <text class="field-value">51213*************</text>
+    </view>
+    <view class="flex upload-photo">
+      <view class="flex-item front-photo">
+        <view class="photo-container" bindtap="uploadPhoto" data-type="front">
+          <block wx:if="{{!frontPhotoSrc}}">
+            <view class="example-photo iconfont icon-shenfenzhengzhengmian"></view>
+            <view class="upload-btn iconfont icon-photo"></view>
+          </block>          
+          <image class="real-photo" wx:else src="{{frontPhotoSrc}}"></image>
+        </view>
+        <text class="upload-tips">点击上传身份证正面</text>
+      </view>
+      <view class="flex-item back-photo">
+        <view class="photo-container" bindtap="uploadPhoto" data-type="back">
+          <block wx:if="{{!backPhotoSrc}}">
+            <view class="example-photo iconfont icon-shenfenzhengfanmian"></view>
+            <view class="upload-btn iconfont icon-photo"></view>
+          </block>          
+          <image class="real-photo" wx:else src="{{backPhotoSrc}}"></image>
+        </view>
+        <text class="upload-tips">点击上传身份证背面</text>
+      </view>
+    </view>
+  </view>
+  <view class="opt">
+    <button class="btn btn-block" bindtap="submit">完成</button>
+  </view>
+</view>

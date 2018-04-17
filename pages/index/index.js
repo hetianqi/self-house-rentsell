@@ -102,7 +102,7 @@ Page({
   // 跳转到我的申请页
   gotoMyApplications() {
     wx.navigateTo({
-      url: '../apply/apply'
+      url: '../house/apply'
     });
   },
   // 扫码进入

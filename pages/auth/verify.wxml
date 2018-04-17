@@ -1,0 +1,22 @@
+<!--pages/auth/verify.wxml-->
+<view class="container">
+  <view class="house-photos">
+    <swiper bindchange="">
+      <swiper-item wx:for="{{photos}}" wx:key="*this">
+        <image src="{{item}}"></image>
+      </swiper-item>
+    </swiper>
+    <text class="desc" space="nbsp">{{date}}    {{index}}/{{photos.length}}</text>
+  </view>
+  <view class="opt">
+    <button class="btn btn-success btn-block" open-type="getPhoneNumber" bindgetphonenumber="wechatLogin">
+      <text class="btn-icon iconfont icon-plus"></text>
+      <text class="btn-text">微信用户快速登录</text>
+    </button>
+    <navigator url="./mobile-verify">输入手机号登录/注册</navigator>
+  </view>
+  <view class="tips">
+    <text>点击登录，即表示已阅读并同意</text>
+    <navigator url="./clause"><text style="color: #636886;">《自主看房条款》</text></navigator>
+  </view>
+</view>
