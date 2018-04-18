@@ -10,19 +10,19 @@
     catchtap="onRegionChange"
     show-location>
       <cover-view class="search">
-        <cover-view class="iconfont icon-plus"></cover-view>
+        <cover-view class="iconfont icon-search"></cover-view>
         <cover-view class="search-tips">请输入想要搜索的楼盘</cover-view>
-        <cover-view class="iconfont icon-plus"></cover-view>
+        <cover-view class="iconfont icon-mic"></cover-view>
       </cover-view>
       <cover-view class="zoom-in iconfont icon-plus" bindtap="zoomIn"></cover-view>
       <cover-view class="zoom-out iconfont icon-minus" bindtap="zoomOut"></cover-view>
       <cover-view class="locate iconfont icon-dingwei" bindtap="locate"></cover-view>
       <cover-view class="btn my-apply" bindtap="gotoMyApplications">
-        <cover-view class="btn-icon iconfont icon-plus"></cover-view>
+        <cover-view class="btn-icon iconfont icon-briefcase-check"></cover-view>
         <cover-view class="btn-text">我的申请</cover-view>
       </cover-view>
       <cover-view class="btn scan-code" bindtap="scanCode">
-        <cover-view class="btn-icon iconfont icon-plus"></cover-view>
+        <cover-view class="btn-icon iconfont icon-qrcode"></cover-view>
         <cover-view class="btn-text">扫码进入</cover-view>
       </cover-view>
     </map>  

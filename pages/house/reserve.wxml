@@ -1,2 +1,21 @@
 <!--pages/house/reserve.wxml-->
-<text>pages/house/reserve.wxml</text>
+<view class="container">
+  <view class="tips-1">请选择预约看房日期</view>
+  <view class="pick-date">
+    <date-picker></date-picker>
+  </view>  
+  <view class="tips-1">请选择合适的看房时间</view>
+  <view class="flex pick-time">
+    <picker class="flex-item pick-time-picker" mode="time" data-type="begin" bindchange="pickTime">
+      <text class="pick-time-value">{{beginTime}}</text>
+    </picker>
+    <text class="symbol">至</text>
+    <picker class="flex-item pick-time-picker" mode="time" data-type="end" bindchange="pickTime">
+      <text class="pick-time-value">{{endTime}}</text>
+    </picker>
+  </view>
+  <view class="opt">
+    <button class="btn btn-block" disabled="{{!day || !beginTime || !endTime}}">确认预约</button>
+  </view>
+  <view class="tips-2">注意：请记住你的预约时间哟！</view>
+</view>

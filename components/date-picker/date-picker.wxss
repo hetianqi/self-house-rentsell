@@ -1,0 +1,78 @@
+/* components/date-picker/date-picker.wxss */
+:host {
+  display: block;
+}
+
+.date-picker {
+  border: 2rpx solid #3191f1;
+  border-radius: 8rpx;
+}
+
+.header {
+  position: relative;
+  padding: 20rpx 36rpx;
+  line-height: 1;
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  background-color: #3191f1;
+}
+.prev-month,
+.next-month {
+  position: absolute;
+  top: 14rpx;
+  font-family: "iconfont" !important;
+  font-size: 46rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.prev-month {
+  left: 36rpx;
+}
+.next-month {
+  right: 36rpx;
+}
+.prev-month:before {
+  content: "\e601";
+}
+.next-month:before {
+  content: "\e605";
+}
+
+.body {
+  padding: 0 30rpx;
+}
+.row {
+  display: flex;  
+}
+.cell {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 1;
+}
+.cell + .cell {
+  margin-left: 28rpx;
+}
+.week {
+  display: inline-block;
+  margin: 18rpx 0;
+}
+.day {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 36rpx;
+  margin-bottom: 28rpx;
+}
+.curr-day {
+  border: 2rpx solid #3191f1;
+  border-radius: 50%;
+}
+.selected-day {
+  border: 2rpx solid #3191f1;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #3191f1;
+}

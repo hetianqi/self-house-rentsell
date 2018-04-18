@@ -111,8 +111,11 @@ navigator {
   display: block;
   width: 100%;
 }
-.btn.button-hover {
-  opacity: 0.7;
+.btn.button-hover,
+.btn[disabled] {
+  color: #fff !important;
+  background-color: #3191f1 !important;
+  opacity: 0.7 !important;
 }
 
 .flex {

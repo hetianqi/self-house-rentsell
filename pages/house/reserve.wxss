@@ -1,1 +1,49 @@
 /* pages/house/reserve.wxss */
+.tips-1 {
+  margin-top: 56rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #3191f1;
+}
+
+.pick-date {
+  margin: 52rpx 40rpx 0;
+}
+
+.pick-time {
+  margin: 68rpx 40rpx 0;
+}
+.pick-time-picker {
+  position: relative;
+}
+.pick-time-picker:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  border-bottom: 2rpx solid #3191f1;
+}
+.pick-time-value {
+  display: block;
+  height: 44rpx;
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 1;
+  color: #3191f1;
+}
+.symbol {
+  margin: 0 10rpx;
+  font-size: 36rpx;
+}
+
+.opt {
+  margin: 100rpx 40rpx 0;
+}
+
+.tips-2 {
+  margin-top: 42rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999899;
+}

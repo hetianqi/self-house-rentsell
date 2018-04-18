@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "预约看房"
+  "navigationBarTitleText": "预约看房",
+  "usingComponents": {
+    "date-picker": "../../components/date-picker/date-picker"
+  }
 }
