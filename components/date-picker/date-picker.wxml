@@ -2,7 +2,7 @@
 <view class="date-picker">
   <view class="header">
     <view class="prev-month"></view>
-    <text class="curr-month">2018.02</text>
+    <text class="curr-month">{{year + '.' + month}}</text>
     <view class="next-month"></view>
   </view>
   <view class="body">
@@ -29,42 +29,20 @@
         <text class="week">SAT</text>
       </view>
     </view>
-    <view class="row">
-      <view class="cell"></view>
-      <view class="cell"></view>
-      <view class="cell"></view>
-      <view class="cell"></view>
-      <view class="cell">
-        <text class="day">1</text>
-      </view>
-      <view class="cell">
-        <text class="day curr-day">2</text>
-      </view>
-      <view class="cell">
-        <text class="day selected-day">3</text>
-      </view>
-    </view>
-    <view class="row">
-      <view class="cell">
-        <text class="day">4</text>
-      </view>
-      <view class="cell">
-        <text class="day">5</text>
-      </view>
-      <view class="cell">
-        <text class="day">6</text>
-      </view>
-      <view class="cell">
-        <text class="day">7</text>
-      </view>
-      <view class="cell">
-        <text class="day">8</text>
-      </view>
-      <view class="cell">
-        <text class="day">9</text>
-      </view>
-      <view class="cell">
-        <text class="day">10</text>
+    <view 
+      class="row" 
+      wx:for="{{days}}" 
+      wx:for-item="rowDays" 
+      wx:for-index="rowIndex" 
+      wx:key="{{rowIndex}}">
+      <view 
+        class="cell" 
+        wx:for="{{rowDays}}" 
+        wx:for-item="day" 
+        wx:key="{{day}}">
+        <text 
+          class="day{{year === today[0] && month === today[1] && day === today[2] ? ' today' : ''}}{{day === selectedDay ? ' selected-day' : ''}}"
+          wx:if="{{day}}" bindtap="selectDay" data-day="{{day}}">{{day}}</text>
       </view>
     </view>
   </view>
