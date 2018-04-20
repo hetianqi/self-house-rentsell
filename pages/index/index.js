@@ -8,7 +8,7 @@ let mapCtx;
 Page({
   data: {
     location: {},
-    scale: 16, // map组件bug?传递给map组件的scale值比mapCtx.getScale返回的值大2
+    scale: 16,
     markers: []
   },  
   onReady() {
@@ -72,7 +72,7 @@ Page({
   zoomOut() {
     this.getScale()
     .then(() => {
-      if (this.data.scale <= 3) return;
+      if (this.data.scale <= 5) return;
       this.setData({ scale: this.data.scale - 1 });
     });
   },

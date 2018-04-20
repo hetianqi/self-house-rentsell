@@ -4,7 +4,7 @@
     class="map"
     latitude="{{location.latitude}}"
     longitude="{{location.longitude}}"
-    scale="{{scale + 2}}"
+    scale="{{scale}}"
     markers="{{markers}}"
     bindregionchange="onRegionChange"
     catchtap="onRegionChange"
@@ -18,13 +18,13 @@
           <cover-image src="../../images/ic_mic.png"></cover-image>
         </cover-view>
       </cover-view>
-      <cover-view class="zoom-in" bindtap="zoomIn">
+      <cover-view class="zoom-in" catchtap="zoomIn">
         <cover-image src="../../images/zoom-in.png"></cover-image>
       </cover-view>
-      <cover-view class="zoom-out" bindtap="zoomOut">
+      <cover-view class="zoom-out" catchtap="zoomOut">
         <cover-image src="../../images/zoom-out.png"></cover-image>
       </cover-view>
-      <cover-view class="locate" bindtap="locate">
+      <cover-view class="locate" catchtap="locate">
         <cover-image src="../../images/locate.png"></cover-image>
       </cover-view>
       <cover-view class="btn my-apply" bindtap="gotoMyApplications">
