@@ -1,9 +1,9 @@
 <!--components/date-picker/date-picker.wxml-->
 <view class="date-picker">
   <view class="header">
-    <view class="prev-month"></view>
+    <view class="prev-month" bindtap="changeMonth" data-num="{{-1}}"></view>
     <text class="curr-month">{{year + '.' + month}}</text>
-    <view class="next-month"></view>
+    <view class="next-month" bindtap="changeMonth" data-num="{{1}}"></view>
   </view>
   <view class="body">
     <view class="row">
@@ -39,10 +39,10 @@
         class="cell" 
         wx:for="{{rowDays}}" 
         wx:for-item="day" 
-        wx:key="{{day}}">
-        <text 
-          class="day{{year === today[0] && month === today[1] && day === today[2] ? ' today' : ''}}{{day === selectedDay ? ' selected-day' : ''}}"
-          wx:if="{{day}}" bindtap="selectDay" data-day="{{day}}">{{day}}</text>
+        wx:key="{{day.day}}">
+        <view 
+          class="day {{day.today ? 'today' : ''}} {{day.selected ? 'selected-day' : ''}} {{day.disabled ? 'disabled' : ''}}"
+          wx:if="{{day.day}}" data-day="{{day}}" bindtap="selectDay">{{day.day}}</view>
       </view>
     </view>
   </view>

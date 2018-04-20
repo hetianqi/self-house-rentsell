@@ -41,7 +41,7 @@
 }
 .house-brief-item .icon {
   margin: 0 20rpx;
-  font-size: 40rpx;
+  font-size: 44rpx;
   color: #3191f1;
 }
 .house-brief-item .text {
@@ -53,13 +53,13 @@
 .area {
   background-color: #fff;
 }
-.area-title {
+.area-header {
   padding: 20rpx 30rpx;
   border-bottom: 1px solid #e8e8e8;
   font-size: 32rpx;
   color: #3191f1;
 }
-.area-title .text::before {
+.area-header .text::before {
   content: "|";
   display: inline-block;
   width: 10rpx;
@@ -68,9 +68,24 @@
   border-radius: 4rpx;
   font-size: 30rpx;
 }
-.area-title .icon {
+.area-header .icon {
   float: right;
   font-size: 40rpx;
+  line-height: 46rpx;
+  vertical-align: middle;
+  transition: transform .2s;
+}
+.area-header .icon.collapsed {
+  transform: rotate(180deg);
+}
+.area-body {
+  transition: max-height .2s cubic-bezier(0,1.07,.72,.94);
+  max-height: 10000rpx;
+  overflow: hidden;
+}
+.area-body.collapsed {
+  /* transition: max-height .2s cubic-bezier(.97,0,.99,.8); */
+  max-height: 0;
 }
 .area-content {
   padding: 30rpx;
@@ -115,5 +130,5 @@
 }
 
 .opt {
-  margin: 56rpx 30rpx 100rpx;
+  margin: 56rpx 40rpx 100rpx;
 }

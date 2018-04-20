@@ -114,6 +114,7 @@ Page({
           title: '获取房源数据...',
         });
         setTimeout(() => {
+          wx.hideLoading();
           wx.navigateTo({
             url: '../house/detail?id=1'
           });
@@ -124,6 +125,7 @@ Page({
           title: '获取房源数据...',
         });
         setTimeout(() => {
+          wx.hideLoading();
           wx.navigateTo({
             url: '../house/detail?id=1'
           });

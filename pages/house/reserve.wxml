@@ -2,7 +2,7 @@
 <view class="container">
   <view class="tips-1">请选择预约看房日期</view>
   <view class="pick-date">
-    <date-picker></date-picker>
+    <date-picker begin-date="{{beginDate}}" end-date="{{endDate}}" bindchange="pickDate"></date-picker>
   </view>  
   <view class="tips-1">请选择合适的看房时间</view>
   <view class="flex pick-time">
@@ -15,7 +15,7 @@
     </picker>
   </view>
   <view class="opt">
-    <button class="btn btn-block" disabled="{{!day || !beginTime || !endTime}}">确认预约</button>
+    <button class="btn btn-block" disabled="{{!date || !beginTime || !endTime}}" bindtap="submit">确认预约</button>
   </view>
   <view class="tips-2">注意：请记住你的预约时间哟！</view>
 </view>

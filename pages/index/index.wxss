@@ -3,6 +3,10 @@
   position: relative;
 }
 
+cover-image {
+  line-height: 1;
+}
+
 .map {
   width: 100%;
   height: 100%;
@@ -18,14 +22,14 @@
   border-radius: 8rpx;
   background-color: #fff;
 }
-
-.search .iconfont {
-  padding: 35rpx 40rpx;
-  text-align: center;
-  line-height: 30rpx;
-  font-size: 40rpx;
-  color: #333;
+.search-icon {
+  display: flex;
+  width: 100rpx;
+  height: 100rpx;
+  align-items: center;
+  justify-content: center;
 }
+
 .search-tips {
   flex: 1;
   padding: 35rpx 20rpx;
@@ -33,7 +37,6 @@
   line-height: 30rpx;
   color: #999;
 }
-
 .zoom-in,
 .zoom-out,
 .locate {
@@ -41,12 +44,9 @@
   right: 30rpx;
   width: 60rpx;
   height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 1px 1px 1px #aaa, -1px -1px 1px #aaa;
-  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .zoom-in {
   top: 290rpx;
@@ -70,4 +70,14 @@
 }
 .scan-code {
   right: calc((100% - 570rpx) / 2);
+}
+.my-apply .btn-icon,
+.scan-code .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+.scan-code .btn-icon {
+  margin-top: -2rpx;
 }

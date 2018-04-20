@@ -12,7 +12,13 @@ Page({
       'https://image1.ljcdn.com/hdic-resblock/18f50205-82ec-4758-a387-ede16fc0266d.jpg.1000x.jpg',
       'https://image1.ljcdn.com/hdic-resblock/12d8eb6d-feb5-489b-8d01-aefaec7ac31e.jpg.1000x.jpg',
       'https://image1.ljcdn.com/hdic-resblock/0ff82154-4013-4330-8455-57593c6ea551.jpg.1000x.jpg'
-    ]
+    ],
+    detailCollapsed: false
+  },
+
+  toggleExpand(e) {
+    let field = e.currentTarget.dataset.field;
+    this.setData({ [field]: !this.data[field] });
   },
   
   // 申请看房

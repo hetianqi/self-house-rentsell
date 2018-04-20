@@ -26,7 +26,7 @@
 }
 
 .opt {
-  margin: 42rpx 30rpx 0 30rpx;
+  margin: 42rpx 40rpx 0;
   text-align: center;
 }
 .opt navigator {

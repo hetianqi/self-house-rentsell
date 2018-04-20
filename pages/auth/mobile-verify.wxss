@@ -68,13 +68,13 @@
 }
 
 .opt {
-  margin: 80rpx 30rpx 0 30rpx;
+  margin: 80rpx 40rpx 0;
 }
 
 .tips {
   position: absolute;
-  left: 30rpx;
-  right: 30rpx;
+  left: 40rpx;
+  right: 40rpx;
   bottom: 100rpx;
   color: #999899;
   text-align: center;

@@ -10,7 +10,7 @@
   </view>
   <view class="opt">
     <button class="btn btn-success btn-block" open-type="getPhoneNumber" bindgetphonenumber="wechatLogin">
-      <text class="btn-icon iconfont icon-plus"></text>
+      <text class="btn-icon iconfont icon-wechat"></text>
       <text class="btn-text">微信用户快速登录</text>
     </button>
     <navigator url="./mobile-verify">输入手机号登录/注册</navigator>

@@ -10,113 +10,119 @@
   </view>
   <view class="flex house-brief">
     <view class="flex-item house-brief-item">
-      <icon class="icon iconfont icon-plus"></icon>
+      <text class="icon iconfont icon-usergroup-add"></text>
       <view class="text">        
         <text class="block">房源发布人</text>
         <text class="block">XXX</text>
       </view>
     </view>
     <view class="flex-item house-brief-item">
-      <icon class="icon iconfont icon-plus"></icon>
+      <text class="icon iconfont icon-attention"></text>
       <view class="text">
         <text>关注<text style="color: #ff6600;margin: 0 5rpx;font-weight: bold;">36</text>人</text>
       </view>
     </view>
     <view class="flex-item house-brief-item">
-      <icon class="icon iconfont icon-plus"></icon>
+      <text class="icon iconfont icon-wechat"></text>
       <view class="text">        
           <text>微聊</text>
       </view>
     </view>
   </view>
   <view class="area">
-    <view class="area-title">
+    <view class="area-header">
       <text class="text">房源详情</text>
-      <icon class="icon iconfont icon-plus"></icon>
+      <text class="icon iconfont icon-upcircle {{detailCollapsed ? 'collapsed': ''}}" bindtap="toggleExpand" data-field="detailCollapsed"></text>
     </view>
-    <view class="area-content">
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">楼盘名称：</text>
-          <text class="field-value">月光诚品1栋1单元201</text>
+    <view class="area-body {{detailCollapsed ? 'collapsed': ''}}">
+      <view class="area-content">
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">楼盘名称：</text>
+            <text class="field-value">月光诚品1栋1单元201</text>
+          </view>
+        </view>
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">租价：</text>
+            <text class="field-value">800元</text>
+          </view>
+          <view class="flex-item field">
+            <text class="field-name">面积：</text>
+            <text class="field-value">92.5㎡</text>
+          </view>
+        </view>
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">房型：</text>
+            <text class="field-value">2室2厅1卫</text>
+          </view>
+          <view class="flex-item field">
+            <text class="field-name">楼层：</text>
+            <text class="field-value">2楼/20楼</text>
+          </view>
+        </view>
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">梯户：</text>
+            <text class="field-value">2梯4户</text>
+          </view>
+          <view class="flex-item field">
+            <text class="field-name">朝向：</text>
+            <text class="field-value">西北</text>
+          </view>
+        </view>
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">装修：</text>
+            <text class="field-value">精装</text>
+          </view>
         </view>
       </view>
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">租价：</text>
-          <text class="field-value">800元</text>
+      <view class="area-content">
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">状态：</text>
+            <text class="field-value">在租</text>
+          </view>
         </view>
-        <view class="flex-item field">
-          <text class="field-name">面积：</text>
-          <text class="field-value">92.5㎡</text>
-        </view>
-      </view>
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">房型：</text>
-          <text class="field-value">2室2厅1卫</text>
-        </view>
-        <view class="flex-item field">
-          <text class="field-name">楼层：</text>
-          <text class="field-value">2楼/20楼</text>
+        <view class="flex">
+          <view class="flex-item field">
+            <text class="field-name">地址：</text>
+            <text class="field-value">双楠大道100号</text>
+          </view>
         </view>
       </view>
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">梯户：</text>
-          <text class="field-value">2梯4户</text>
-        </view>
-        <view class="flex-item field">
-          <text class="field-name">朝向：</text>
-          <text class="field-value">西北</text>
-        </view>
-      </view>
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">装修：</text>
-          <text class="field-value">精装</text>
-        </view>
-      </view>
-    </view>
-    <view class="area-content">
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">状态：</text>
-          <text class="field-value">在租</text>
-        </view>
-      </view>
-      <view class="flex">
-        <view class="flex-item field">
-          <text class="field-name">地址：</text>
-          <text class="field-value">双楠大道100号</text>
-        </view>
-      </view>
-    </view>
+    </view>    
   </view>
   <view class="area">
-    <view class="area-title">
+    <view class="area-header">
       <text class="text">房东有话说</text>
-      <icon class="icon iconfont icon-plus"></icon>
+      <text class="icon iconfont icon-upcircle"></text>
     </view>
-    <view class="area-content">
-      <text>户型通透，带入户花园，厨房与其他功能房完全相隔，免除油烟影响。厨房带双开窗，朝东。客厅、主卧、次卧均朝南，冬暖夏凉。空间采光通风，且客厅带大长阳台，赠送面积大。带负一层标准车位，且车后有较大空间，位置优越。</text>
+    <view class="area-body">
+      <view class="area-content">
+        <text>户型通透，带入户花园，厨房与其他功能房完全相隔，免除油烟影响。厨房带双开窗，朝东。客厅、主卧、次卧均朝南，冬暖夏凉。空间采光通风，且客厅带大长阳台，赠送面积大。带负一层标准车位，且车后有较大空间，位置优越。</text>
+      </view>
     </view>
   </view>
   <view class="area">
-    <view class="area-title">
+    <view class="area-header">
       <text class="text">留言</text>
-      <icon class="icon iconfont icon-plus"></icon>
+      <text class="icon iconfont icon-upcircle"></text>
     </view>
-    <view class="area-content message-list">
-      <view class="message-item">
-        <text class="date">1月3日</text>
-        <text class="text">价格没有少哦，你可以吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</text>
-        <text class="reply">回复</text>
-      </view>
-      <view class="message-item">
-        <text class="date">12月31日</text>
-        <text class="text">你好，很喜欢月光诚品的房子，吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</text>
-        <text class="reply">回复</text>
+    <view class="area-body">
+      <view class="area-content message-list">
+        <view class="message-item">
+          <text class="date">1月3日</text>
+          <text class="text">价格没有少哦，你可以吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</text>
+          <text class="reply">回复</text>
+        </view>
+        <view class="message-item">
+          <text class="date">12月31日</text>
+          <text class="text">你好，很喜欢月光诚品的房子，吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</text>
+          <text class="reply">回复</text>
+        </view>
       </view>
     </view>
   </view>

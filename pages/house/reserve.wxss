@@ -42,7 +42,7 @@
 }
 
 .tips-2 {
-  margin-top: 42rpx;
+  margin: 42rpx 0 100rpx;
   text-align: center;
   font-size: 32rpx;
   color: #999899;

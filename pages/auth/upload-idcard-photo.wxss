@@ -82,9 +82,5 @@
 }
 
 .opt {
-  position: absolute;
-  left: 40rpx;
-  right: 40rpx;
-  bottom: 100rpx;
-  text-align: center;
+  margin: 150rpx 40rpx 100rpx;
 }

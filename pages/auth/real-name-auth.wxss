@@ -26,9 +26,5 @@
   text-align: center;
 }
 .opt {
-  position: absolute;
-  left: 30rpx;
-  right: 30rpx;
-  bottom: 100rpx;
-  text-align: center;
+  margin: 100rpx 40rpx;
 }
