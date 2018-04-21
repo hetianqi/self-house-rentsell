@@ -29,12 +29,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "自定义",
-					"pathName": "pages/auth/real-name-auth",
+					"pathName": "pages/house/reserve",
 					"query": ""
 				}
 			]
