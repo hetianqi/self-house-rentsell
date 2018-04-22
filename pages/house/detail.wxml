@@ -22,7 +22,7 @@
         <text>关注<text style="color: #ff6600;margin: 0 5rpx;font-weight: bold;">36</text>人</text>
       </view>
     </view>
-    <view class="flex-item house-brief-item">
+    <view class="flex-item house-brief-item" bindtap="wechat">
       <text class="icon iconfont icon-wechat"></text>
       <view class="text">        
           <text>微聊</text>

@@ -8,6 +8,7 @@
     "pages/house/self-house",
     "pages/house/unlock-example",
     "pages/house/detail",
+    "pages/house/wechat",
     "pages/house/reserve",
     "pages/auth/verify",
     "pages/auth/mobile-verify",

@@ -34,15 +34,56 @@ Page({
       _this.setData({ list: [] });
       return;
     }
-    wx.request({
-      url: apiUrl + '/apply/list',
-      success({ data }) {
-        if (data.errcode) {
-          return;
+    _this.setData({
+      list: [
+        {
+          "id": 1,
+          "icon": "https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg",
+          "name": "月光诚品",
+          "dong": 1,
+          "danyuan": 1,
+          "hao": 404,
+          "state": 0
+        },
+        {
+          "id": 2,
+          "icon": "https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg",
+          "name": "月光诚品",
+          "dong": 1,
+          "danyuan": 1,
+          "hao": 404,
+          "state": 1
+        },
+        {
+          "id": 3,
+          "icon": "https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg",
+          "name": "月光诚品",
+          "dong": 1,
+          "danyuan": 1,
+          "hao": 404,
+          "state": 2,
+          "startTime": "2017.03.24",
+          "endTime": "2017.04.14"
         }
-        _this.setData({ list: data.data });
-      }
+      ]
     });
+    // wx.request({
+    //   url: apiUrl + '/apply/list',
+    //   success({ data }) {
+    //     wx.showModal({
+    //       content: JSON.stringify(data)
+    //     });
+    //     if (data.errcode) {
+    //       return;
+    //     }
+    //     _this.setData({ list: data.data });
+    //   },
+    //   fail(err) {
+    //     wx.showModal({
+    //       content: JSON.stringify(err)
+    //     });
+    //   }
+    // });
   },
 
   // 房源跳转

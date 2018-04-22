@@ -81,3 +81,53 @@ cover-image {
 .scan-code .btn-icon {
   margin-top: -2rpx;
 }
+
+.marker-detail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: transform .2s;
+  transform: translateY(100%);
+}
+.marker-detail.show {
+  transform: translateY(0);
+  box-shadow: 0 -1px 5px #aaa;
+}
+.marker-header {
+  position: relative;
+  padding: 30rpx 30rpx 26rpx;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 0;
+}
+.marker-maintitle {
+  display: inline-block;
+  margin-right: 30rpx;
+  font-size: 34rpx;
+  color: #212121;
+}
+.marker-subtitle {
+  display: inline-block;
+  font-size: 34rpx;
+  color: #5f5f5f;
+}
+.house-num {
+  display: inline;
+  color: #3191f1;
+  margin-right: 5rpx;
+}
+.marker-close {
+  position: absolute;
+  right: 40rpx;
+  top: 20rpx;
+  font-size: 60rpx;
+}
+.marker-body {
+  max-height: 780rpx;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.marker-opt {
+  margin: 30rpx;
+}

@@ -20,6 +20,12 @@ Page({
     let field = e.currentTarget.dataset.field;
     this.setData({ [field]: !this.data[field] });
   },
+
+  wechat() {
+    wx.navigateTo({
+      url: './wechat',
+    });
+  },
   
   // 申请看房
   apply() {
