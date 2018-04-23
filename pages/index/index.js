@@ -58,15 +58,14 @@ Page({
           longitude: item.longitude,
           width: 0,
           height: 0,
-          iconPath: '../../images/marker.png',
-          label: {
-            content: item.name + `${item.count}(套)`,
-            x: -40,
-            y: -25,
+          iconPath: '../../images/touming.png',
+          callout: {
+            content: `  ${item.name}(${item.count}套)  `,
             bgColor: '#f75001',
             color: '#fff',
-            borderRadius: 100,
-            padding: 5
+            borderRadius: 8,
+            padding: 3,
+            display: 'ALWAYS'
           }
         }))
       });
@@ -103,7 +102,7 @@ Page({
     });
   },
   onRegionChange(e) {
-    this.setData({ isShowHouses: !this.data.isShowHouses });
+    // this.setData({ isShowHouses: !this.data.isShowHouses });
     console.log(e);
     this.getMapScale();
   },
@@ -147,14 +146,14 @@ Page({
   // 展示房源列表
   showHouses(e) {
     console.log(e);
-    this.setData({ isShowHouses: true });
+    // this.setData({ isShowHouses: true });
   },
   // 隐藏房源列表
-  hideHouses() {
+  hideHouses(e) {
     this.setData({ isShowHouses: false });
   },
   // 跳转到我的申请页
-  gotoMyApplications() {
+  gotoMyApp() {
     wx.navigateTo({
       url: '../house/apply'
     });

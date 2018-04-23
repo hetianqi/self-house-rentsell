@@ -8,7 +8,8 @@
     markers="{{markers}}"
     bindregionchange="onRegionChange"
     catchtap="onRegionChange"
-    catchmarkertap="showHouses"
+    bindcallouttap="showHouses"
+    bindtap="hideHouses"
     show-location>
       <cover-view class="search">
         <cover-view class="search-icon">
@@ -28,7 +29,7 @@
       <cover-view class="locate" catchtap="locate">
         <cover-image src="../../images/locate.png"></cover-image>
       </cover-view>
-      <cover-view class="btn my-apply" catchtap="gotoMyApplications">
+      <cover-view class="btn my-apply" catchtap="gotoMyApp">
         <cover-view class="btn-icon">
           <cover-image src="../../images/shenqing.png"></cover-image>
         </cover-view>

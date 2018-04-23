@@ -89,10 +89,10 @@ cover-image {
   bottom: 0;
   background-color: #fff;
   transition: transform .2s;
-  transform: translateY(100%);
+  transform: translate(0, 100%);
 }
 .marker-detail.show {
-  transform: translateY(0);
+  transform: translate(0, 0);
   box-shadow: 0 -1px 5px #aaa;
 }
 .marker-header {
