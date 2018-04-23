@@ -1,0 +1,101 @@
+/* pages/house/wechat.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.send-house-link {
+  width: 100%;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  border-radius: 0;
+  text-align: center;
+  font-size: 30rpx;
+  color: #3191f1;
+  line-height: 1.5;
+}
+.send-house-link::after {
+  background-color: transparent;
+  border-radius: 0;
+  border: 0;
+}
+.send-house-link .icon-random {
+  margin: -4rpx 10rpx 0 0;
+  transform: rotate(180deg);
+  line-height: 1;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: #ececec;
+  padding: 62rpx 50rpx 0;
+}
+.message-item {
+  margin-bottom: 38rpx;
+}
+.message-item.receive {
+  margin-right: 150rpx;
+}
+.message-item.send {
+  margin-left: 150rpx;
+  text-align: right;
+}
+.message-item text {
+  position: relative;
+  display: inline-block;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+}
+.message-item text::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -20rpx;
+  border: 20rpx solid;
+}
+.message-item.receive text {
+  color: #fff;
+  background-color: #b5b5b5;
+}
+.message-item.receive text::before {
+  left: 0;
+  margin-left: -40rpx;
+  border-color: transparent #b5b5b5 transparent transparent;
+} 
+.message-item.send text {
+  color: #434343;
+  background-color: #fff;
+}
+.message-item.send text::before {
+  right: 0;
+  margin-right: -40rpx;
+  border-color: transparent transparent transparent #fff;
+} 
+
+.message-form {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  border-top: 1px solid #e8e8e8;
+  background-color: #fff;
+}
+.message-input {
+  flex: 1;
+  padding: 0 20rpx;
+}
+.message-input textarea {
+  width: 100%;
+  height: 45rpx;
+  font-size: 30rpx;  
+  line-height: 1.5;
+}
+.message-opt {
+  width: 120rpx;
+}
+.message-opt .btn {
+  padding: 15rpx 0;
+  font-size: 34rpx;
+}

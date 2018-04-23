@@ -1,0 +1,56 @@
+<!--pages/house/wechat.wxml-->
+<view class="container">
+  <view class="house-list">
+    <view class="house-item">
+      <view class="house-image">
+        <image src="https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg"></image>
+      </view>
+      <view class="house-detail">
+        <view class="house-desc">2室2厅1卫/90㎡/精装/西北</view>
+        <view class="house-tags">
+          <view class="house-tag">临近地铁</view>
+          <view class="house-tag">交通方便</view>
+        </view>
+        <view class="house-price">80.50万</view>
+      </view>
+    </view>
+  </view>
+  <button class="send-house-link">
+    <text class="iconfont icon icon-random"></text>
+    <text>发送房源链接</text>
+  </button>
+  <view class="message-list">
+    <view class="message-item receive">
+      <text>Hey John,Would you like to go the coffee tonight?</text>
+    </view>
+    <view class="message-item send">
+      <text>Oh sure!When do you want to go?</text>
+    </view>
+    <view class="message-item receive">
+      <text>Is 7:00 PM all right?</text>
+    </view>
+    <view class="message-item send">
+      <text>Yes, that's good.See you tonight.</text>
+    </view>
+    <view class="message-item receive">
+      <text>Hey John,Would you like to go the coffee tonight?</text>
+    </view>
+    <view class="message-item send">
+      <text>Oh sure!When do you want to go?</text>
+    </view>
+    <view class="message-item receive">
+      <text>Is 7:00 PM all right?</text>
+    </view>
+    <view class="message-item send">
+      <text>Yes, that's good.See you tonight.</text>
+    </view>
+  </view>
+  <view class="message-form">
+    <view class="message-input">
+      <textarea bindinput="message" placeholder="写下想说的话..." auto-focus></textarea>
+    </view>
+    <view class="message-opt">
+      <button class="btn btn-block">发送</button>
+    </view>
+  </view>
+</view>
