@@ -14,7 +14,8 @@
     "pages/auth/mobile-verify",
     "pages/auth/clause",
     "pages/auth/real-name-auth",
-    "pages/auth/upload-idcard-photo"
+    "pages/auth/upload-idcard-photo",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "dark",

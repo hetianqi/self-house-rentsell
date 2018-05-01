@@ -55,11 +55,6 @@ navigator {
   -webkit-overflow-scrolling: touch;
 }
 
-.container cover-view {
-  visibility: visible;
-  line-height: 1;
-}
-
 .iconfont {
   font-size: inherit;
   display: inline-block;

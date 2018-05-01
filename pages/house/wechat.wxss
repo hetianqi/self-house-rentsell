@@ -26,21 +26,20 @@
 }
 
 .message-list {
+  height: calc(100% - 410rpx);
   flex: 1;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background-color: #ececec;
-  padding: 62rpx 50rpx 0;
-}
-.message-item {
-  margin-bottom: 38rpx;
 }
 .message-item.receive {
-  margin-right: 150rpx;
+  margin: 38rpx 150rpx 0 50rpx;
 }
 .message-item.send {
-  margin-left: 150rpx;
+  margin: 38rpx 50rpx 0 150rpx;
   text-align: right;
+}
+.message-item:last-child {
+  margin-bottom: 50rpx;
 }
 .message-item text {
   position: relative;

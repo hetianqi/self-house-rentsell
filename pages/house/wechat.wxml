@@ -19,38 +19,27 @@
     <text class="iconfont icon icon-random"></text>
     <text>发送房源链接</text>
   </button>
-  <view class="message-list">
-    <view class="message-item receive">
-      <text>Hey John,Would you like to go the coffee tonight?</text>
+  <scroll-view class="message-list" scroll-y scroll-into-view="{{scrollIntoId}}">
+    <view
+      id="message_{{index + 1}}"
+      class="message-item {{item.type === 1 ? 'receive' : 'send'}}"
+      wx:for="{{historyMessages}}"
+      wx:key="{{index}}">
+      <text>{{item.content}}</text>
     </view>
-    <view class="message-item send">
-      <text>Oh sure!When do you want to go?</text>
-    </view>
-    <view class="message-item receive">
-      <text>Is 7:00 PM all right?</text>
-    </view>
-    <view class="message-item send">
-      <text>Yes, that's good.See you tonight.</text>
-    </view>
-    <view class="message-item receive">
-      <text>Hey John,Would you like to go the coffee tonight?</text>
-    </view>
-    <view class="message-item send">
-      <text>Oh sure!When do you want to go?</text>
-    </view>
-    <view class="message-item receive">
-      <text>Is 7:00 PM all right?</text>
-    </view>
-    <view class="message-item send">
-      <text>Yes, that's good.See you tonight.</text>
-    </view>
-  </view>
+  </scroll-view>
   <view class="message-form">
     <view class="message-input">
-      <textarea bindinput="message" placeholder="写下想说的话..." auto-focus></textarea>
+      <input 
+        value="{{message}}"
+        cursor-spacing="18"
+        placeholder="写下想说的话..."
+        confirm-hold
+        bindinput="changeMessage"
+        bindconfirm="sendMessage"></input>
     </view>
     <view class="message-opt">
-      <button class="btn btn-block">发送</button>
+      <button class="btn btn-block" bindtap="sendMessage">发送</button>
     </view>
   </view>
 </view>

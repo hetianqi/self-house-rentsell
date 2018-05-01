@@ -41,13 +41,16 @@
         </cover-view>
         <cover-view class="btn-text">扫码进入</cover-view>
       </cover-view>
-      <cover-view class="marker-detail {{isShowHouses ? 'show' : ''}}">
+      <cover-view class="marker-detail show">
         <cover-view class="marker-header">
           <cover-view class="marker-maintitle">中央招商华府</cover-view>
-          <cover-view class="marker-subtitle"><cover-view class="house-num">1</cover-view>套房源</cover-view>
+          <cover-view class="marker-subtitle">
+            <cover-view class="house-num">1</cover-view>
+            套房源
+          </cover-view>
           <cover-view class="marker-close" catchtap="hideHouses">×</cover-view>
         </cover-view>
-        <cover-view class="marker-body">
+         <cover-view class="marker-body">
           <cover-view class="house-list">
             <cover-view class="house-item">
               <cover-view class="house-image">
@@ -92,7 +95,7 @@
           <cover-view class="marker-opt">
             <cover-view class="btn btn-block">联系客服</cover-view>
           </cover-view>
-        </cover-view>
+        </cover-view> 
       </cover-view>
     </map>  
 </view>
