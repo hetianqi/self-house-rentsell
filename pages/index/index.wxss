@@ -12,6 +12,12 @@ cover-image {
   height: 100%;
 }
 
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #e8e8e8;
+}
+
 .search {
   position: absolute;
   left: 20rpx;
@@ -19,6 +25,7 @@ cover-image {
   display: flex;
   width: calc(100% - 40rpx);
   height: 100rpx;
+  border: 1px solid #eee;
   border-radius: 8rpx;
   background-color: #fff;
 }
@@ -29,7 +36,14 @@ cover-image {
   align-items: center;
   justify-content: center;
 }
-
+.search-icon .ic_search {
+  width: 38rpx;
+  height: 38rpx;
+}
+.search-icon .ic_mic {
+  width: 30rpx;
+  height: 40rpx;
+}
 .search-tips {
   flex: 1;
   padding: 35rpx 20rpx;
@@ -37,6 +51,7 @@ cover-image {
   line-height: 30rpx;
   color: #999;
 }
+
 .zoom-in,
 .zoom-out,
 .locate {
@@ -50,14 +65,18 @@ cover-image {
 }
 .zoom-in {
   top: 290rpx;
-  font-weight: bold;
 }
 .zoom-out {
   top: 362rpx;
-  font-weight: bold;
 }
 .locate {
   top: 472rpx;
+}
+.zoom-in cover-image,
+.zoom-out cover-image,
+.locate cover-image {
+  width: 100%;
+  height: 100%;
 }
 
 .my-apply,
@@ -89,26 +108,17 @@ cover-image {
   bottom: 0;
   z-index: 100;
   background-color: #fff;
-  /* transition: transform .2s;
-  transform: translate(0, 100%); */
+   transition: transform .2s;
+  transform: translate(0, 100%); 
 }
 .marker-detail.show {
-  /* transform: translate(0, 0);
-  box-shadow: 0 -1px 5px #aaa; */
+  transform: translate(0, 0);
+  box-shadow: 0 -1px 5px #aaa; 
 }
 .marker-header {
   position: relative;
   padding: 26rpx 30rpx;
   font-size: 0;
-}
-.marker-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background-color: #e8e8e8;
 }
 .marker-maintitle {
   display: inline-block;
@@ -120,25 +130,38 @@ cover-image {
 .marker-subtitle {
   display: inline-block;
   padding-top: 4rpx;
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #5f5f5f;
 }
-.house-num {
+.marker-subtitle cover-view {
   display: inline;
+}
+.house-num {
   color: #3191f1;
   margin-right: 5rpx;
-  vertical-align: middle;
 }
 .marker-close {
   position: absolute;
   right: 40rpx;
-  top: 16rpx;
-  font-size: 60rpx;
+  top: 10rpx;
+  font-size: 56rpx;
+  color: #666;
+  font-weight: 100;
+}
+.marker-close cover-image {
+  width: 30rpx;
+  height: 30rpx;
 }
 .marker-body {
   max-height: 780rpx;
-  overflow-y: auto;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+.house-list {
+  border-bottom: 0;
+}
+.house-item::after {
+  display: none;
 }
 .marker-opt {
   margin: 30rpx;

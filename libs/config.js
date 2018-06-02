@@ -1,1 +1,1 @@
-export const apiUrl = 'https://www.easy-mock.com/mock/5acc9dbcfbaa0f54f4d6a538';
+export const apiUrl = 'https://www.fangpan.cc/independent/';

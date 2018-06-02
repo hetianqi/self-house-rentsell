@@ -146,7 +146,7 @@ Page({
   // 展示房源列表
   showHouses(e) {
     console.log(e);
-    // this.setData({ isShowHouses: true });
+    this.setData({ isShowHouses: true });
   },
   // 隐藏房源列表
   hideHouses(e) {

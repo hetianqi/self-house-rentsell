@@ -1,25 +1,28 @@
 <view class="container">
     <map 
-    id="map"
-    class="map"
-    latitude="{{location.latitude}}"
-    longitude="{{location.longitude}}"
-    scale="{{mapScale}}"
-    markers="{{markers}}"
-    bindregionchange="onRegionChange"
-    catchtap="onRegionChange"
-    bindcallouttap="showHouses"
-    bindtap="hideHouses"
-    show-location>
+      id="map"
+      class="map"
+      latitude="{{location.latitude}}"
+      longitude="{{location.longitude}}"
+      scale="{{mapScale}}"
+      markers="{{markers}}"
+      bindregionchange="onRegionChange"
+      catchtap="onRegionChange"
+      bindcallouttap="showHouses"
+      bindtap="hideHouses"
+      show-location>
+      <!-- 搜索栏 -->
       <cover-view class="search">
         <cover-view class="search-icon">
-          <cover-image src="../../images/ic_search.png"></cover-image>
+           <cover-image class="ic_search" src="../../images/ic_search.png"></cover-image> 
         </cover-view>
         <cover-view class="search-tips">请输入想要搜索的楼盘</cover-view>
         <cover-view class="search-icon">
-          <cover-image src="../../images/ic_mic.png"></cover-image>
+          <cover-image class="ic_mic" src="../../images/ic_mic.png"></cover-image>
         </cover-view>
       </cover-view>
+
+      <!-- 右侧地图按钮 -->
       <cover-view class="zoom-in" catchtap="zoomIn">
         <cover-image src="../../images/zoom-in.png"></cover-image>
       </cover-view>
@@ -29,6 +32,8 @@
       <cover-view class="locate" catchtap="locate">
         <cover-image src="../../images/locate.png"></cover-image>
       </cover-view>
+
+      <!-- 底部按钮 -->
       <cover-view class="btn my-apply" catchtap="gotoMyApp">
         <cover-view class="btn-icon">
           <cover-image src="../../images/shenqing.png"></cover-image>
@@ -41,16 +46,19 @@
         </cover-view>
         <cover-view class="btn-text">扫码进入</cover-view>
       </cover-view>
-      <cover-view class="marker-detail show">
+
+      <!-- 房源列表弹出 -->
+      <cover-view class="marker-detail {{isShowHouses ? 'show' : ''}}">
         <cover-view class="marker-header">
           <cover-view class="marker-maintitle">中央招商华府</cover-view>
           <cover-view class="marker-subtitle">
             <cover-view class="house-num">1</cover-view>
-            套房源
+            <cover-view>套房源</cover-view>
           </cover-view>
           <cover-view class="marker-close" catchtap="hideHouses">×</cover-view>
         </cover-view>
-         <cover-view class="marker-body">
+        <cover-view class="line"></cover-view>
+        <cover-view class="marker-body">
           <cover-view class="house-list">
             <cover-view class="house-item">
               <cover-view class="house-image">
@@ -65,6 +73,7 @@
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
             </cover-view>
+            <cover-view class="line"></cover-view>
             <cover-view class="house-item">
               <cover-view class="house-image">
                 <cover-image src="https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg"></cover-image>
@@ -78,6 +87,7 @@
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
             </cover-view>
+            <cover-view class="line"></cover-view>
             <cover-view class="house-item">
               <cover-view class="house-image">
                 <cover-image src="https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg"></cover-image>
@@ -91,6 +101,21 @@
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
             </cover-view>
+            <cover-view class="line"></cover-view>
+            <cover-view class="house-item">
+              <cover-view class="house-image">
+                <cover-image src="https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg"></cover-image>
+              </cover-view>
+              <cover-view class="house-detail">
+                <cover-view class="house-desc">2室2厅1卫/90㎡/精装/西北</cover-view>
+                <cover-view class="house-tags">
+                  <cover-view class="house-tag">临近地铁</cover-view>
+                  <cover-view class="house-tag">交通方便</cover-view>
+                </cover-view>
+                <cover-view class="house-price">80.50万</cover-view>
+              </cover-view>
+            </cover-view>
+            <cover-view class="line"></cover-view>
           </cover-view>
           <cover-view class="marker-opt">
             <cover-view class="btn btn-block">联系客服</cover-view>
