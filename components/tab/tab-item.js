@@ -8,11 +8,7 @@ Component({
       type: 'parent',
       // 每次被插入到父节点时执行
       linked: function (target) {
-        this.updateIndex(target);
-      },
-      // 每次被移动后执行
-      linkChanged: function (target) {
-        this.updateIndex(target);
+        this.setParent(target);
       }
     }
   },
@@ -22,8 +18,8 @@ Component({
    */
   properties: {
     index: {
-      type: Number,
-      value: 0
+      type: String,
+      value: ''
     },
     active: {
       type: Boolean,
@@ -42,10 +38,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // 更新索引信息
-    updateIndex(parent) {
+    // 设置父节点
+    setParent(parent) {
       this.data.parent = parent;
-      parent.updateIndex();
     },
     // 切换tab
     onTap() {

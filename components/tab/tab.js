@@ -15,9 +15,9 @@ Component({
   properties: {
     // 当前激活的tab-item的索引
     activeIndex: {
-      type: Number,
-      value: 0,
-      observer() {
+      type: String,
+      value: '',
+      observer(v) {
         this.setActiveItem();
       }
     }
@@ -32,14 +32,6 @@ Component({
       return this.getRelationNodes('./tab-item');
     },
 
-    // 更新子节点索引
-    updateIndex() {
-      let nodes = this._getAllItem();
-      nodes.forEach((node, index) => {
-        node.setData({ index: index });
-      });
-    },
-
     // 设置子节点激活
     setActiveItem(index) {
       // 如果点击的是当前已激活的tab则不做处理
@@ -49,7 +41,8 @@ Component({
       }
       let nodes = this._getAllItem();
       nodes.forEach((node, index) => {
-        node.setData({ active: index === this.data.activeIndex });
+        console.log(node)
+        node.setData({ active: node.data.index === this.data.activeIndex });
       });
       // 出发自定义事件供调用者知晓tab切换
       this.triggerEvent('tabchange', { index: this.data.activeIndex });

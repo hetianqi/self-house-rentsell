@@ -1,8 +1,8 @@
 <!--pages/mp-applications/index.wxml-->
 <view class="container">
   <tab active-index="{{activeIndex}}" bindtabchange="onTabChange">
-    <tab-item>求租</tab-item>
-    <tab-item>求购</tab-item>
+    <tab-item index="rent">求租</tab-item>
+    <tab-item index="sell">求购</tab-item>
   </tab>
   <media class="apply-list" wx:if="{{list.length}}">
     <media-item wx:for="{{list}}" wx:key="id" icon-path="{{item.icon}}" data-item="{{item}}" bindtap="jump">

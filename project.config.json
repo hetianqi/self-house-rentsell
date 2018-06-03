@@ -30,12 +30,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "自定义",
-					"pathName": "pages/index/search",
+					"pathName": "pages/house/apply",
 					"query": ""
 				},
 				{
