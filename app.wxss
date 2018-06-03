@@ -47,6 +47,7 @@ page {
 navigator {
   display: inline;
 }
+
 .container {
   width: 100%;
   height: 100%;
@@ -97,6 +98,9 @@ navigator {
   display: inline;
   vertical-align: middle;
   line-height: inherit;
+}
+cover-view.btn-text {
+  line-height: 1.2;
 }
 .btn[loading] {  
   color:rgba(255, 255, 255, 0.6);
@@ -162,18 +166,19 @@ navigator {
 }
 .house-detail {
   flex: 1;
-  line-height: 1;
 }
 .house-desc {
   font-size: 28rpx;
   color: #212121;
 }
 .house-tags {
-  margin-top: 20rpx;
-  font-size: 0;
+  display: flex;
+  margin-top: 20rpx;  
 }
 .house-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 16rpx;
   padding: 10rpx 20rpx;
   border-radius: 80rpx;
@@ -181,8 +186,8 @@ navigator {
   color: #999899;
   background-color: #dedede;
 }
-cover-view.house-tag {
-  padding-bottom: 6rpx;
+.house-tag cover-view {  
+  padding-bottom: 4rpx;
 }
 .house-price {
   margin-top: 20rpx;

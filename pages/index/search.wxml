@@ -1,0 +1,15 @@
+<!--pages/index/search.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="search">
+      <text class="iconfont icon-search"></text>
+      <input class="search-input"
+        placeholder="请输入想要搜索的楼盘"
+        focus
+        bindconfirm="search"></input>
+      <text class="iconfont icon-mic"></text>
+    </view>
+    <text class="cancel" bindtap="back">取消</text>
+  </view>
+  
+</view>

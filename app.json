@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/search",
     "pages/deposit/pay",
     "pages/deposit/pay-result",
     "pages/deposit/refund",

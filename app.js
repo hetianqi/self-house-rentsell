@@ -4,57 +4,62 @@ import { apiUrl } from './libs/config.js';
 
 App({
   onLaunch: function () {
-    // this.login()
+    
   },
-  login() {
-    wx.login({
-      success: ({ code }) => {
-        wx.showLoading({
-          title: '加载中...'
-        })
-        wx.request({
-          url: apiUrl + 'user/login',
-          method: 'POST',
-          header: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          data: {
-            code: code
-          },
-          success: ({ data }) => {
-            console.log(data)
-            this.globalData.token = data.data.access_token
-            this.getPremises()
-          }
-        })
+  login(callback) {
+    return new Promise((resolve, reject) => {
+      if (this.globalData.token) {
+        resolve(this.globalData.token)
+        return
       }
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      })
+      wx.login({
+        success: ({ code }) => {
+          if (!code) {
+            wx.hideLoading()
+            wx.showModal({
+              content: '登录失败',
+              showCancel: false
+            })
+            return
+          }
+          wx.request({
+            url: apiUrl + 'user/login',
+            method: 'POST',
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              code: code
+            },
+            success: ({ data }) => {
+              wx.hideLoading()
+              if (data.code !== '200') {
+                wx.showModal({
+                  content: data.msg,
+                  showCancel: false
+                })
+                return
+              }
+              this.globalData.token = data.data.access_token
+              resolve(this.globalData.token)
+            }
+          })
+        },
+        fail: (err) => {
+          wx.hideLoading()
+          wx.showModal({
+            content: '登录失败',
+            showCancel: false
+          })
+        }
+      })
     })
   },
-  getPremises() {
-    const token = this.globalData.token
-    wx.getLocation({
-      success: ({ latitude, longitude }) => {
-        wx.request({
-          url: apiUrl + 'house/premises',
-          // header: {
-          //   'Content-Type': 'application/x-www-form-urlencoded'
-          // },
-          data: {
-            access_token: token,
-            scale: 16,
-            lat: latitude,
-            lng: longitude
-          },
-          success: ({ data }) => {
-            wx.hideLoading()
-            console.log(data)
-          }
-        })
-      }
-    });
-  },
   globalData: {
-    userInfo: null,
     token: ''
   }
 });

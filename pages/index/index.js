@@ -2,57 +2,44 @@
 
 import { apiUrl } from '../../libs/config.js';
 
-// 地图上下文
-let mapCtx;
-
-const data = [{
-  "id": 1,
-  "latitude": 30.56,
-  "longitude": 104.06,
-  "name": "华林东苑",
-  "count": 2
-},
-{
-  "id": 2,
-  "latitude": 30.57,
-  "longitude": 104.064,
-  "name": "华林西苑",
-  "count": 8
-},
-{
-  "id": 3,
-  "latitude": 30.58,
-  "longitude": 104.068,
-  "name": "临江苑东区",
-  "count": 6
-}];
-
-let getMapScaleTimer;
+const app = getApp();
+let mapCtx, getScaleTimer;
 
 Page({
   data: {
-    location: {},
-    mapScale: 14,
+    token: '',
+    latitude: '',
+    longitude: '',
+    scale: 14,
     markers: [],
     isShowHouses: false
   },  
   onReady() {
-    wx.getLocation({
-      success: location => {
-        console.log(location);
-        this.setData({ location });
-      }
-    });
-    mapCtx = wx.createMapContext('map');
-    this.getMapData();
+    mapCtx = wx.createMapContext('map')
+    app.login()
+      .then(token => {
+        this.data.token = token
+        wx.getLocation({
+          success: ({ latitude, longitude }) => {
+            this.setData({ latitude, longitude })
+            this.getMapData()
+          }
+        })
+      })
   },
   // 获取房源数据
   getMapData() {
-    let _this = this;
-    _this.getMapScale()
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    this.getScale()
     .then(() => {
-      _this.setData({
-        markers: data.map(item => ({
+      return this.getPremises()
+    })
+    .then((premises) => {
+      this.setData({
+        markers: premises.map(item => ({
           id: item.id,
           latitude: item.latitude,
           longitude: item.longitude,
@@ -68,95 +55,104 @@ Page({
             display: 'ALWAYS'
           }
         }))
-      });
-      console.log(_this.data.markers);
-      // wx.request({
-      //   url: apiUrl + '/house/areas',
-      //   method: 'GET',
-      //   data: {
-      //     scale: _this.data.scale
-      //   },
-      //   success({ data }) {
-      //     _this.setData({
-      //       markers: (data.data || []).map(item => ({
-      //         id: item.id,
-      //         latitude: item.latitude,
-      //         longitude: item.longitude,
-      //         width: 0,
-      //         height: 0,
-      //         iconPath: '../../images/marker.png',
-      //         label: {
-      //           content: item.name + `${item.count}(套)`,
-      //           x: -40,
-      //           y: -25,
-      //           bgColor: '#f75001',
-      //           color: '#fff',
-      //           borderRadius: 100,
-      //           padding: 3
-      //         }
-      //       }))
-      //     });
-      //     console.log(data.data);
-      //   }
-      // });
-    });
+      })
+    })
+    .catch(err => {
+      wx.hideLoading()
+      wx.showModal({
+        content: err,
+        showCancel: false
+      })
+    })
   },
   onRegionChange(e) {
-    // this.setData({ isShowHouses: !this.data.isShowHouses });
-    console.log(e);
-    this.getMapScale();
+    this.getScale()
   },
   // 地图放大
   zoomIn() {
-    this.setData({ mapScale: this.data.mapScale + 1 });
-    this.getMapScale();
+    this.setData({ scale: this.data.scale + 1 })
+    this.getScale()
   },
   // 地图缩小
   zoomOut() {
-    this.setData({ mapScale: this.data.mapScale - 1 });
-    this.getMapScale();
+    this.setData({ scale: this.data.scale - 1 })
+    this.getScale()
   },
   // 由于微信没有提供map缩放事件，点击放大/缩小按钮前先主动获取一下缩放级别
-  getMapScale() {
-    let _this = this;
+  getScale() {
     return new Promise((resolve, reject) => {
-      clearTimeout(getMapScaleTimer);
-      getMapScaleTimer = setTimeout(() => {
+      clearTimeout(getScaleTimer)
+      getScaleTimer = setTimeout(() => {
         mapCtx.getScale({
-          success({ scale }) {
-            console.log(scale);
-            _this.data.mapScale = scale;
-            resolve();
+          success: ({ scale }) => {
+            console.log(scale)
+            this.data.scale = scale
+            resolve()
           },
-          fail() {
-            resolve();
+          fail: () => {
+            resolve()
           }
-        });
-      }, 500);      
-    });
+        })
+      }, 500)  
+    })
   },
   // 获取我的当前位置
   locate() {
     wx.getLocation({
-      success: location => {
-        this.setData({ location });
+      success: ({ latitude, longitude }) => {
+        this.setData({ latitude, longitude })
+        this.getMapData()
       }
-    });
+    })
+  },
+  // 获取区域楼盘
+  getPremises() {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: apiUrl + 'house/premises',        
+        data: {
+          access_token: this.data.token,
+          scale: this.data.scale,
+          lat: this.data.latitude,
+          lng: this.data.longitude
+        },
+        success: ({ data }) => {
+          if (data.code !== '200') {
+            reject(data.msg)
+            return
+          }
+          resolve(data.data)
+        },
+        fail: (err) => {
+          console.log(err)
+          reject(err)
+        },
+        complete() {
+          console.log(arguments)
+        }
+      })
+    })
   },
   // 展示房源列表
   showHouses(e) {
-    console.log(e);
-    this.setData({ isShowHouses: true });
+    this.setData({ isShowHouses: true })
+    console.log(this.data)
   },
   // 隐藏房源列表
   hideHouses(e) {
-    this.setData({ isShowHouses: false });
+    this.setData({ isShowHouses: false })
+  },
+  // 跳转到搜索页
+  toSearch() {
+    wx.navigateTo({
+      url: './search'
+    })
   },
   // 跳转到我的申请页
-  gotoMyApp() {
+  toApply() {
     wx.navigateTo({
       url: '../house/apply'
-    });
+    })
   },
   // 扫码进入
   scanCode() {

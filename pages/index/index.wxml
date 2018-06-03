@@ -2,17 +2,18 @@
     <map 
       id="map"
       class="map"
-      latitude="{{location.latitude}}"
-      longitude="{{location.longitude}}"
-      scale="{{mapScale}}"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="{{scale}}"
       markers="{{markers}}"
       bindregionchange="onRegionChange"
-      catchtap="onRegionChange"
+      bindtap="onRegionChange"
       bindcallouttap="showHouses"
       bindtap="hideHouses"
       show-location>
+
       <!-- 搜索栏 -->
-      <cover-view class="search">
+      <cover-view class="search" bindtap="toSearch">
         <cover-view class="search-icon">
            <cover-image class="ic_search" src="../../images/ic_search.png"></cover-image> 
         </cover-view>
@@ -20,27 +21,27 @@
         <cover-view class="search-icon">
           <cover-image class="ic_mic" src="../../images/ic_mic.png"></cover-image>
         </cover-view>
-      </cover-view>
+      </cover-view> 
 
       <!-- 右侧地图按钮 -->
-      <cover-view class="zoom-in" catchtap="zoomIn">
+      <cover-view class="zoom-in" bindtap="zoomIn">
         <cover-image src="../../images/zoom-in.png"></cover-image>
       </cover-view>
-      <cover-view class="zoom-out" catchtap="zoomOut">
+      <cover-view class="zoom-out" bindtap="zoomOut">
         <cover-image src="../../images/zoom-out.png"></cover-image>
       </cover-view>
-      <cover-view class="locate" catchtap="locate">
+      <cover-view class="locate" bindtap="locate">
         <cover-image src="../../images/locate.png"></cover-image>
       </cover-view>
 
       <!-- 底部按钮 -->
-      <cover-view class="btn my-apply" catchtap="gotoMyApp">
+      <cover-view class="btn my-apply" bindtap="toApply">
         <cover-view class="btn-icon">
           <cover-image src="../../images/shenqing.png"></cover-image>
         </cover-view>
         <cover-view class="btn-text">我的申请</cover-view>
       </cover-view>
-      <cover-view class="btn scan-code" catchtap="scanCode">
+      <cover-view class="btn scan-code" bindtap="scanCode">
         <cover-view class="btn-icon">
           <cover-image src="../../images/saoma.png"></cover-image>
         </cover-view>
@@ -49,13 +50,14 @@
 
       <!-- 房源列表弹出 -->
       <cover-view class="marker-detail {{isShowHouses ? 'show' : ''}}">
+        <cover-view class="line"></cover-view>
         <cover-view class="marker-header">
           <cover-view class="marker-maintitle">中央招商华府</cover-view>
           <cover-view class="marker-subtitle">
             <cover-view class="house-num">1</cover-view>
             <cover-view>套房源</cover-view>
           </cover-view>
-          <cover-view class="marker-close" catchtap="hideHouses">×</cover-view>
+          <cover-view class="marker-close" bindtap="hideHouses">×</cover-view>
         </cover-view>
         <cover-view class="line"></cover-view>
         <cover-view class="marker-body">
@@ -67,8 +69,8 @@
               <cover-view class="house-detail">
                 <cover-view class="house-desc">2室2厅1卫/90㎡/精装/西北</cover-view>
                 <cover-view class="house-tags">
-                  <cover-view class="house-tag">临近地铁</cover-view>
-                  <cover-view class="house-tag">交通方便</cover-view>
+                  <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
+                  <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
                 </cover-view>
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
@@ -81,8 +83,8 @@
               <cover-view class="house-detail">
                 <cover-view class="house-desc">2室2厅1卫/90㎡/精装/西北</cover-view>
                 <cover-view class="house-tags">
-                  <cover-view class="house-tag">临近地铁</cover-view>
-                  <cover-view class="house-tag">交通方便</cover-view>
+                  <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
+                  <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
                 </cover-view>
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
@@ -95,8 +97,8 @@
               <cover-view class="house-detail">
                 <cover-view class="house-desc">2室2厅1卫/90㎡/精装/西北</cover-view>
                 <cover-view class="house-tags">
-                  <cover-view class="house-tag">临近地铁</cover-view>
-                  <cover-view class="house-tag">交通方便</cover-view>
+                  <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
+                  <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
                 </cover-view>
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
@@ -109,18 +111,20 @@
               <cover-view class="house-detail">
                 <cover-view class="house-desc">2室2厅1卫/90㎡/精装/西北</cover-view>
                 <cover-view class="house-tags">
-                  <cover-view class="house-tag">临近地铁</cover-view>
-                  <cover-view class="house-tag">交通方便</cover-view>
+                  <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
+                  <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
                 </cover-view>
                 <cover-view class="house-price">80.50万</cover-view>
               </cover-view>
             </cover-view>
             <cover-view class="line"></cover-view>
           </cover-view>
-          <cover-view class="marker-opt">
-            <cover-view class="btn btn-block">联系客服</cover-view>
-          </cover-view>
-        </cover-view> 
+           <cover-view class="marker-opt">
+            <cover-view class="btn btn-block">
+              <cover-view class="btn-text">联系客服</cover-view>
+            </cover-view>
+          </cover-view> 
+        </cover-view>
       </cover-view>
     </map>  
 </view>

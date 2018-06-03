@@ -1,0 +1,27 @@
+/* pages/index/search.wxss */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #e8e8e8;
+}
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+}
+.search-input {
+  flex: 1;
+}
+.search .iconfont {
+  width: 60rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.cancel {
+  margin-left: 20rpx;
+  color: #1AAD16;
+}
