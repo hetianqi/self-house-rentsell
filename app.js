@@ -1,11 +1,9 @@
 //app.js
 
-import { apiUrl } from './libs/config.js';
+import { showError, request } from './libs/util.js'
+import { apiUrl } from './libs/config.js'
 
 App({
-  onLaunch: function () {
-    
-  },
   login(callback) {
     return new Promise((resolve, reject) => {
       if (this.globalData.token) {
@@ -20,13 +18,10 @@ App({
         success: ({ code }) => {
           if (!code) {
             wx.hideLoading()
-            wx.showModal({
-              content: '登录失败',
-              showCancel: false
-            })
+            showError('登录失败')
             return
           }
-          wx.request({
+          request({
             url: apiUrl + 'user/login',
             method: 'POST',
             header: {
@@ -34,27 +29,24 @@ App({
             },
             data: {
               code: code
-            },
-            success: ({ data }) => {
+            }
+          })
+            .then((data) => {
               wx.hideLoading()
               if (data.code !== '200') {
-                wx.showModal({
-                  content: data.msg,
-                  showCancel: false
-                })
+                showError(data.msg)
                 return
               }
               this.globalData.token = data.data.access_token
               resolve(this.globalData.token)
-            }
-          })
+            })
+            .catch(() => {
+              wx.hideLoading()
+            })
         },
         fail: (err) => {
           wx.hideLoading()
-          wx.showModal({
-            content: '登录失败',
-            showCancel: false
-          })
+          showError('登录失败')
         }
       })
     })

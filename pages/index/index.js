@@ -1,9 +1,10 @@
 // 首页
 
-import { apiUrl } from '../../libs/config.js';
+import { request, showError } from '../../libs/util.js'
+import { apiUrl } from '../../libs/config.js'
 
-const app = getApp();
-let mapCtx, getScaleTimer;
+const app = getApp()
+let mapCtx, getScaleTimer
 
 Page({
   data: {
@@ -59,10 +60,7 @@ Page({
     })
     .catch(err => {
       wx.hideLoading()
-      wx.showModal({
-        content: err,
-        showCancel: false
-      })
+      showError(err)
     })
   },
   onRegionChange(e) {
@@ -107,31 +105,22 @@ Page({
   },
   // 获取区域楼盘
   getPremises() {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: apiUrl + 'house/premises',        
-        data: {
-          access_token: this.data.token,
-          scale: this.data.scale,
-          lat: this.data.latitude,
-          lng: this.data.longitude
-        },
-        success: ({ data }) => {
-          if (data.code !== '200') {
-            reject(data.msg)
-            return
-          }
-          resolve(data.data)
-        },
-        fail: (err) => {
-          console.log(err)
-          reject(err)
-        },
-        complete() {
-          console.log(arguments)
-        }
-      })
+    return request({
+      url: apiUrl + 'house/premises',
+      data: {
+        access_token: this.data.token,
+        scale: this.data.scale,
+        lat: this.data.latitude,
+        lng: this.data.longitude
+      }
     })
+      .then((data) => {
+        if (data.code !== '200') {
+          reject(data.msg)
+          return
+        }
+        resolve(data.data)
+      })
   },
   // 展示房源列表
   showHouses(e) {

@@ -38,3 +38,33 @@ export function formatDate(date, format) {
 
   return format;
 }
+
+// 显示错误弹出框
+export function showError(msg) {
+  wx.showModal({
+    content: msg !== null ? msg.toString() : '',
+    showCancel: false,
+    confirmColor: 'red'
+  })
+}
+
+// 自定义请求封装
+export function request(obj) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      ...obj,
+      success: ({ data, statusCode, header }) => {
+        if (statusCode === 200) {
+          resolve(data, header)
+        } else {
+          showError('服务器异常')
+          reject(statusCode)
+        }
+      },
+      fail: () => {
+        showError('请求失败')
+        reject(0)
+      }
+    })
+  })
+}

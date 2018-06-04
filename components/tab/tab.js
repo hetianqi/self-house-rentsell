@@ -23,6 +23,10 @@ Component({
     }
   },
 
+  data: {
+    initFlag: false
+  },
+
   /**
    * 组件的方法列表
    */
@@ -41,18 +45,14 @@ Component({
       }
       let nodes = this._getAllItem();
       nodes.forEach((node, index) => {
-        console.log(node)
         node.setData({ active: node.data.index === this.data.activeIndex });
       });
-      // 出发自定义事件供调用者知晓tab切换
-      this.triggerEvent('tabchange', { index: this.data.activeIndex });
+      if (this.data.initFlag) {
+        // 出发自定义事件供调用者知晓tab切换
+        this.triggerEvent('tabchange', { index: this.data.activeIndex });
+      } else {
+        this.data.initFlag = true;
+      }      
     }
-  },
-
-  /**
-   * 组件布局完毕
-   */
-  ready() {
-    this.setActiveItem();
   }
 });

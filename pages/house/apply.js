@@ -1,4 +1,6 @@
 // pages/mp-applications/index.js
+
+import { request, showError } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -35,24 +37,25 @@ Page({
     this.getList();
   },
 
-  getList() {    
-    // wx.request({
-    //   url: apiUrl + '/apply/list',
-    //   success({ data }) {
-    //     wx.showModal({
-    //       content: JSON.stringify(data)
-    //     });
-    //     if (data.errcode) {
-    //       return;
-    //     }
-    //     _this.setData({ list: data.data });
-    //   },
-    //   fail(err) {
-    //     wx.showModal({
-    //       content: JSON.stringify(err)
-    //     });
-    //   }
-    // });
+  getList() {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    request({
+      url: apiUrl + 'house/records',
+      data: {
+        access_token: this.data.token,
+        houseType: this.data.activeIndex
+      }
+    })
+      .then((data) => {
+        wx.hideLoading()
+        if (data.code !== '200') {
+          showError(data.msg)
+          return
+        }
+        resolve(data.data)
+      })
   },
 
   // 房源跳转
