@@ -44,7 +44,7 @@ export function showError(msg) {
   wx.showModal({
     content: msg !== null ? msg.toString() : '',
     showCancel: false,
-    confirmColor: 'red'
+    confirmColor: '#f00'
   })
 }
 
@@ -57,13 +57,11 @@ export function request(obj) {
         if (statusCode === 200) {
           resolve(data, header)
         } else {
-          showError('服务器异常')
-          reject(statusCode)
+          reject('服务器异常')
         }
       },
-      fail: () => {
-        showError('请求失败')
-        reject(0)
+      fail: (err) => {
+        reject('请求失败')
       }
     })
   })

@@ -34,14 +34,14 @@ App({
             .then((data) => {
               wx.hideLoading()
               if (data.code !== '200') {
-                showError(data.msg)
-                return
+                return Promise.reject(data.msg)
               }
               this.globalData.token = data.data.access_token
               resolve(this.globalData.token)
             })
             .catch(() => {
               wx.hideLoading()
+              showError(data.msg)
             })
         },
         fail: (err) => {
