@@ -1,10 +1,60 @@
 // pages/apply/pay-deposit.js
+
+import { request, showError } from '../../libs/util.js'
+import { apiUrl } from '../../libs/config.js'
+
+const app = getApp()
+
 Page({
+  access_token: '',
+
   /**
    * 页面的初始数据
    */
   data: {
     loading: false
+  },
+
+  // 页面显示
+  onShow() {
+    app.login()
+      .then(({ access_token }) => {
+        this.access_token = access_token
+      })
+  },
+
+  // 支付
+  payNow() {
+    request({
+      url: apiUrl + 'pay/paySign',
+      method: 'POST',
+      data: {
+        access_token: this.access_token,
+        payType: 1,
+        ip: '192.168.0.12'
+      }
+    })
+      .then(({ data }) => {
+        wx.requestPayment({
+          timeStamp: data.timestamp,
+          nonceStr: data.noncestr,
+          package: 'prepay_id=' + data.prepayid,
+          signType: 'MD5',
+          paySign: data.sign,
+          success: () => {
+            console.log('支付成功')
+            wx.navigateTo({
+              url: './pay-result?result=1',
+            })
+          },
+          fail: ({ errMsg }) => {
+            // if (errMsg === 'requestPayment:fail cancel') return
+            wx.navigateTo({
+              url: './pay-result?result=2',
+            })
+          }
+        })
+      })
   },
 
   // 立即支付

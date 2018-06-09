@@ -9,7 +9,7 @@
     </navigator>
   </view>
   <view class="opt-2">
-    <button class="btn btn-block">蓝牙开锁</button>
+    <button class="btn btn-block" bindtap="unlockWithBluetooth">蓝牙开锁</button>
     <view class="opt-tips">注意: 开锁只能开一次</view>
   </view>
   <view class="opt-2">

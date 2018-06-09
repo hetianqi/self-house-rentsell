@@ -11,12 +11,12 @@
   <view class="form">
     <view class="form-item">
       <text class="form-title">手机号码</text>
-      <input class="form-control" placeholder="填写手机号"></input>
-      <button class="form-opt get-code">获取验证码</button>
+      <input class="form-control" placeholder="填写手机号" bindinput="onPhoneNumberChange"></input>
+      <button class="form-opt get-code" disabled="{{getSmsCodeBtnText !== '获取验证码'}}" bindtap="getSmsCode">{{getSmsCodeBtnText}}</button>
     </view>
     <view class="form-item">
       <text class="form-title">验证码</text>
-      <input class="form-control" placeholder="输入验证码"></input>
+      <input class="form-control" placeholder="输入验证码" bindinput="onSmsCodeChange"></input>
     </view>
   </view>
   <view class="opt">

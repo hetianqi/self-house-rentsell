@@ -25,6 +25,81 @@
   font-size: 34rpx;
   text-align: center;
 }
+
+.upload-form {
+  padding: 40rpx;
+  margin-top: 50rpx;
+  background-color: #fff;
+}
+
+.field {
+  display: flex;
+  font-size: 32rpx;
+}
+.field-name {
+  display: block;
+  width: 180rpx;
+  color: #999899;
+}
+.field-value {
+  flex: 1;
+  display: block;
+}
+.field + .field {
+  margin-top: 24rpx;
+}
+
+.upload-photo {
+  margin-top: 66rpx;
+}
+.back-photo {
+  margin-left: 52rpx;
+}
+.front-photo .photo-container,
+.back-photo .photo-container {
+  position: relative;
+  background-color: #EEEFF3;
+  height: 200rpx;
+}
+.example-photo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin-left: -110rpx;
+  margin-top: -110rpx;
+  font-size: 220rpx;
+  color: #cdcdcd;
+  line-height: 1;
+}
+.upload-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: -40rpx;
+  margin-top: -40rpx;
+  font-size: 50rpx;
+  color: #fff;
+  background-color: #ABB3BF;
+  line-height: 80rpx;
+  text-align: center;
+  opacity: 0.8;
+}
+.real-photo {
+  width: 100%;
+  height: 100%;
+}
+.upload-tips {
+  display: block;
+  margin-top: 44rpx;
+  font-size: 32rpx;
+  color: #999899;
+}
+
 .opt {
   margin: 100rpx 40rpx;
 }

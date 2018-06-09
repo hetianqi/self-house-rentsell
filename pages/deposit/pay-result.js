@@ -4,7 +4,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    house_id: null,
     result: null
   },
 
@@ -13,19 +12,19 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    this.setData({ result: +options.result });
+    this.setData({ result: +options.result })
   },
 
   // 去看房
   toHouse() {
     wx.navigateTo({
       url: '../house/self-house'
-    });
+    })
   },
 
   // 重新支付
   rePayment() {
-    wx.navigateBack();
+    wx.navigateBack()
   },
 
   // 联系我们

@@ -39,6 +39,13 @@ export function formatDate(date, format) {
   return format;
 }
 
+export function showLoading(msg) {
+  wx.showLoading({
+    title: msg,
+    mask: true
+  })
+}
+
 // 显示错误弹出框
 export function showError(msg) {
   wx.showModal({
@@ -48,13 +55,26 @@ export function showError(msg) {
   })
 }
 
+export function showWarning(msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'none'
+  })
+}
+
 // 自定义请求封装
 export function request(obj) {
+  if (obj.method) {
+    obj.header = { 
+      ...obj.header,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
   return new Promise((resolve, reject) => {
     wx.request({
       ...obj,
       success: ({ data, statusCode, header }) => {
-        if (statusCode === 200) {
+        if (statusCode === 200 || statusCode === 304) {
           resolve(data, header)
         } else {
           reject('服务器异常')

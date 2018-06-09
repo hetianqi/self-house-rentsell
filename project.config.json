@@ -30,19 +30,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "自定义",
-					"pathName": "pages/house/apply",
-					"query": ""
+					"pathName": "pages/auth/real-name-auth",
+					"query": "houseId=1001009418086281217"
 				},
 				{
-					"id": -1,
-					"name": "测试",
-					"pathName": "pages/test/test",
-					"query": ""
+					"id": 1,
+					"name": "开锁",
+					"pathName": "pages/house/self-house",
+					"query": "houseId=1001009418086281217"
 				}
 			]
 		}

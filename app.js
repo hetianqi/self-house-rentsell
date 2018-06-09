@@ -1,19 +1,16 @@
 //app.js
 
-import { showError, request } from './libs/util.js'
+import { request, showLoading, showError } from './libs/util.js'
 import { apiUrl } from './libs/config.js'
 
 App({
   login(callback) {
     return new Promise((resolve, reject) => {
-      if (this.globalData.token) {
-        resolve(this.globalData.token)
+      if (this.globalData.loginData) {
+        resolve(this.globalData.loginData)
         return
       }
-      wx.showLoading({
-        title: '加载中...',
-        mask: true
-      })
+      showLoading('加载中...')
       wx.login({
         success: ({ code }) => {
           if (!code) {
@@ -24,9 +21,6 @@ App({
           request({
             url: apiUrl + 'user/login',
             method: 'POST',
-            header: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
             data: {
               code: code
             }
@@ -34,14 +28,14 @@ App({
             .then((data) => {
               wx.hideLoading()
               if (data.code !== '200') {
-                return Promise.reject(data.msg)
+                throw new Error(data.msg)
               }
-              this.globalData.token = data.data.access_token
-              resolve(this.globalData.token)
+              this.globalData.loginData = data.data
+              resolve(this.globalData.loginData)
             })
-            .catch(() => {
+            .catch((err) => {
               wx.hideLoading()
-              showError(data.msg)
+              showError(err)
             })
         },
         fail: (err) => {
@@ -52,6 +46,13 @@ App({
     })
   },
   globalData: {
-    token: ''
+    // 用户登录数据
+    loginData: null,
+    // 房源图片
+    houseImgs: [],
+    // 房源图片url前缀
+    resourceURI: '',
+    // 用户手机号
+    phoneNumber: '17780514632'
   }
-});
+})

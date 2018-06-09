@@ -1,36 +1,113 @@
 // pages/house/detail.js
+
+import { request, showLoading, showError } from '../../libs/util.js'
+import { apiUrl } from '../../libs/config.js'
+
+const app = getApp()
+
 Page({
-  /**
-   * 页面的初始数据
-   */
+  access_token: '',
+  validate: '',
+
+  // 页面数据
   data: {
-    date: '2017-10-24',
-    index: 1,
-    photos: [
-      'https://image1.ljcdn.com/hdic-resblock/516a982f-415a-4d88-9932-037e4a07afc1.jpg.1000x.jpg',
-      'https://image1.ljcdn.com/hdic-resblock/94920763-0190-4801-b485-9304f1823b4c.jpg.1000x.jpg',
-      'https://image1.ljcdn.com/hdic-resblock/18f50205-82ec-4758-a387-ede16fc0266d.jpg.1000x.jpg',
-      'https://image1.ljcdn.com/hdic-resblock/12d8eb6d-feb5-489b-8d01-aefaec7ac31e.jpg.1000x.jpg',
-      'https://image1.ljcdn.com/hdic-resblock/0ff82154-4013-4330-8455-57593c6ea551.jpg.1000x.jpg'
-    ],
+    houseId: '',
+    emptyStr: '',
+    currHouseImgIndex: 0,
+    resourcesURI: '',
+    houseImgs: [],
+    houseInfo: {},
+    premiseInfo: {},
+    unit: {},
+    build: {},
+    leaveMsg: [],
     detailCollapsed: false
   },
 
+  // 页面加载
+  onLoad(options) {
+    console.log(options)
+    this.setData({
+      houseId: options.houseId
+    })
+  },
+
+  // 页面显示
+  onShow() {
+    app.login()
+      .then(({ access_token, validate }) => {
+        this.access_token = access_token
+        this.validate = validate
+        this.getHouseDetail()
+      })
+  },
+  
+  // 获取房源详情
+  getHouseDetail() {
+    if (!this.data.houseId) return
+    showLoading('加载中...')
+    request({
+      url: apiUrl + 'house/Detail',
+      data: {
+        access_token: this.access_token,
+        houseId: this.data.houseId
+      }
+    })
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
+        wx.hideLoading()
+        this.setData({
+          resourcesURI: data.data.resourcesURI,
+          houseImgs: data.data.houseImg.map(a => {
+            a.date = (a.time || '').substring(0, 10)
+            return a
+          }),
+          houseInfo: data.data.houseInfo,
+          premiseInfo: data.data.premises,
+          build: data.data.build,
+          unit: data.data.unit,
+          leaveMsg: data.data.leaveMsg || []
+        })
+        app.globalData.houseImgs = this.data.houseImgs
+        app.globalData.resourcesURI = this.data.resourcesURI
+      })
+      .catch(err => {
+        wx.hideLoading()
+        showError(err.message)
+      })
+  },
+
+  // 照片切换
+  onHouseImgSwipe(e) {
+    console.log(e.detail)
+    this.setData({
+      currHouseImgIndex: e.detail.current
+    })
+  },
+
+  // 显示隐藏某个tab
   toggleExpand(e) {
     let field = e.currentTarget.dataset.field;
     this.setData({ [field]: !this.data[field] });
   },
 
-  wechat() {
+  // 去微聊
+  toWechat() {
     wx.navigateTo({
-      url: './wechat',
-    });
+      url: './wechat'
+    })
   },
   
   // 申请看房
-  apply() {
-    wx.navigateTo({
-      url: '../auth/verify'
-    });
+  toApply() {
+    if (this.validate === '0') {
+      wx.navigateTo({
+        url: '../auth/verify?houseId=' + this.data.houseId
+      })
+    } else {
+      
+    }
   }
 });

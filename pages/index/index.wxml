@@ -4,12 +4,12 @@
       class="map"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
-      scale="{{scale}}"
+      scale="{{scale + 2}}"
       markers="{{markers}}"
+      show-location
       bindregionchange="onRegionChange"
-      bindtap="onTab"
-      bindcallouttap="onMarkerTab"
-      show-location>
+      bindtap="hideHouses"
+      bindcallouttap="onMarkerTab">
 
       <!-- 搜索栏 -->
       <cover-view class="search" bindtap="toSearch">
@@ -51,9 +51,9 @@
       <cover-view class="marker-detail {{isShowHouses ? 'show' : ''}}">
         <cover-view class="line"></cover-view>
         <cover-view class="marker-header">
-          <cover-view class="marker-maintitle">中央招商华府</cover-view>
+          <cover-view class="marker-maintitle">{{currPremise.premisesName}}</cover-view>
           <cover-view class="marker-subtitle">
-            <cover-view class="house-num">1</cover-view>
+            <cover-view class="house-num">{{currPremise.houseCount}}</cover-view>
             <cover-view>套房源</cover-view>
           </cover-view>
           <cover-view class="marker-close" bindtap="hideHouses">×</cover-view>
@@ -61,18 +61,18 @@
         <cover-view class="line"></cover-view>
         <cover-view class="marker-body">
           <cover-view class="house-list">
-            <block wx:for="{{houses}}" wx:key="id">
-              <cover-view class="house-item">
+            <block wx:for="{{houses}}" wx:key="houseId">
+              <cover-view class="house-item" bindtap="toHouseDetail" data-item="{{item}}">
                 <cover-view class="house-image">
                   <cover-image src="https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg"></cover-image>
                 </cover-view>
                 <cover-view class="house-detail">
-                  <cover-view class="house-desc">2室2厅1卫/90㎡/精装/西北</cover-view>
-                  <cover-view class="house-tags">
+                  <cover-view class="house-desc">{{item.layout}} / {{item.rate}}㎡ / {{item.fitment}} / {{item.orientation}}</cover-view>
+                  <!-- <cover-view class="house-tags">
                     <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
                     <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
-                  </cover-view>
-                  <cover-view class="house-price">80.50万</cover-view>
+                  </cover-view> -->
+                  <cover-view class="house-price">{{item.price}} 万</cover-view>
                 </cover-view>
               </cover-view>
               <cover-view class="line"></cover-view>

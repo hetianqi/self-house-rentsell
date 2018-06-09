@@ -20,11 +20,11 @@ cover-image {
 
 .search {
   position: absolute;
-  left: 20rpx;
-  top: 18rpx;
+  left: 30rpx;
+  right: 30rpx;
+  top: 20rpx;
   display: flex;
   align-items: center;
-  width: calc(100% - 40rpx);
   height: 80rpx;
   border: 1px solid #eee;
   border-radius: 8rpx;

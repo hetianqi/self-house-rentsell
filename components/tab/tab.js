@@ -50,9 +50,12 @@ Component({
       if (this.data.initFlag) {
         // 出发自定义事件供调用者知晓tab切换
         this.triggerEvent('tabchange', { index: this.data.activeIndex });
-      } else {
-        this.data.initFlag = true;
-      }      
+      }     
     }
+  },
+
+  ready() {
+    this.setActiveItem();
+    this.data.initFlag = true;
   }
 });

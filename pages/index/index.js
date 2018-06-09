@@ -1,48 +1,75 @@
 // 首页
 
-import { request, showError } from '../../libs/util.js'
+import { request, showLoading, showError } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
-let mapCtx, getScaleTimer
+let mapCtx, getScaleTimer, regionChangeTimer
 
 Page({
+  access_token: '',
+
+  // 数据
   data: {
-    token: '',
     latitude: '',
     longitude: '',
-    scale: 14,
+    centerLatitude: '',
+    centerLongitude: '',
+    scale: 16,
     markers: [],
     isShowHouses: false,
     premises: [],
+    currPremise: {},
     houses: []
   },  
+
+  // 页面显示
   onShow() {
     mapCtx = wx.createMapContext('map')
     app.login()
-      .then(token => {
-        this.data.token = token
-        wx.getLocation({
-          success: ({ latitude, longitude }) => {
-            this.setData({ latitude, longitude })
-            this.getPremises()
-          }
-        })
+      .then(({ access_token }) => {
+        this.access_token = access_token
+        this.locate()
       })
   },
-  onRegionChange(e) {
-    // this.getScale()
+
+  // 地图区域改变
+  onRegionChange() {
+    clearTimeout(regionChangeTimer)
+    regionChangeTimer = setTimeout(() => {
+      mapCtx.getCenterLocation({
+        success: ({ latitude, longitude }) => {
+          console.log(latitude)
+          this.setData({
+            centerLatitude: latitude,
+            centerLongitude: longitude
+          })
+          this.getPremises()
+        }
+      })
+    }, 300)    
   },
+
   // 地图放大
   zoomIn() {
-    this.setData({ scale: this.data.scale + 1 })
     this.getScale()
+      .then(() => {
+        if (this.data.scale >= 18) return
+        this.setData({ scale: this.data.scale + 1 })
+        this.onRegionChange()
+      })
   },
+
   // 地图缩小
   zoomOut() {
-    this.setData({ scale: this.data.scale - 1 })
     this.getScale()
+      .then(() => {
+        if (this.data.scale <= 12) return
+        this.setData({ scale: this.data.scale - 1 })
+        this.onRegionChange()
+      })
   },
+
   // 由于微信没有提供map缩放事件，点击放大/缩小按钮前先主动获取一下缩放级别
   getScale() {
     return new Promise((resolve, reject) => {
@@ -57,40 +84,46 @@ Page({
             resolve()
           }
         })
-      }, 500)  
+      }, 100)  
     })
   },
+
   // 获取我的当前位置
   locate() {
     wx.getLocation({
       success: ({ latitude, longitude }) => {
-        this.setData({ latitude, longitude })
-        this.getMapData()
+        latitude = 30.61857
+        longitude = 104.05224
+        this.setData({
+          latitude,
+          longitude,
+          centerLatitude: latitude,
+          centerLongitude: longitude
+        })
+        this.getPremises()
       }
     })
   },
+
   // 获取区域楼盘
   getPremises() {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
+    // showLoading('加载中...')
     request({
       url: apiUrl + 'house/premises',
       data: {
-        access_token: this.data.token,
+        access_token: this.access_token,
         scale: this.data.scale,
-        lat: this.data.latitude,
-        lng: this.data.longitude
+        lat: this.data.centerLatitude,
+        lng: this.data.centerLongitude
       }
     })
       .then((data) => {
         if (data.code !== '200') {
-          return Promise.reject(data.msg)
+          throw new Error(data.msg)
         }
-        wx.hideLoading()
+        // wx.hideLoading()
         this.data.premises = data.data
-        const isHouseScale = this.data.scale > 15
+        const isHouseScale = this.data.scale > 12
         this.setData({
           markers: this.data.premises.map(item => ({
             id: isHouseScale ? item.premisesId : item.areasId,
@@ -111,30 +144,29 @@ Page({
         })
       })
       .catch(err => {
-        wx.hideLoading()
+        // wx.hideLoading()
         showError(err)
       })
   },
+
   // 展示房源列表
   getHouses(premisesId) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
+    showLoading('加载中...')
     request({
       url: apiUrl + 'house/list',
       data: {
-        access_token: this.data.token,
+        access_token: this.access_token,
         premisesId
       }
     })
       .then((data) => {
         if (data.code !== '200') {
-          return Promise.reject(data.msg)
+          throw new Error(data.msg)
         }
         wx.hideLoading()
         this.setData({
-          houses: [{id: 1}, {id: 2}],
+          currPremise: data.data.premises,
+          houses: data.data.houseInfo,
           isShowHouses: true
         })
       })
@@ -143,62 +175,63 @@ Page({
         showError(err)
       })
   },
+
   // 点击气泡
   onMarkerTab(e) {
-    if (this.data.scale > 15) {
+    if (this.data.scale > 12) {
       this.getHouses(e.markerId)
     } else {
       const item = this.data.premises.find(a => a.areasId === e.markerId)
       this.setData({
         scale: 16,
-        lantitude: item.lat,
-        longitude: item.lng
-      });
+        centerLatitude: item.lat,
+        centerLongitude: item.lng
+      })
       this.getPremises()
     }
   },
+
   // 地图点击
-  onTab(e) {
+  hideHouses(e) {
     this.setData({ isShowHouses: false })
   },
-  // 跳转到搜索页
+
+  // 去房源详情
+  toHouseDetail(e) {
+    console.log(e)
+    const item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: '../house/detail?houseId=' + item.houseId
+    })
+  },
+
+  // 去搜索页
   toSearch() {
     wx.navigateTo({
       url: './search'
     })
   },
-  // 跳转到我的申请页
+
+  // 去我的申请页
   toApply() {
     wx.navigateTo({
       url: '../house/apply'
     })
   },
+
   // 扫码进入
   scanCode() {
     wx.scanCode({
       scanType: ['qrCode'],
-      success({ result }) {
-        wx.showLoading({
-          title: '获取房源数据...',
-        });
+      success: ({ result }) => {
+        showLoading('正在获取房源数据...')
         setTimeout(() => {
-          wx.hideLoading();
+          wx.hideLoading()
           wx.navigateTo({
             url: '../house/detail?id=1'
-          });
-        }, 1000);
-      },
-      fail() {
-        wx.showLoading({
-          title: '获取房源数据...',
-        });
-        setTimeout(() => {
-          wx.hideLoading();
-          wx.navigateTo({
-            url: '../house/detail?id=1'
-          });
-        }, 1000);
+          })
+        }, 1000)
       }
-    });
+    })
   }
-});
+})
