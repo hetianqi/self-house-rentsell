@@ -1,73 +1,106 @@
 // pages/house/reserve.js
-Page({
 
-  /**
-   * 页面的初始数据
-   */
+import { request, showLoading, showWarning, showError } from '../../libs/util.js'
+import { apiUrl } from '../../libs/config.js'
+
+const app = getApp()
+
+Page({
+  access_token: '',
+
+  // 页面数据
   data: {
+    houseId: '',
     date: '',
-    beginDate: null,
+    startDate: null,
     endDate: null,
-    beginTime: '',
+    startTime: '',
     endTime: ''
   },
 
-  /**
-   *  生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-    let now = new Date();
-    let beginDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    let endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3);
+  // 页面加载
+  onLoad(options) {
+    console.log(options)
+    this.setData({
+      houseId: options.houseId
+    })
+  },
+
+  // 页面显示
+  onShow() {
+    app.login()
+      .then(({ access_token }) => {
+        this.access_token = access_token
+      })
+    
+    let now = new Date()
+    let startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+    let endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3)
     
     this.setData({
-      beginDate: {
-        year: beginDate.getFullYear(),
-        month: beginDate.getMonth() + 1,
-        day: beginDate.getDate()
+      startDate: {
+        year: startDate.getFullYear(),
+        month: startDate.getMonth() + 1,
+        day: startDate.getDate()
       },
       endDate: {
         year: endDate.getFullYear(),
         month: endDate.getMonth() + 1,
         day: endDate.getDate()
       }
-    });
+    })
   },
 
   // 选择日期
   pickDate(e) {
     this.setData({
       date: e.detail.year + '-' + e.detail.month+ '-' + e.detail.day
-    });
-    console.log('date', this.data.date);
+    })
   },
 
   // 选择时间
   pickTime(e) {
-    let field = e.currentTarget.dataset.type + 'Time';
-    this.setData({ [field]: e.detail.value });
-    console.log(field, this.data[field]);
+    let field = e.currentTarget.dataset.type + 'Time'
+    this.setData({ [field]: e.detail.value })
+    console.log(field, this.data[field])
   },
 
   // 确认预约
   submit() {
-    if (parseInt(this.data.beginTime.replace(':', '')) >= parseInt(this.data.endTime.replace(':', ''))) {
-      wx.showModal({
-        content: '看房结束时间必须大于开始时间',
-        showCancel: false,
-        confirmColor: '#3191f1'
-      });
-      return;
+    if (parseInt(this.data.startTime.replace(':', '')) >= parseInt(this.data.endTime.replace(':', ''))) {
+      showWarning('看房结束时间必须大于开始时间')
+      return
     }
-    wx.showModal({
-      content: '你的预约信息已发送至房东，\r\n请耐心等待，我们将以短信的方式\r\n通知你的预约情况，\r\n谢谢使用，祝生活愉快！',
-      showCancel: false,
-      confirmColor: '#3191f1',
-      success() {
-        wx.redirectTo({
-          url: '../index/index'
-        });
+    showLoading('提交中...')
+    request({
+      url: apiUrl + 'house/apply',
+      method: 'POST',
+      data: {
+        access_token: this.access_token,
+        houseid: this.data.houseId,
+        starttime: this.data.date + ' ' + this.data.startTime,
+        endtime: this.data.date + ' ' + this.data.endTime
       }
-    });
+    })
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
+        wx.hideLoading()
+        wx.showModal({
+          content: '你的预约信息已发送至房东，\r\n请耐心等待，我们将以短信的方式\r\n通知你的预约情况，\r\n谢谢使用，祝生活愉快！',
+          showCancel: false,
+          confirmColor: '#3191f1',
+          success: () => {
+            wx.redirectTo({
+              url: '../index/index'
+            })
+          }
+        })
+      })
+      .catch(err => {
+        wx.hideLoading()
+        showError(err)
+      })
   }
-});
+})

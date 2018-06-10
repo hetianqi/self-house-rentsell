@@ -79,16 +79,18 @@ cover-image {
   height: 100%;
 }
 
-.my-apply,
-.scan-code {
+.bottom-btn-group {
   position: absolute;
+  left: 30rpx;
+  right: 30rpx;
   bottom: 80rpx;
+  display: flex;
+  justify-content: space-around;
 }
-.my-apply {
-  left: calc((100% - 570rpx) / 2);
-}
-.scan-code {
-  right: calc((100% - 570rpx) / 2);
+.my-apply,
+.scan-code  {
+  width: 260rpx;
+  padding: 20rpx 0;
 }
 .my-apply .btn-icon,
 .scan-code .btn-icon {

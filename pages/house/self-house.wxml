@@ -9,11 +9,23 @@
     </navigator>
   </view>
   <view class="opt-2">
-    <button class="btn btn-block" bindtap="unlockWithBluetooth">蓝牙开锁</button>
+    <button class="btn btn-block" bindtap="openLockWithBluetooth">蓝牙开锁</button>
     <view class="opt-tips">注意: 开锁只能开一次</view>
   </view>
   <view class="opt-2">
     <navigator class="btn btn-block" url="../deposit/refund">押金退款</navigator>
     <view class="opt-tips">注: 押金退款需要上传关门照片</view>
+  </view>
+  <view class="open-lock-progress {{openLockProgress ? 'show' : ''}}">
+    <view class="mask"></view>
+    <view class="content">
+      <!-- <view class="header">提示</view> -->
+      <view class="body">
+        <text>{{openLockProgress}}</text>
+      </view>
+      <view class="footer">
+        <button class="cancel-open-lock" bindtap="cancelOpenLockWithBluetooth">取消开锁</button>
+      </view>
+    </view>
   </view>
 </view>

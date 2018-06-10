@@ -11,10 +11,10 @@ Page({
   // 页面数据
   data: {
     houseId: '',
-    isSearchingDevices: false,
+    openLockProgress: '', // 开锁进度，为空表示未进行开锁或取消开锁
     device: null,
-    service: null,
-    characteristic: null,
+    services: null,
+    characteristics: null,
     power: 0,
     randomFactor: 0
   },
@@ -60,55 +60,112 @@ Page({
   },
 
   // 蓝牙开锁
-  unlockWithBluetooth() {
+  openLockWithBluetooth() {
     this.openBuletooth()
       .then(() => {
-        showLoading('正在搜索设备...')
+        this.setData({ openLockProgress: '正在搜索设备...' })
         return this.searchDevice()
       })
       .then(device => {
-        showLoading('正在连接设备...')
-        console.log(device)
-        this.setData({ device })
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 1 })
+        }
+        this.setData({
+          device,
+          openLockProgress: '正在连接设备...'
+        })
         return this.createConnection()
       })
       .then(() => {
-        showLoading('正在获取设备服务...')
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 2 })
+        }
+        this.setData({ openLockProgress: '正在获取设备服务...' })
         return this.getService()
       })
-      .then((service) => {
-        showLoading('正在获取设备特征值...')
-        console.log(service)
-        this.setData({ service })
+      .then((services) => {
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 3 })
+        }
+        this.setData({
+          services,
+          openLockProgress: '正在获取设备特征值...'
+        })
         return this.getCharacteristics()
       })
-      .then((characteristic) => {
-        showLoading('正在notify设备...')
-        console.log(characteristic)
-        this.setData({ characteristic })
+      .then((characteristics) => {
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 4 })
+        }
+        this.setData({
+          characteristics,
+          openLockProgress: '正在通知设备...'
+        })
         return this.notifyDevice()
       })
       .then(() => {
-        showLoading('正在唤醒设备...')
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 5 })
+        }
+        this.setData({ openLockProgress: '正在唤醒设备...' })
         return this.awakeDevice()
       })
       .then(() => {
-        showLoading('正在获取电量...')
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 6 })
+        }
+        this.setData({ openLockProgress: '正在获取设备电量...' })
         return this.getPowerAndRandomFactor()
       })
       .then(({ power, randomFactor }) => {
-        showLoading('正在获取密钥...')
-        this.setData({ power, randomFactor })
+        console.log(power, randomFactor)
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 7 })
+        }
+        this.setData({ 
+          power,
+          randomFactor,
+          openLockProgress: '正在获取密钥...'
+        })
         return this.getKey()
       })
       .then((data) => {
         console.log(data)
-        this.setData({ key: data.key })
+        if (!this.data.openLockProgress) {
+          return Promise.reject({ errorCode: 8 })
+        }
+        this.setData({
+          key: data.key,
+          openLockProgress: '正在开锁...'
+        })
+        return this.openLock()
       })
       .catch((err) => {
-        wx.hideLoading()
-        showError(err)
+        console.log(err)
+        const { errCode, errMsg } = err
+        this.setData({ openLockProgress: '' })
+        if (errCode === 10001) {
+          showError('蓝牙开关未开启或者手机不支持蓝牙功能')
+        } else if (errCode < 1 || errCode > 10) {
+          showError(errMsg)
+        } else {
+          if (errCode === 1) { // 在搜索设备阶段取消开锁
+            wx.stopBluetoothDevicesDiscovery({
+              success: (res) => {
+                console.log('停止搜索成功', res)
+                this.setData({ isSearching: false })
+              }
+            })
+          }
+        }
+        wx.closeBluetoothAdapter()
       })
+  },
+
+  // 取消蓝牙开锁
+  cancelOpenLockWithBluetooth() {
+    this.setData({ openLockProgress: '' })
+    wx.closeBluetoothAdapter()
   },
 
   // 打开蓝牙
@@ -116,16 +173,16 @@ Page({
     return new Promise((resolve, reject) => {
       wx.openBluetoothAdapter({
         success: (arg) => {
-          console.log(arg)
+          console.log('蓝牙打开成功', arg)
           resolve()
         },
-        fail: ({ errCode }) => {
-          if (errCode === 10001) {
-            showError('蓝牙开关未开启或者手机不支持蓝牙功能')
-          }
+        fail: ({ errCode, errMsg }) => {
+          wx.closeBluetoothAdapter()
+          reject({ errCode, errMsg })
         }
       })
       wx.onBluetoothAdapterStateChange(({ available, discovering }) => {
+        console.log('蓝牙状态变化', available, discovering)
         if (available) {
           resolve()
         }
@@ -133,30 +190,30 @@ Page({
     })    
   },
 
-  // 搜索门锁的蓝牙设备
+  // 搜索设备
   searchDevice() {
-    if (this.data.isSearching) return;
     return new Promise((resolve, reject) => {
-      console.log('开始搜索设备')
-      this.setData({ isSearching: true })
       wx.startBluetoothDevicesDiscovery({
         success: (res) => {
-          console.log('开始搜索设备成功', res)
-          wx.onBluetoothDeviceFound(({ devices }) => {
-            console.log(devices)
-            for (let i in devices) {
-              if (devices[i].name.indexOf('WeLock') > -1) {
-                resolve(devices[i])
-                wx.stopBluetoothDevicesDiscovery({
-                  success: (res) => {
-                    console.log('停止搜索成功', res)
-                    this.setData({ isSearching: false })
-                  }
-                })
-                return
+          console.log('开始搜索设备', res)
+        },
+        fail: ({ errCode, errMsg }) => {
+          console.log('搜索设备失败', errMsg)
+          reject({ errCode, errMsg: '搜索设备失败' })
+        }
+      })
+      wx.onBluetoothDeviceFound(({ devices }) => {
+        console.log(devices)
+        for (let i = 0, l = devices.length; i < l; i++) {
+          if (devices[i].name.indexOf('WeLock') > -1) {
+            resolve(devices[i])
+            wx.stopBluetoothDevicesDiscovery({
+              success: (res) => {
+                console.log('找到设备，停止搜索成功', res)
               }
-            }
-          })
+            })
+            return
+          }
         }
       })
     })    
@@ -171,7 +228,8 @@ Page({
           resolve()
         },
         fail: ({ errCode, errMsg }) => {
-          reject('连接设备失败：' + errMsg)
+          console.log('连接设备失败', errMsg)
+          reject({ errCode, errMsg: '连接设备失败' })
         }
       })
     })
@@ -183,16 +241,12 @@ Page({
       wx.getBLEDeviceServices({
         deviceId: this.data.device.deviceId,
         success: ({ services}) => {
-          for (let i in services) {
-            if (services[i].uuid.indexOf('6E400001-B5A3-F393-E0A9-E50E24DCCA9E') > -1) {
-              resolve(services[i])
-              return
-            }
-          }
-          reject('未获取到服务')
+          console.log('服务', services)
+          resolve(services)
         },
         fail: ({ errCode, errMsg }) => {
-          reject('获取服务失败：' + errMsg)
+          console.log('获取服务失败：', errMsg)
+          reject({ errCode, errMsg: '获取服务失败' })
         }
       })
     })    
@@ -203,38 +257,35 @@ Page({
     return new Promise((resolve, reject) => {
       wx.getBLEDeviceCharacteristics({
         deviceId: this.data.device.deviceId,
-        serviceId: this.data.service.uuid,
+        serviceId: this.data.services[0].uuid,
         success: ({ characteristics }) => {
-          for (let i in characteristics) {
-            if (characteristics[i].uuid.indexOf('6E400002-B5A3-F393-E0A9-E50E24DCCA9E') > -1) {
-              resolve(characteristics[i])
-              return
-            }
-          }
-          reject('未获取到特征值')
+          console.log('特征值', characteristics)
+          resolve(characteristics)
         },
         fail: ({ errCode, errMsg }) => {
-          reject('获取特征值失败：' + errMsg)
+          console.log('获取特征值失败：', errMsg)
+          reject({ errCode, errMsg: '获取特征值失败' })
         }
       })
     })    
   },
 
-  // notify设备
+  // 通知设备
   notifyDevice() {
     return new Promise((resolve, reject) => {
       wx.notifyBLECharacteristicValueChange({
         state: true,  // 启动notify
         deviceId: this.data.device.deviceId,
-        serviceId: this.data.service.uuid,
-        // characteristicId: this.data.characteristic.uuid,
-        characteristicId: '6E400003-B5A3-F393-E0A9-E50E24DCCA9E',// 6E400002-B5A3-F393-E0A9-E50E24DCCA9E
+        serviceId: this.data.services[0].uuid,
+        characteristicId: this.data.characteristics.find(a => a.properties.notify).uuid,
+        // characteristicId: '6E400003-B5A3-F393-E0A9-E50E24DCCA9E',
         success: (res) => {
-          console.log('notify成功', res)
+          console.log('通知设备成功', res)
           resolve()
         },
         fail: ({ errCode, errMsg }) => {
-          reject('notify失败：' + errMsg)
+          console.log('通知设备失败：', errMsg)
+          reject({ errCode, errMsg: '通知设备失败' })
         }
       })
     })    
@@ -251,15 +302,17 @@ Page({
 
       wx.writeBLECharacteristicValue({
         deviceId: this.data.device.deviceId,
-        serviceId: this.data.service.uuid,
-        characteristicId: this.data.characteristic.uuid,
+        serviceId: this.data.services[0].uuid,
+        characteristicId: this.data.characteristics.find(a => a.properties.write).uuid,
+        // characteristicId: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E,
         value: sendInfo,
         success: (res) => {
-          console.log('唤醒指令发送成功!', res)
+          console.log('唤醒指令发送成功', res)
           resolve()          
         },
         fail: ({ errCode, errMsg }) => {
-          reject('发送失败：' + errMsg)
+          console.log('唤醒指令发送失败：', errMsg)
+          reject({ errCode, errMsg: '唤醒指令发送失败' })
         }
       })
     })    
@@ -272,29 +325,33 @@ Page({
       let awakenTypedArray = new Uint8Array(awakenHex.match(/[\da-f]{2}/gi).map(h => parseInt(h, 16)))
       let buffer = new ArrayBuffer(15)
       let sendInfo = awakenTypedArray.buffer
-      
+
+      // 写指令
       wx.writeBLECharacteristicValue({
         deviceId: this.data.device.deviceId,
-        serviceId: this.data.service.uuid,
-        characteristicId: this.data.characteristic.uuid,
+        serviceId: this.data.services[0].uuid,
+        characteristicId: this.data.characteristics.find(a => a.properties.write).uuid,
+        // characteristicId: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E,
         value: sendInfo,
         success: (res) => {
           console.log('获取电量指令发送成功!', res)
-          wx.onBLECharacteristicValueChange((res) => {
-            console.log('onBleCharactisticValueChange', res.value)
-            let resHex = Array.prototype.map.call(new Uint8Array(res.value), x => ('00' + x.toString(16)).slice(-2)).join('')
-            let eletemp = resHex.substring(6, 8)
-            let fac = resHex.substring(4, 6)
-
-            resolve({
-              power: parseInt(eletemp, 16),
-              randomFactor: parseInt(fac, 16)
-            })
-          })
         },
         fail: ({ errCode, errMsg }) => {
-          reject('获取电量指令发送失败：' + errMsg)
+          console.log('获取电量指令发送失败：', errMsg)
+          reject({ errCode, errMsg: '获取电量指令发送失败' })
         }
+      })
+      // 监听特征值变化
+      wx.onBLECharacteristicValueChange((res) => {
+        console.log('特征值变化', res)
+        let resHex = Array.prototype.map.call(new Uint8Array(res.value), x => ('00' + x.toString(16)).slice(-2)).join('')
+        let eletemp = resHex.substring(6, 8)
+        let fac = resHex.substring(4, 6)
+
+        resolve({
+          power: parseInt(eletemp, 16),
+          randomFactor: parseInt(fac, 16)
+        })
       })
     })
   },
@@ -308,19 +365,20 @@ Page({
         power: this.data.power,
         randomFactor: this.data.randomFactor,
         houseId: this.data.houseId,
-        lockNum: this.data.houseInfo.key,
-        lockName: this.data.device.name
+        // lockNum: this.data.houseInfo.key,
+        lockNum: '17354244',
+        lockName: this.data.device.localName
       }
     })
       .then((data) => {
         if (data.code !== '200') {
-          throw new Error(data.msg)
+          return Promise.reject({ errCode: data.code, errMsg: data.msg })
         }
         return data.data
       })
   },
 
-  // 开锁
+  // 发送开锁指令
   openLock() {
     return new Promise((resolve, reject) => {
       let keys = strToHexCharCode(this.data.key)
@@ -331,14 +389,16 @@ Page({
       wx.writeBLECharacteristicValue({
         deviceId: this.data.device.deviceId,
         serviceId: this.data.service.uuid,
-        characteristicId: this.data.characteristic.uuid,
+        characteristicId: this.data.characteristics.find(a => a.properties.write).uuid,
+        // characteristicId: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E,
         value: sendInfo,
         success: (res) => {
-          console.log('开锁指令发送成功!', res)
+          console.log('发送开锁指令成功', res)
           resolve()
         },
         fail: ({ errCode, errMsg }) => {
-          reject('开锁指令发送失败：' + errMsg)
+          console.log('发送开锁指令失败：', res)
+          reject({ errCode, errMsg: '发送开锁指令失败' })
         }
       })
     })

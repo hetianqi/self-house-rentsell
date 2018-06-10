@@ -1,8 +1,8 @@
 <!--pages/auth/real-name-auth.wxml-->
 <view class="container">
   <view class="tips">
-    <text class="block">为了保障你和房东的合法权益</text>
-    <text class="block">需要你完成实名认证</text>
+    <text class="block">为了保障你和房东的合法权益，需要你完成实名认证</text>
+    <text class="block">以下证件内容仅用于自主看房验证账号信息，并将收到严格保密</text>
   </view>
   <view class="form">
     <view class="form-item">
@@ -37,6 +37,6 @@
     </view>
   </view>
   <view class="opt">
-    <button class="btn btn-block" bindtap="submit">实名认证</button>
+    <button class="btn btn-block" disabled="!realName || !idNum || !frontPhotoSrc || !backPhotoSrc" bindtap="submit">实名认证</button>
   </view>  
 </view>

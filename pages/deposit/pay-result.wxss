@@ -16,5 +16,5 @@
 
 .opt {
   display: flex;
-  margin: 130rpx 40rpx 50rpx;
+  margin: 130rpx 30rpx 50rpx;
 }

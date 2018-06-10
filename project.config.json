@@ -30,12 +30,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "自定义",
-					"pathName": "pages/auth/real-name-auth",
+					"pathName": "pages/house/self-house",
 					"query": "houseId=1001009418086281217"
 				},
 				{

@@ -64,7 +64,7 @@ export function showWarning(msg) {
 
 // 自定义请求封装
 export function request(obj) {
-  if (obj.method) {
+  if (obj.method && obj.method.toUpperCase() === 'POST') {
     obj.header = { 
       ...obj.header,
       'Content-Type': 'application/x-www-form-urlencoded'

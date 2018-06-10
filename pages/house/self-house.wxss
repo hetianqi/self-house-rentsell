@@ -32,3 +32,56 @@
   font-size: 36rpx;
   color: #999899;
 }
+
+.open-lock-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: opacity ease-in .5s;
+}
+.open-lock-progress.show {
+  display: flex;
+}
+.open-lock-progress .mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+.open-lock-progress .content {
+  position: relative;
+  z-index: 1002;
+  width: 400rpx;
+  background-color: #fff;
+}
+.open-lock-progress .body {
+  padding: 30rpx;
+  border-bottom: 1px solid #e8e8e8;
+}
+.open-lock-progress .footer {
+  display: flex;
+}
+.open-lock-progress .footer button {
+  flex: 1;
+  background-color: transparent;
+}
+.open-lock-progress .footer button {
+  padding: 0;
+  border-radius: 0;
+  font-size: 28rpx;
+}
+.open-lock-progress .footer button::after {
+  border: 0;
+}
+.cancel-open-lock {
+  color: #f00;
+}

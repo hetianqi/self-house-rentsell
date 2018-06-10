@@ -17,7 +17,8 @@ Page({
       1: '拒绝授权',
       2: '已授权'
     },
-    payResult: ''
+    payResult: '',
+    apiUrl: apiUrl
   },
 
   // 页面显示
@@ -49,12 +50,15 @@ Page({
       }
     })
       .then((data) => {
-        wx.hideLoading()
         if (data.code !== '200') {
-          showError(data.msg)
-          return
+          throw new Error(data.msg)
         }
+        wx.hideLoading()
         this.setData({ list: data.data })
+      })
+      .catch(err => {
+        wx.hideLoading()
+        showError(data.msg)
       })
   },
 

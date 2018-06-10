@@ -38,5 +38,5 @@
 }
 
 .opt {
-  margin: 200rpx 40rpx 50rpx;
+  margin: 200rpx 30rpx 50rpx;
 }

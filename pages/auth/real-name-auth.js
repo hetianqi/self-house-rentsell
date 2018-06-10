@@ -68,5 +68,47 @@ Page({
   // 提交
   submit(e) {
     console.log(this.data)
+    if (!this.data.realName) {
+      showWarning('请输入姓名')
+      return
+    }
+    if (!this.data.idNum) {
+      showWarning('请输入身份证号')
+      return
+    }
+    if (!this.data.frontPhotoSrc) {
+      showWarning('请上传身份证正面照片')
+      return
+    }
+    if (!this.data.backPhotoSrc) {
+      showWarning('请上传身份证背面照片')
+      return
+    }
+    showLoading('提交中...')
+    request({
+      url: apiUrl + 'user/certification',
+      method: 'POST',
+      data: {
+        access_token: this.access_token,
+        readName: this.data.realName,
+        idNum: this.data.idNum,
+        idImg_front: this.data.frontPhotoSrc,
+        idImg_back: this.data.backPhotoSrc,
+        phone: app.globalData.phoneNumber
+      }
+    })
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
+        wx.hideLoading()
+        wx.navigateTo({
+          url: '../house/reserve'
+        })
+      })
+      .catch(err => {
+        wx.hideLoading()
+        showError(err)
+      })
   }
 });
