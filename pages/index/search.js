@@ -10,22 +10,47 @@ Page({
 
   // 页面数据
   data: {
-    
+    keyword: '',
+    list: []
   },
 
   // 页面显示
   onShow() {
     app.login()
       .then(({ access_token }) => {
-        this.data.token = access_token
+        this.access_token = access_token
       })
   },
 
-  search() {
-    wx.showModal({
-      content: '搜索',
-      showCancel: false
+  updateKeyword(e) {
+    this.setData({
+      keyword: e.detail.value.trim()
     })
+  },
+
+  search() {
+    if (!this.data.keyword) {
+      return
+    }
+    showLoading('搜索中...')
+    request({
+      url: apiUrl + 'house/search',
+      data: {
+        access_token: this.access_token,
+        keyword: this.data.keyword
+      }
+    })
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
+        wx.hideLoading()
+        this.setData({ list: data.data })
+      })
+      .catch(err => {
+        wx.hideLoading()
+        showError(err)
+      })
   },
 
   back() {

@@ -72,9 +72,9 @@ Page({
   // 房源跳转
   jump(e) {
     let item = e.currentTarget.dataset.item
-    if (item.state !== 2) return
+    // if (item.state !== 2) return
     wx.navigateTo({
-      url: '../house/self-house?houseId=' + item.id
+      url: '../house/self-house?houseId=' + item.houseId
     })
   }
 })

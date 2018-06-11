@@ -6,6 +6,7 @@
       <input class="search-input"
         placeholder="请输入想要搜索的楼盘"
         focus
+        bindinput="updateKeyword"
         bindconfirm="search"></input>
       <text class="iconfont icon-mic"></text>
     </view>
