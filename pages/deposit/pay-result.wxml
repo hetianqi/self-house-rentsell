@@ -1,6 +1,6 @@
 <!--pages/pay-deposit/pay-deposit-result.wxml-->
 <view class="container">
-  <view class="success" wx:if="{{result === 0}}">
+  <view class="success" wx:if="{{result === 1}}">
     <view class="tips">
       <icon type="success" size="20"></icon>
       <text>押金支付成功</text>

@@ -74,7 +74,7 @@
                     <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
                     <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
                   </cover-view> -->
-                  <cover-view class="house-price">{{item.price}} 万</cover-view>
+                  <cover-view class="house-price">{{item.houseType === 'sell' ? item.price + '万元' : item.price + '元'}}</cover-view>
                 </cover-view>
               </cover-view>
               <cover-view class="line"></cover-view>

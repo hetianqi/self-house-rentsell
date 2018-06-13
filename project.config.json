@@ -35,7 +35,7 @@
 				{
 					"id": 0,
 					"name": "自定义",
-					"pathName": "pages/index/search",
+					"pathName": "pages/house/apply",
 					"query": "houseId=1001009418086281217"
 				},
 				{

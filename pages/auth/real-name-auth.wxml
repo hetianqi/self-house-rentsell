@@ -37,6 +37,6 @@
     </view>
   </view>
   <view class="opt">
-    <button class="btn btn-block" disabled="!realName || !idNum || !frontPhotoSrc || !backPhotoSrc" bindtap="submit">实名认证</button>
+    <button class="btn btn-block" disabled="{{!realName || !idNum || !frontPhotoSrc || !backPhotoSrc}}" bindtap="submit">实名认证</button>
   </view>  
 </view>

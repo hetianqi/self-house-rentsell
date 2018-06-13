@@ -37,7 +37,7 @@ Page({
       url: apiUrl + 'house/search',
       data: {
         access_token: this.access_token,
-        keyword: this.data.keyword
+        keyWords: this.data.keyword
       }
     })
       .then((data) => {
