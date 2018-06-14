@@ -1,5 +1,5 @@
 <!--pages/auth/clause.wxml-->
 <view class="container">
   <text class="p">放盘软件自主看房许可及服务协议</text>
-  吧啦吧啦吧啦吧啦
+  <text>{{agreement}}</text>
 </view>

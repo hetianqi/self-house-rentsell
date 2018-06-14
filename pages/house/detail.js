@@ -26,7 +26,6 @@ Page({
 
   // 页面加载
   onLoad(options) {
-    console.log(options)
     this.setData({
       houseId: options.houseId
     })
@@ -102,12 +101,14 @@ Page({
   
   // 申请看房
   toApply() {
-    if (this.validate === '0') {
+    if (this.validate !== '1') {
       wx.navigateTo({
         url: '../auth/verify?houseId=' + this.data.houseId
       })
     } else {
-      
+      wx.navigateTo({
+        url: './reserve?houseId=' + this.data.houseId
+      })
     }
   }
 });

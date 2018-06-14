@@ -6,13 +6,13 @@
     <view>麻烦请上传关门照片，谢谢。</view>
   </view>
   <view class="upload-photo" bindtap="uploadPhoto">
-    <image class="example-photo" src="{{photoSrc || '../../images/lock-example.png'}}"></image>
+    <image class="example-photo" src="{{photoSrc ? apiUrl + photoSrc : '../../images/lock-example.png'}}"></image>
     <view class="upload-btn" wx:if="{{!photoSrc}}">
       <view class="iconfont icon-plus-circle"></view>
     </view>
   </view>
   <view class="tips-3">点击上传关门照片</view>
   <view class="opt">
-    <button class="btn btn-block" bindtap="confirmRefund">确认退款</button>
+    <button class="btn btn-block" disabled="{{!photoSrc}}" bindtap="confirmRefund">确认退款</button>
   </view>
 </view>

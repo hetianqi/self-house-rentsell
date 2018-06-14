@@ -6,11 +6,15 @@
       <input class="search-input"
         placeholder="请输入想要搜索的楼盘"
         focus
-        bindinput="updateKeyword"
-        bindconfirm="search"></input>
+        bindinput="search"></input>
       <text class="iconfont icon-mic"></text>
     </view>
     <text class="cancel" bindtap="back">取消</text>
   </view>
-  
+  <view class="result-list">
+    <view class="result-item" wx:for="{{list}}" key="{{item.premisesId}}" data-data="{{item}}" bindtap="viewPremises">
+      <text class="premises-name">{{item.premisesName}}</text>
+      <text class="house-count">{{item.houseCount}}</text>
+    </view>
+  </view>
 </view>

@@ -110,8 +110,8 @@ cover-image {
   bottom: 0;
   z-index: 100;
   background-color: #fff; 
-  transform: translate(0, 100%);  
-  /* transition: transform .2s;   */
+  transform: translate(0, 100%);   
+  transition: transform .1s;
 }
 .marker-detail.show {
   transform: translate(0, 0);

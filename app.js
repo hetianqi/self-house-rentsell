@@ -4,7 +4,7 @@ import { request, showLoading, showError } from './libs/util.js'
 import { apiUrl } from './libs/config.js'
 
 App({
-  login(callback) {
+  login() {
     return new Promise((resolve, reject) => {
       if (this.globalData.loginData) {
         resolve(this.globalData.loginData)
@@ -45,6 +45,30 @@ App({
       })
     })
   },
+  getServicePhoneNumber() {
+    return new Promise((resolve, reject) => {
+      if (this.globalData.servicePhoneNumber) {
+        resolve(this.globalData.servicePhoneNumber)
+        return
+      }
+      request({
+        url: apiUrl + 'system/servicePhone',
+        data: {
+          access_token: this.globalData.loginData.access_token
+        }
+      })
+        .then((data) => {
+          if (data.code !== '200') {
+            throw new Error(data.msg)
+          }
+          this.globalData.servicePhoneNumber = data.data
+          resolve(this.globalData.servicePhoneNumber)
+        })
+        .catch((err) => {
+          showError(err)
+        })
+    })
+  },
   globalData: {
     // 用户登录数据
     loginData: null,
@@ -53,6 +77,10 @@ App({
     // 房源图片url前缀
     resourceURI: '',
     // 用户手机号
-    phoneNumber: '17780514632'
+    phoneNumber: '',
+    // 客户电话
+    servicePhoneNumber: '',
+    // 搜索选中结果，供首页地图显示
+    searchItem: null
   }
 })

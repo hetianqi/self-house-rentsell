@@ -10,7 +10,7 @@ Page({
 
   // 页面数据
   data: {
-    apiUrl: apiUrl,
+    apiUrl,
     realName: '',
     idNum: '',
     frontPhotoSrc: '',
@@ -101,6 +101,7 @@ Page({
         if (data.code !== '200') {
           throw new Error(data.msg)
         }
+        app.globalData.loginData = null
         wx.hideLoading()
         wx.navigateTo({
           url: '../house/reserve'

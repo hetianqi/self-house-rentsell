@@ -29,7 +29,21 @@ Page({
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token
-        this.locate()
+        const searchItem = app.globalData.searchItem
+        if (searchItem) {
+          this.setData({
+            scale: 14,
+            latitude: searchItem.lat,
+            longitude: searchItem.lng,
+            centerLatitude: searchItem.lat,
+            centerLongitude: searchItem.lng
+          })
+          this.getPremises()
+          this.getHouses(searchItem.premisesId)
+          app.globalData.searchItem = null
+        } else {
+          this.locate()
+        }        
       })
   },
 
@@ -62,8 +76,10 @@ Page({
 
   // 地图缩小
   zoomOut() {
+    console.log('zoomOut')
     this.getScale()
       .then(() => {
+        console.log(this.data.scale)
         if (this.data.scale <= 12) return
         this.setData({ scale: this.data.scale - 1 })
         this.onRegionChange()
@@ -92,8 +108,6 @@ Page({
   locate() {
     wx.getLocation({
       success: ({ latitude, longitude }) => {
-        latitude = 30.61857
-        longitude = 104.05224
         this.setData({
           latitude,
           longitude,
@@ -203,6 +217,16 @@ Page({
     wx.navigateTo({
       url: '../house/detail?houseId=' + item.houseId
     })
+  },
+
+  // 联系客服
+  contactService() {
+    app.getServicePhoneNumber()
+      .then(servicePhoneNumber => {
+        wx.makePhoneCall({
+          phoneNumber: servicePhoneNumber
+        })
+      })
   },
 
   // 去搜索页

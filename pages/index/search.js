@@ -10,7 +10,6 @@ Page({
 
   // 页面数据
   data: {
-    keyword: '',
     list: []
   },
 
@@ -28,29 +27,36 @@ Page({
     })
   },
 
-  search() {
-    if (!this.data.keyword) {
+  search(e) {
+    let keyword = e.detail.value.trim();
+    if (!keyword) {
       return
     }
-    showLoading('搜索中...')
     request({
       url: apiUrl + 'house/search',
       data: {
         access_token: this.access_token,
-        keyWords: this.data.keyword
+        keyWords: keyword
       }
     })
       .then((data) => {
         if (data.code !== '200') {
-          throw new Error(data.msg)
+          // throw new Error(data.msg)
+          console.log(data.msg)
+          return;
         }
-        wx.hideLoading()
         this.setData({ list: data.data })
       })
       .catch(err => {
-        wx.hideLoading()
-        showError(err)
+        console.log(err)
       })
+  },
+
+  viewPremises(e) {
+    app.globalData.searchItem = e.currentTarget.dataset.data
+    wx.navigateTo({
+      url: './index'
+    })
   },
 
   back() {

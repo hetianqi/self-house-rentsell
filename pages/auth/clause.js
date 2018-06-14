@@ -1,66 +1,42 @@
 // pages/auth/clause.js
+
+import { request, showLoading, showError, showWarning } from '../../libs/util.js'
+import { apiUrl } from '../../libs/config.js'
+
+const app = getApp()
+
 Page({
+  access_token: '',
 
-  /**
-   * 页面的初始数据
-   */
+  // 页面数据
   data: {
-  
+    agreement: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
+  // 页面显示
   onShow: function () {
-  
+    app.login()
+      .then(({ access_token, payResult }) => {
+        this.access_token = access_token
+        this.getAgreement()
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  getAgreement() {
+    request({
+      url: apiUrl + 'system/agreement',
+      data: {
+        access_token: this.access_token
+      }
+    })
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
+        this.setData({ agreement: data.data })
+      })
+      .catch((err) => {
+        showError(err)
+      })
   }
 })

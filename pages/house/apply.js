@@ -54,11 +54,19 @@ Page({
           throw new Error(data.msg)
         }
         wx.hideLoading()
-        this.setData({ list: data.data })
+        this.setData({
+          list: data.data.map(item => {
+            return {
+              ...item,
+              start_time: formatTime(item.start_time),
+              end_time: formatTime(item.end_time)
+            }
+          })
+        })
       })
       .catch(err => {
         wx.hideLoading()
-        showError(data.msg)
+        showError(err)
       })
   },
 
@@ -78,3 +86,9 @@ Page({
     })
   }
 })
+
+// 格式化时间
+function formatTime(time) {
+  console.log(time)
+  return time.substring(6, 16)
+}

@@ -168,9 +168,14 @@ cover-view.btn-text {
 .house-detail {
   flex: 1;
 }
+.house-type {
+  font-size: 30rpx;
+  color: #3191f1;
+}
 .house-desc {
   font-size: 30rpx;
   color: #212121;
+  margin-top: 20rpx;  
 }
 .house-tags {
   display: flex;
