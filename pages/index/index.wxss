@@ -56,7 +56,7 @@ cover-image {
 .zoom-out,
 .locate {
   position: absolute;
-  right: 30rpx;
+  left: 30rpx;
   width: 60rpx;
   height: 60rpx;
   display: flex;
@@ -70,7 +70,7 @@ cover-image {
   top: 362rpx;
 }
 .locate {
-  top: 472rpx;
+  bottom: 200rpx;
 }
 .zoom-in cover-image,
 .zoom-out cover-image,

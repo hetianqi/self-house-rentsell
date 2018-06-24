@@ -116,7 +116,7 @@ Page({
         wx.hideLoading()
         app.globalData.phoneNumber = this.data.phoneNumber
         wx.navigateTo({
-          url: './real-name-auth'
+          url: './real-name-auth?houseId=' + this.data.houseId
         })
       })
       .catch(err => {

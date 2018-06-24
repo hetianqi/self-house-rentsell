@@ -15,11 +15,11 @@ Page({
 
   // 页面显示
   onShow: function () {
-    app.login()
-      .then(({ access_token, payResult }) => {
-        this.access_token = access_token
-        this.getAgreement()
-      })
+    // app.login()
+    //   .then(({ access_token, payResult }) => {
+    //     this.access_token = access_token
+    //     this.getAgreement()
+    //   })
   },
 
   getAgreement() {

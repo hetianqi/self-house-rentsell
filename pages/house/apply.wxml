@@ -8,9 +8,9 @@
     <media-item wx:for="{{list}}" wx:key="{{index}}" icon-path="{{apiUrl + item.img.imgUrl}}" data-item="{{item}}" bindtap="jump">
       <text class="title">{{item.premisesName.name}}</text>
       <text class="desc">{{item.buildName.name + item.unitName.name+ item.houseNum}}</text>
-      <text class="desc" wx:if="{{item.status !== 2}}">授权开房时间：</text>
-      <text class="desc" wx:if="{{item.status !== 2}}">{{item.start_time + ' 至 ' + item.end_time}}</text>
-      <text class="state state-{{item.status || 2}}" slot="right">{{stateMap['2']}}</text>
+      <text class="desc" wx:if="{{item.status === '1'}}">授权开房时间：</text>
+      <text class="desc" wx:if="{{item.status === '1'}}">{{item.start_time + ' 至 ' + item.end_time}}</text>
+      <text class="state state-{{item.status}}" slot="right">{{stateMap[item.status]}}</text>
     </media-item>
   </media>
   <view wx:else>
@@ -19,7 +19,7 @@
       <text class="">您还没有申请过看房哟~</text>
     </view>
   </view>
-  <view class="pay-tips" wx:if="{{payResult === '0'}}">
+  <view class="pay-tips" wx:if="{{payResult !== '1'}}">
     <text class="ps">提示：</text>
     <text class="note">您需要支付押金才可以申请自主看房哦~</text>
     <button class="btn" bindtap="toPay">

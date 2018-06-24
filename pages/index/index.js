@@ -53,7 +53,7 @@ Page({
     regionChangeTimer = setTimeout(() => {
       mapCtx.getCenterLocation({
         success: ({ latitude, longitude }) => {
-          console.log(latitude)
+          if (latitude === this.data.centerLatitude && longitude === this.data.centerLongitude) return
           this.setData({
             centerLatitude: latitude,
             centerLongitude: longitude
@@ -70,7 +70,7 @@ Page({
       .then(() => {
         if (this.data.scale >= 18) return
         this.setData({ scale: this.data.scale + 1 })
-        this.onRegionChange()
+        // this.onRegionChange()
       })
   },
 
@@ -82,7 +82,7 @@ Page({
         console.log(this.data.scale)
         if (this.data.scale <= 12) return
         this.setData({ scale: this.data.scale - 1 })
-        this.onRegionChange()
+        // this.onRegionChange()
       })
   },
 
@@ -126,7 +126,7 @@ Page({
       url: apiUrl + 'house/premises',
       data: {
         access_token: this.access_token,
-        scale: this.data.scale,
+        scale: 15,
         lat: this.data.centerLatitude,
         lng: this.data.centerLongitude
       }

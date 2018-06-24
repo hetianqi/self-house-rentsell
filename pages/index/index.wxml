@@ -4,7 +4,6 @@
       class="map"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
-      scale="{{scale + 2}}"
       markers="{{markers}}"
       show-location
       bindregionchange="onRegionChange"
@@ -23,12 +22,12 @@
       </cover-view> 
 
       <!-- 右侧地图按钮 -->
-      <cover-view class="zoom-in" bindtap="zoomIn">
+      <!-- <cover-view class="zoom-in" bindtap="zoomIn">
         <cover-image src="../../images/zoom-in.png"></cover-image>
       </cover-view>
       <cover-view class="zoom-out" bindtap="zoomOut">
         <cover-image src="../../images/zoom-out.png"></cover-image>
-      </cover-view>
+      </cover-view> -->
       <cover-view class="locate" bindtap="locate">
         <cover-image src="../../images/locate.png"></cover-image>
       </cover-view>

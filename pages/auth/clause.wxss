@@ -1,1 +1,20 @@
 /* pages/auth/clause.wxss */
+.container {
+  padding: 30rpx;
+}
+.title {
+  display: block;
+  margin: 20rpx 0;
+  font-size: 36rpx;
+  color: #333;
+}
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+}
+.p {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+}

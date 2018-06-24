@@ -58,6 +58,7 @@ Page({
           list: data.data.map(item => {
             return {
               ...item,
+              status: item.status || '0',
               start_time: formatTime(item.start_time),
               end_time: formatTime(item.end_time)
             }
@@ -80,7 +81,7 @@ Page({
   // 房源跳转
   jump(e) {
     let item = e.currentTarget.dataset.item
-    // if (item.state !== 2) return
+    if (item.state !== '1') return
     wx.navigateTo({
       url: '../house/self-house?houseId=' + item.houseId
     })
@@ -89,6 +90,5 @@ Page({
 
 // 格式化时间
 function formatTime(time) {
-  console.log(time)
   return time.substring(6, 16)
 }
