@@ -111,7 +111,7 @@ cover-image {
   z-index: 100;
   background-color: #fff; 
   transform: translate(0, 100%);   
-  transition: transform .1s;
+  /* transition: transform .1s; */
 }
 .marker-detail.show {
   transform: translate(0, 0);
@@ -154,6 +154,7 @@ cover-image {
   -webkit-overflow-scrolling: touch;
 }
 .house-list {
+  background-color: #fff;
   border-bottom: 0;
 }
 .house-item::after {

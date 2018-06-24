@@ -61,7 +61,7 @@
         </cover-view>
         <cover-view class="line"></cover-view>
         <cover-view class="marker-body">
-          <cover-view class="house-list">
+          <!-- <cover-view class="house-list">
             <block wx:for="{{houses}}" wx:key="houseId">
               <cover-view class="house-item" bindtap="toHouseDetail" data-item="{{item}}">
                 <cover-view class="house-image">
@@ -70,17 +70,14 @@
                 <cover-view class="house-detail">
                   <cover-view class="house-type">{{item.houseType === 'sell' ? '出售' : '出租'}}</cover-view>
                   <cover-view class="house-desc">{{item.layout}} / {{item.rate}}㎡ / {{item.fitment}} / {{item.orientation}}</cover-view>
-                  <!-- <cover-view class="house-tags">
-                    <cover-view class="house-tag"><cover-view>临近地铁</cover-view></cover-view>
-                    <cover-view class="house-tag"><cover-view>交通方便</cover-view></cover-view>
-                  </cover-view> -->
                   <cover-view class="house-price">{{item.houseType === 'sell' ? item.price + '万元' : item.price + '元'}}</cover-view>
                 </cover-view>
               </cover-view>
               <cover-view class="line"></cover-view>
-            </block>            
-          </cover-view>
-           <cover-view class="marker-opt">
+            </block>
+          </cover-view> -->
+          <cover-view style="white-space: pre-wrap;">我广佛路桑我国的老规矩了我国的铝合金的脸孔黄金屋听歌就我广佛路桑我国的老规矩了我国的铝合金的脸孔黄金屋听歌就我广佛路桑我国的老规矩了我国的铝合金的脸孔黄金屋听歌就我广佛路桑我国的老规矩了我国的铝合金的脸孔黄金屋听歌就我广佛路桑我国的老规矩了我国的铝合金的脸孔黄金屋听歌就</cover-view>
+          <cover-view class="marker-opt">
             <cover-view class="btn btn-block">
               <cover-view class="btn-text" bindtap="contactService">联系客服</cover-view>
             </cover-view>
