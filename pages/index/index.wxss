@@ -56,7 +56,7 @@ cover-image {
 .zoom-out,
 .locate {
   position: absolute;
-  left: 30rpx;
+  left: 25rpx;
   width: 60rpx;
   height: 60rpx;
   display: flex;
@@ -85,7 +85,7 @@ cover-image {
   right: 30rpx;
   bottom: 80rpx;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .my-apply,
 .scan-code  {
@@ -156,6 +156,10 @@ cover-image {
 .house-list {
   background-color: #fff;
   border-bottom: 0;
+  height: 10000rpx; /*IOS上wx:for渲染cover-view时，会使用初始数据渲染高度，解决办法是初始时设置为一个很大的值，在显示出来时再改为auto*/
+}
+.marker-detail.show .house-list {
+  height: auto;
 }
 .house-item::after {
   display: none;

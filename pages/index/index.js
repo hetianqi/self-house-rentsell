@@ -23,28 +23,32 @@ Page({
     houses: []
   },  
 
-  // 页面显示
-  onShow() {
+  // 页面加载
+  onLoad() {
+    console.log(11)
     mapCtx = wx.createMapContext('map')
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token
-        const searchItem = app.globalData.searchItem
-        if (searchItem) {
-          this.setData({
-            scale: 14,
-            latitude: searchItem.lat,
-            longitude: searchItem.lng,
-            centerLatitude: searchItem.lat,
-            centerLongitude: searchItem.lng
-          })
-          this.getPremises()
-          this.getHouses(searchItem.premisesId)
-          app.globalData.searchItem = null
-        } else {
-          this.locate()
-        }        
+        this.locate()
       })
+  },
+
+  // 页面显示
+  onShow() {
+    const searchItem = app.globalData.searchItem
+    if (searchItem) {
+      this.setData({
+        scale: 14,
+        latitude: searchItem.lat,
+        longitude: searchItem.lng,
+        centerLatitude: searchItem.lat,
+        centerLongitude: searchItem.lng
+      })
+      this.getPremises()
+      this.getHouses(searchItem.premisesId)
+      app.globalData.searchItem = null
+    }
   },
 
   // 地图区域改变
@@ -121,7 +125,6 @@ Page({
 
   // 获取区域楼盘
   getPremises() {
-    // showLoading('加载中...')
     request({
       url: apiUrl + 'house/premises',
       data: {
@@ -135,30 +138,27 @@ Page({
         if (data.code !== '200') {
           throw new Error(data.msg)
         }
-        // wx.hideLoading()
         this.data.premises = data.data
-        const isHouseScale = this.data.scale > 12
         this.setData({
           markers: this.data.premises.map(item => ({
-            id: isHouseScale ? item.premisesId : item.areasId,
+            id: item.premisesId,
             latitude: item.lat,
             longitude: item.lng,
             width: 0,
             height: 0,
             iconPath: '../../images/touming.png',
             callout: {
-              content: `  ${isHouseScale ? item.premisesName : item.areasName}(${item.houseCount}套)  `,
+              content: `  ${item.premisesName}(${item.houseCount}套)  `,
               bgColor: '#f75001',
-              color: '#fff',
-              borderRadius: isHouseScale ? 8 : 10000,
-              padding: isHouseScale ? 3 : 10,
+              color: '#ffffff',
+              borderRadius: 8,
+              padding: 3,
               display: 'ALWAYS'
             }
           }))
         })
       })
       .catch(err => {
-        // wx.hideLoading()
         showError(err)
       })
   },
@@ -192,17 +192,7 @@ Page({
 
   // 点击气泡
   onMarkerTab(e) {
-    if (this.data.scale > 12) {
-      this.getHouses(e.markerId)
-    } else {
-      const item = this.data.premises.find(a => a.areasId === e.markerId)
-      this.setData({
-        scale: 16,
-        centerLatitude: item.lat,
-        centerLongitude: item.lng
-      })
-      this.getPremises()
-    }
+    this.getHouses(e.markerId)
   },
 
   // 地图点击
