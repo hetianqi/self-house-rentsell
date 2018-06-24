@@ -1,12 +1,12 @@
 <!--pages/auth/mobile-verify.wxml-->
 <view class="container">
   <view class="house-photos">
-    <swiper bindchange="">
-      <swiper-item wx:for="{{photos}}" wx:key="*this">
-        <image src="{{item}}"></image>
+    <swiper bindchange="onHouseImgSwipe">
+      <swiper-item wx:for="{{houseImgs}}" wx:key="imgUrl" item-id="{{item.imgUrl}}">
+        <image src="{{resourcesURI + '/' + item.imgUrl}}"></image>
       </swiper-item>
     </swiper>
-    <text class="desc" space="nbsp">{{date}}    {{index}}/{{photos.length}}</text>
+    <text class="desc" space="nbsp" wx:if="{{houseImgs.length}}">{{houseImgs[currHouseImgIndex].date}}    {{currHouseImgIndex + 1}}/{{houseImgs.length}}</text>
   </view>
   <view class="form">
     <view class="form-item">

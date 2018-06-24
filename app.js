@@ -72,12 +72,14 @@ App({
   globalData: {
     // 用户登录数据
     loginData: null,
+    // 房源Id
+    houseId: null,
     // 房源图片
     houseImgs: [],
     // 房源图片url前缀
     resourceURI: '',
     // 用户手机号
-    phoneNumber: '17780514632',
+    phoneNumber: '',
     // 客户电话
     servicePhoneNumber: '',
     // 搜索选中结果，供首页地图显示

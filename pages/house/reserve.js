@@ -10,20 +10,11 @@ Page({
 
   // 页面数据
   data: {
-    houseId: '',
     date: '',
     startDate: null,
     endDate: null,
     startTime: '',
     endTime: ''
-  },
-
-  // 页面加载
-  onLoad(options) {
-    console.log(options)
-    this.setData({
-      houseId: options.houseId
-    })
   },
 
   // 页面显示
@@ -77,7 +68,7 @@ Page({
       method: 'POST',
       data: {
         access_token: this.access_token,
-        houseid: this.data.houseId,
+        houseid: app.globalData.houseId,
         starttime: this.data.date + ' ' + this.data.startTime,
         endtime: this.data.date + ' ' + this.data.endTime
       }

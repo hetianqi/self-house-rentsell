@@ -10,20 +10,9 @@ Page({
   
   // 页面数据
   data: {
-    houseId: '',
     houseImgs: [],
-    currHouseImgIndex: 0,
-    resourcesURI: ''
-  },
-
-  // 页面加载
-  onLoad(options) {
-    console.log(options)
-    this.setData({
-      houseId: options.houseId,
-      houseImgs: app.globalData.houseImgs,
-      resourcesURI: app.globalData.resourcesURI
-    })
+    resourcesURI: '',
+    currHouseImgIndex: 0
   },
 
   // 页面显示
@@ -32,11 +21,14 @@ Page({
       .then(({ access_token, payResult }) => {
         this.access_token = access_token
       })
+    this.setData({
+      houseImgs: app.globalData.houseImgs,
+      resourcesURI: app.globalData.resourcesURI
+    })
   },
 
   // 照片切换
   onHouseImgSwipe(e) {
-    console.log(e.detail)
     this.setData({
       currHouseImgIndex: e.detail.current
     })
@@ -61,7 +53,7 @@ Page({
         wx.hideLoading()
         app.globalData.phoneNumber = data.data.phoneNumber
         wx.navigateTo({
-          url: './real-name-auth?houseId=' + this.data.houseId
+          url: './real-name-auth'
         })
       })
       .catch(err => {

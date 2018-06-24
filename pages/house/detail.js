@@ -11,7 +11,6 @@ Page({
 
   // 页面数据
   data: {
-    houseId: '',
     emptyStr: '',
     currHouseImgIndex: 0,
     resourcesURI: '',
@@ -26,9 +25,7 @@ Page({
 
   // 页面加载
   onLoad(options) {
-    this.setData({
-      houseId: options.houseId
-    })
+    app.globalData.houseId = options.houseId
   },
 
   // 页面显示
@@ -43,13 +40,13 @@ Page({
   
   // 获取房源详情
   getHouseDetail() {
-    if (!this.data.houseId) return
+    if (!app.globalData.houseId) return
     showLoading('加载中...')
     request({
       url: apiUrl + 'house/Detail',
       data: {
         access_token: this.access_token,
-        houseId: this.data.houseId
+        houseId: app.globalData.houseId
       }
     })
       .then((data) => {
@@ -80,7 +77,6 @@ Page({
 
   // 照片切换
   onHouseImgSwipe(e) {
-    console.log(e.detail)
     this.setData({
       currHouseImgIndex: e.detail.current
     })
@@ -103,11 +99,11 @@ Page({
   toApply() {
     if (this.validate !== '1') {
       wx.navigateTo({
-        url: '../auth/verify?houseId=' + this.data.houseId
+        url: '../auth/verify'
       })
     } else {
       wx.navigateTo({
-        url: './reserve?houseId=' + this.data.houseId
+        url: './reserve'
       })
     }
   }
