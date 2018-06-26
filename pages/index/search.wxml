@@ -12,7 +12,7 @@
     <text class="cancel" bindtap="back">取消</text>
   </view>
   <view class="result-list">
-    <view class="result-item" wx:for="{{list}}" key="{{item.premisesId}}" data-data="{{item}}" bindtap="viewPremises">
+    <view class="result-item" wx:for="{{list}}" wx:key="premisesId" data-data="{{item}}" bindtap="viewPremises">
       <text class="premises-name">{{item.premisesName}}</text>
       <text class="house-count">{{item.houseCount}}</text>
     </view>

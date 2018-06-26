@@ -13,9 +13,9 @@ Page({
     activeIndex: 'rent',
     list: [],
     stateMap: {
-      0: '未授权',
-      1: '拒绝授权',
-      2: '已授权'
+      0: '拒绝授权',
+      1: '已授权',
+      2: '未授权'
     },
     payResult: '',
     apiUrl: apiUrl
@@ -58,7 +58,7 @@ Page({
           list: data.data.map(item => {
             return {
               ...item,
-              status: item.status || '0',
+              status: item.status || '2',
               start_time: formatTime(item.start_time),
               end_time: formatTime(item.end_time)
             }
@@ -81,7 +81,7 @@ Page({
   // 房源跳转
   jump(e) {
     let item = e.currentTarget.dataset.item
-    if (item.state !== '1') return
+    if (this.data.payResult !== '1' || item.status !== '1') return
     wx.navigateTo({
       url: '../house/self-house?houseId=' + item.houseId
     })

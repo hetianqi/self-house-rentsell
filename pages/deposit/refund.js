@@ -15,7 +15,7 @@ Page({
   },
 
   // 页面显示
-  onShow: function () {
+  onLoad: function () {
     app.login()
       .then(({ access_token, validate }) => {
         this.access_token = access_token

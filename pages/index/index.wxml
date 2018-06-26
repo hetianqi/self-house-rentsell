@@ -77,8 +77,8 @@
             </block> 
           </cover-view>
           <cover-view class="marker-opt">
-            <cover-view class="btn btn-block">
-              <cover-view class="btn-text" bindtap="contactService">联系客服</cover-view>
+            <cover-view class="btn btn-block" bindtap="contactService">
+              <cover-view class="btn-text">联系客服</cover-view>
             </cover-view>
           </cover-view> 
         </cover-view>

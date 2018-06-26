@@ -34,13 +34,16 @@ Page({
         ip: '192.168.0.12'
       }
     })
-      .then(({ data }) => {
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
         wx.requestPayment({
-          timeStamp: data.timestamp,
-          nonceStr: data.noncestr,
-          package: 'prepay_id=' + data.prepayid,
+          timeStamp: data.data.timestamp,
+          nonceStr: data.data.noncestr,
+          package: 'prepay_id=' + data.data.prepayid,
           signType: 'MD5',
-          paySign: data.sign,
+          paySign: data.data.sign,
           success: () => {
             console.log('支付成功')
             wx.navigateTo({

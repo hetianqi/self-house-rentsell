@@ -46,8 +46,8 @@
 				},
 				{
 					"id": 2,
-					"name": "手机认证",
-					"pathName": "pages/auth/verify",
+					"name": "支付",
+					"pathName": "pages/deposit/pay",
 					"query": "houseId=1001009418086281217"
 				}
 			]

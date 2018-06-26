@@ -25,7 +25,6 @@ Page({
 
   // 页面加载
   onLoad() {
-    console.log(11)
     mapCtx = wx.createMapContext('map')
     app.login()
       .then(({ access_token }) => {

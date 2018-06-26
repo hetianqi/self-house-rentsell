@@ -1,6 +1,6 @@
 // pages/apply/self-house.js
 
-import { request, showLoading, showError } from '../../libs/util.js'
+import { request, showLoading, showError, showSuccess } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -11,6 +11,8 @@ Page({
   // 页面数据
   data: {
     houseId: '',
+    houseInfo: null,
+    lock: null,
     openLockProgress: '', // 开锁进度，为空表示未进行开锁或取消开锁
     device: null,
     services: null,
@@ -22,10 +24,6 @@ Page({
   // 页面加载
   onLoad(options) {
     this.setData({ houseId: options.houseId })
-  },
-
-  // 页面显示
-  onShow() {
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token
@@ -50,7 +48,8 @@ Page({
         }
         wx.hideLoading()
         this.setData({
-          houseInfo: data.data.houseInfo
+          houseInfo: data.data.houseInfo,
+          lock: data.data.lock
         })
       })
       .catch(err => {
@@ -64,6 +63,9 @@ Page({
     this.openBuletooth()
       .then(() => {
         this.setData({ openLockProgress: '正在搜索设备...' })
+        if (this.data.device) {
+          return Promise.resolve(this.data.device)
+        }
         return this.searchDevice()
       })
       .then(device => {
@@ -129,16 +131,22 @@ Page({
         })
         return this.getKey()
       })
-      .then((data) => {
-        console.log(data)
+      .then((key) => {
+        console.log(key)
         if (!this.data.openLockProgress) {
           return Promise.reject({ errorCode: 8 })
         }
         this.setData({
-          key: data.key,
+          key: key,
           openLockProgress: '正在开锁...'
         })
         return this.openLock()
+      })
+      .then(() => {
+        this.setData({
+          openLockProgress: ''
+        })
+        showSuccess('开锁成功')
       })
       .catch((err) => {
         console.log(err)
@@ -205,7 +213,7 @@ Page({
       wx.onBluetoothDeviceFound(({ devices }) => {
         console.log(devices)
         for (let i = 0, l = devices.length; i < l; i++) {
-          if (devices[i].name.indexOf('WeLock') > -1) {
+          if (devices[i].name === this.data.lock.lockName) {
             resolve(devices[i])
             wx.stopBluetoothDevicesDiscovery({
               success: (res) => {
@@ -224,12 +232,14 @@ Page({
     return new Promise((resolve, reject) => {
       wx.createBLEConnection({
         deviceId: this.data.device.deviceId,
-        success: () => {
+        success: (data, arg1) => {
+          console.log(arg1)
           resolve()
         },
         fail: ({ errCode, errMsg }) => {
           console.log('连接设备失败', errMsg)
           reject({ errCode, errMsg: '连接设备失败' })
+          this.setData({ device: null })
         }
       })
     })
@@ -323,7 +333,6 @@ Page({
     return new Promise((resolve, reject) => {
       let awakenHex = '553000000000000000000000000000'
       let awakenTypedArray = new Uint8Array(awakenHex.match(/[\da-f]{2}/gi).map(h => parseInt(h, 16)))
-      let buffer = new ArrayBuffer(15)
       let sendInfo = awakenTypedArray.buffer
 
       // 写指令
@@ -343,7 +352,7 @@ Page({
       })
       // 监听特征值变化
       wx.onBLECharacteristicValueChange((res) => {
-        console.log('特征值变化', res)
+        console.log('电量和随机因子返回特征值：', res)
         let resHex = Array.prototype.map.call(new Uint8Array(res.value), x => ('00' + x.toString(16)).slice(-2)).join('')
         let eletemp = resHex.substring(6, 8)
         let fac = resHex.substring(4, 6)
@@ -365,16 +374,15 @@ Page({
         power: this.data.power,
         randomFactor: this.data.randomFactor,
         houseId: this.data.houseId,
-        // lockNum: this.data.houseInfo.key,
-        lockNum: '17354244',
-        lockName: this.data.device.localName
+        lockNum: this.data.lock.lockNum,
+        lockName: this.data.lock.lockName
       }
     })
       .then((data) => {
         if (data.code !== '200') {
           return Promise.reject({ errCode: data.code, errMsg: data.msg })
         }
-        return data.data
+        return 'U1' + data.data.errmsg
       })
   },
 
@@ -383,23 +391,32 @@ Page({
     return new Promise((resolve, reject) => {
       let keys = strToHexCharCode(this.data.key)
       let keyArray = new Uint8Array(keys.match(/[\da-f]{2}/gi).map((h) => parseInt(h, 16)))
-      let buffer = new ArrayBuffer(15)
       let sendInfo = keyArray.buffer
 
       wx.writeBLECharacteristicValue({
         deviceId: this.data.device.deviceId,
-        serviceId: this.data.service.uuid,
+        serviceId: this.data.services[0].uuid,
         characteristicId: this.data.characteristics.find(a => a.properties.write).uuid,
         // characteristicId: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E,
         value: sendInfo,
         success: (res) => {
           console.log('发送开锁指令成功', res)
-          resolve()
         },
         fail: ({ errCode, errMsg }) => {
           console.log('发送开锁指令失败：', res)
           reject({ errCode, errMsg: '发送开锁指令失败' })
         }
+      })
+      // 监听特征值变化
+      wx.onBLECharacteristicValueChange((res) => {
+        console.log('开锁返回特征值：', res)
+        let resHex = Array.prototype.map.call(new Uint8Array(res.value), x => ('00' + x.toString(16)).slice(-2)).join('')
+        console.log(resHex)
+        if (resHex.substring(4, 6) === '01') {
+          resolve()
+        } else {
+          reject({ errCode: 1000, errMsg: '开锁失败' })
+        }        
       })
     })
   },

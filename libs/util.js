@@ -62,6 +62,13 @@ export function showWarning(msg) {
   })
 }
 
+export function showSuccess(msg) {
+  wx.showModal({
+    content: msg,
+    showCancel: false
+  })
+}
+
 // 自定义请求封装
 export function request(obj) {
   if (obj.method && obj.method.toUpperCase() === 'POST') {

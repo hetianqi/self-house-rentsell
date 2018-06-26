@@ -20,7 +20,7 @@
             <view class="example-photo iconfont icon-shenfenzhengzhengmian"></view>
             <view class="upload-btn iconfont icon-photo"></view>
           </block>          
-          <image class="real-photo" wx:else src="{{apiUrl + frontPhotoSrc}}"></image>
+          <image class="real-photo" wx:else src="{{apiUrl + 'upload/' + frontPhotoSrc}}"></image>
         </view>
         <text class="upload-tips">点击上传身份证正面</text>
       </view>
@@ -30,7 +30,7 @@
             <view class="example-photo iconfont icon-shenfenzhengfanmian"></view>
             <view class="upload-btn iconfont icon-photo"></view>
           </block>          
-          <image class="real-photo" wx:else src="{{apiUrl + backPhotoSrc}}"></image>
+          <image class="real-photo" wx:else src="{{apiUrl + 'upload/' + backPhotoSrc}}"></image>
         </view>
         <text class="upload-tips">点击上传身份证背面</text>
       </view>

@@ -79,7 +79,7 @@ App({
     // 房源图片url前缀
     resourceURI: '',
     // 用户手机号
-    phoneNumber: '',
+    phoneNumber: '17780514632',
     // 客户电话
     servicePhoneNumber: '',
     // 搜索选中结果，供首页地图显示

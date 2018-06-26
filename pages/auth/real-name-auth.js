@@ -17,8 +17,8 @@ Page({
     backPhotoSrc: ''
   },
 
-  // 页面显示
-  onShow() {
+  // 页面加载
+  onLoad() {
     app.login()
       .then(({ access_token, payResult }) => {
         this.access_token = access_token
@@ -68,6 +68,10 @@ Page({
   // 提交
   submit(e) {
     console.log(this.data)
+    if (!app.globalData.phoneNumber) {
+      showWarning('手机号码不能为空')
+      return
+    }
     if (!this.data.realName) {
       showWarning('请输入姓名')
       return
@@ -84,7 +88,7 @@ Page({
       showWarning('请上传身份证背面照片')
       return
     }
-    showLoading('提交中...')
+    showLoading('实名认证中...')
     request({
       url: apiUrl + 'user/certification',
       method: 'POST',
@@ -101,6 +105,9 @@ Page({
         if (data.code !== '200') {
           throw new Error(data.msg)
         }
+        if (data.data.errcode !== '1') {
+          throw new Error(data.data.errmsg)
+        }
         app.globalData.loginData = null
         wx.hideLoading()
         wx.navigateTo({
@@ -112,4 +119,4 @@ Page({
         showError(err)
       })
   }
-});
+})
