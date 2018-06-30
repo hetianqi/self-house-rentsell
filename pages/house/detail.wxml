@@ -133,8 +133,8 @@
     <button class="btn btn-block" bindtap="toApply">申请看房</button>
   </view>
 
-  <view class="message-form {{showLeaveMsg ? 'show' : ''}}">
-    <view class="message-box">
+  <view class="message-form {{showLeaveMsg ? 'show' : ''}}" bindtap="cancelDoLeaveMsg">
+    <view class="message-box" catchtap>
       <view class="message-input">
         <textarea
           value="{{inputLeaveMsg}}"

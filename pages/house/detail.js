@@ -91,6 +91,11 @@ Page({
     this.setData({ showLeaveMsg: true, inputLeaveMsg: '' })
   },
 
+  // 点击空白处取消留言
+  cancelDoLeaveMsg() {
+    this.setData({ showLeaveMsg: false })
+  },
+
   // 输入留言
   onInputLeaveMsg(e) {
     this.setData({ inputLeaveMsg: e.detail.value });
