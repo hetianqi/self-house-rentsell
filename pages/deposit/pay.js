@@ -15,8 +15,8 @@ Page({
     loading: false
   },
 
-  // 页面显示
-  onShow() {
+  // 页面加载
+  onLoad() {
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token

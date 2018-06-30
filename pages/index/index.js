@@ -20,7 +20,8 @@ Page({
     isShowHouses: false,
     premises: [],
     currPremise: {},
-    houses: []
+    houses: [],
+    resourcesURI: ''
   },  
 
   // 页面加载
@@ -29,25 +30,23 @@ Page({
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token
-        this.locate()
-      })
-  },
 
-  // 页面显示
-  onShow() {
-    const searchItem = app.globalData.searchItem
-    if (searchItem) {
-      this.setData({
-        scale: 14,
-        latitude: searchItem.lat,
-        longitude: searchItem.lng,
-        centerLatitude: searchItem.lat,
-        centerLongitude: searchItem.lng
+        const searchItem = app.globalData.searchItem
+        if (searchItem) {
+          this.setData({
+            scale: 14,
+            latitude: searchItem.lat,
+            longitude: searchItem.lng,
+            centerLatitude: searchItem.lat,
+            centerLongitude: searchItem.lng
+          })
+          this.getPremises()
+          this.getHouses(searchItem.premisesId)
+          app.globalData.searchItem = null
+        } else {
+          this.locate()
+        }
       })
-      this.getPremises()
-      this.getHouses(searchItem.premisesId)
-      app.globalData.searchItem = null
-    }
   },
 
   // 地图区域改变
@@ -180,6 +179,7 @@ Page({
         this.setData({
           currPremise: data.data.premises,
           houses: data.data.houseInfo,
+          resourcesURI: data.data.resourcesURI,
           isShowHouses: true
         })
       })

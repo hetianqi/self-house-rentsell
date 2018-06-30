@@ -1,6 +1,6 @@
 // pages/house/detail.js
 
-import { request, showLoading, showError } from '../../libs/util.js'
+import { request, showLoading, showError, showSuccess } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -19,17 +19,15 @@ Page({
     premiseInfo: {},
     unit: {},
     build: {},
-    leaveMsg: [],
-    detailCollapsed: false
+    leaveMsg: null,
+    detailCollapsed: false,
+    showLeaveMsg: false,
+    inputLeaveMsg: ''
   },
 
   // 页面加载
   onLoad(options) {
     app.globalData.houseId = options.houseId
-  },
-
-  // 页面显示
-  onShow() {
     app.login()
       .then(({ access_token, validate }) => {
         this.access_token = access_token
@@ -64,7 +62,7 @@ Page({
           premiseInfo: data.data.premises,
           build: data.data.build,
           unit: data.data.unit,
-          leaveMsg: data.data.leaveMsg || []
+          leaveMsg: data.data.leaveMsg
         })
         app.globalData.houseImgs = this.data.houseImgs
         app.globalData.resourcesURI = this.data.resourcesURI
@@ -88,6 +86,48 @@ Page({
     this.setData({ [field]: !this.data[field] });
   },
 
+  // 留言
+  doLeaveMsg() {
+    this.setData({ showLeaveMsg: true, inputLeaveMsg: '' })
+  },
+
+  // 输入留言
+  onInputLeaveMsg(e) {
+    this.setData({ inputLeaveMsg: e.detail.value });
+  },
+
+  // 发送留言
+  sendLeaveMsg() {
+    if (!this.data.inputLeaveMsg) {
+      this.setData({ showLeaveMsg: false })
+      return;
+    }
+    showLoading('正在提交...')
+    request({
+      url: apiUrl + 'leaveMsg/leave',
+      method: 'POST',
+      data: {
+        access_token: this.access_token,
+        houseId: app.globalData.houseId,
+        content: this.data.inputLeaveMsg,
+        landlordId: ''
+      }
+    })
+      .then((data) => {
+        if (data.code !== '200') {
+          throw new Error(data.msg)
+        }
+        wx.hideLoading()
+        showSuccess('留言成功');
+        this.setData();
+        this.getHouseDetail();
+      })
+      .catch((err) => {
+        wx.hideLoading()
+        showError(err)
+      })
+  },
+
   // 去微聊
   toWechat() {
     wx.navigateTo({
@@ -107,4 +147,4 @@ Page({
       })
     }
   }
-});
+})

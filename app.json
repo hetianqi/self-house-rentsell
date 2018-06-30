@@ -10,13 +10,13 @@
     "pages/house/unlock-example",
     "pages/house/detail",
     "pages/house/wechat",
+    "pages/house/leaveMsg",
     "pages/house/reserve",
     "pages/auth/verify",
     "pages/auth/mobile-verify",
     "pages/auth/clause",
     "pages/auth/real-name-auth",
-    "pages/auth/upload-idcard-photo",
-    "pages/test/test"
+    "pages/auth/upload-idcard-photo"
   ],
   "window": {
     "backgroundTextStyle": "dark",

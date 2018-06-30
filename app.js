@@ -83,6 +83,8 @@ App({
     // 客户电话
     servicePhoneNumber: '',
     // 搜索选中结果，供首页地图显示
-    searchItem: null
+    searchItem: null,
+    // 留言信息
+    leaveMsg: null
   }
 })

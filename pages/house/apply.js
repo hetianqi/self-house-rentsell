@@ -21,8 +21,8 @@ Page({
     apiUrl: apiUrl
   },
 
-  // 页面显示
-  onShow() {
+  // 页面加载
+  onLoad() {
     app.login()
       .then(({ access_token, payResult }) => {
         this.access_token = access_token

@@ -11,12 +11,8 @@ Page({
   },
 
   // 页面加载
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({ result: +options.result })
-  },
-
-  // 页面显示
-  onShow() {
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token

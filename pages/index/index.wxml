@@ -65,7 +65,7 @@
             <block wx:for="{{houses}}" wx:key="houseId">
               <cover-view class="house-item" bindtap="toHouseDetail" data-item="{{item}}">
                 <cover-view class="house-image">
-                  <cover-image src="https://image1.ljcdn.com/xf-resblock/3e03508f-be4d-42cb-8a8b-c90cf81f053a.jpg.592x432.jpg"></cover-image>
+                  <cover-image src="{{resourcesURI + item.img[0]}}"></cover-image>
                 </cover-view>
                 <cover-view class="house-detail">
                   <cover-view class="house-type">{{item.houseType === 'sell' ? '出售' : '出租'}}</cover-view>
