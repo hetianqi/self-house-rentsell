@@ -1,0 +1,47 @@
+<!--pages/house/replyMsg.wxml-->
+<view class="container">
+  <view class="message-list">
+    <view class="message-item">
+      <view class="left">
+        <text class="iconfont icon icon-user_message"></text>
+      </view>
+      <view class="right">
+        <view class="user">我</view>
+        <view class="content">
+          <text>{{leaveMsg.content}}</text>
+        </view>
+        <view class="date">{{leaveMsg.createDate}}</view>
+      </view>
+    </view> 
+    <view class="message-item" wx:for="{{leaveMsg.replyMsg}}" wx:key="id">
+      <view class="left">
+        <text class="iconfont icon icon-user_message"></text>
+      </view>
+      <view class="right">        
+        <view class="user">{{item.fromId === userId ? '我' : '房东'}}</view>
+        <view class="content">
+          <text>{{item.content}}</text>
+        </view>
+        <view class="date">{{item.createDate}}</view>
+      </view>
+    </view> 
+  </view>
+  <view class="opt">
+    <button class="btn btn-block" bindtap="reply">回复</button>
+  </view>
+
+  <view class="message-form {{showSendMsg ? 'show' : ''}}" bindtap="cancelSendMsg">
+    <view class="message-box" catchtap>
+      <view class="message-input">
+        <textarea
+          value="{{inputSendMsg}}"
+          cursor-spacing="18"
+          placeholder="写下想说的话..."
+          bindinput="onInputSendMsg"></textarea>
+      </view>
+      <view class="message-opt">
+        <button bindtap="sendMsg">发送</button>
+      </view>
+    </view>    
+  </view>
+</view>
