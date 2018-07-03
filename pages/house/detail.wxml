@@ -8,7 +8,7 @@
     </swiper>
     <text class="desc" space="nbsp" wx:if="{{houseImgs.length}}">{{houseImgs[currHouseImgIndex].date}}    {{currHouseImgIndex + 1}}/{{houseImgs.length}}</text>
   </view>
-  <view class="flex house-brief">
+  <!-- <view class="flex house-brief">
     <view class="flex-item house-brief-item">
       <text class="icon iconfont icon-usergroup-add"></text>
       <view class="text">        
@@ -28,7 +28,7 @@
           <text>微聊</text>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="area">
     <view class="area-header">
       <text class="text">房源详情</text>
@@ -106,31 +106,35 @@
   <view class="area">
     <view class="area-header">
       <text class="text">房东有话说</text>
-      <text class="icon iconfont icon-upcircle"></text>
+      <text class="icon iconfont icon-upcircle {{landlordLeaveMsgCollapsed ? 'collapsed': ''}}" bindtap="toggleExpand" data-field="landlordLeaveMsgCollapsed"></text>
     </view>
-    <view class="area-body">
+    <view class="area-body {{landlordLeaveMsgCollapsed ? 'collapsed': ''}}">
       <view class="area-content">
-        <text>{{houseInfo.landlordLeaveMsg ? houseInfo.landlordLeaveMsg : '房东什么都没说'}}</text>
+        <text wx:if="{{houseInfo.landlordLeaveMsg}}">{{houseInfo.landlordLeaveMsg}}</text>
+        <view wx:else class="no-msg">
+          <text>房东什么都没说</text>
+        </view>
       </view>
     </view>
   </view>
   <view class="area">
     <view class="area-header">
       <text class="text">留言</text>
-      <text class="icon iconfont icon-upcircle"></text>
+      <text class="icon iconfont icon-upcircle {{leaveMsgCollapsed ? 'collapsed': ''}}" bindtap="toggleExpand" data-field="leaveMsgCollapsed"></text>
     </view>
-    <view class="area-body">
-      <view class="area-content" wx:if="{{leaveMsg}}">
-        <view class="message-item">
+    <view class="area-body {{leaveMsgCollapsed ? 'collapsed': ''}}">
+      <view class="area-content">
+        <view class="message-item" wx:if="{{leaveMsg}}">
           <view class="content">
             <text>{{leaveMsg.content}}</text>
           </view>
           <text class="date">{{leaveMsg.createDate}}</text>
           <text class="reply" catchtap="toReplyMsg">回复{{leaveMsg.replyMsg.length > 0 ? '(' + leaveMsg.replyMsg.length + ')' : ''}}</text>
         </view>
-      </view>
-      <view wx:else>
-
+        <view class="no-msg" wx:else>
+          <text>你可以给房东</text>
+          <text class="leaveMsgBtn" bindtap="leave">留言</text>
+        </view>
       </view>
     </view>
   </view>

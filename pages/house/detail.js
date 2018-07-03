@@ -22,6 +22,8 @@ Page({
     build: {},
     leaveMsg: null,
     detailCollapsed: false,
+    landlordLeaveMsgCollapsed: false,
+    leaveMsgCollapsed: false,
     showSendMsg: false,
     inputSendMsg: ''
   },
@@ -95,8 +97,8 @@ Page({
   },
 
   // 留言
-  sendLeaveMsg() {
-    this.setData({ showLeaveMsg: true, inputSendMsg: '' })
+  leave() {
+    this.setData({ showSendMsg: true, inputSendMsg: '' })
   },
 
   // 点击空白处取消消息输入框
@@ -134,7 +136,7 @@ Page({
         wx.showToast({
           title: '回复成功'
         })
-        this.setData({ showLeaveMsg: false })
+        this.setData({ showSendMsg: false })
         this.getHouseDetail()
       })
       .catch((err) => {

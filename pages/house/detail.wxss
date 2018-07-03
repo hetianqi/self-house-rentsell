@@ -79,6 +79,11 @@
   flex: 1;
 }
 
+.no-msg {
+  text-align: center;
+  color: #666666;
+}
+
 .message-item .content {
   margin-bottom: 10rpx;
 }
@@ -86,6 +91,11 @@
   color: #666666;
 }
 .message-item .reply {
+  margin-left: 10rpx;
+  color: #3191f1;
+}
+
+.leaveMsgBtn {
   margin-left: 10rpx;
   color: #3191f1;
 }
