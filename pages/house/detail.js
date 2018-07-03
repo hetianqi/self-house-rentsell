@@ -124,7 +124,11 @@ Page({
       data: {
         access_token: this.access_token,
         houseId: app.globalData.houseId,
+<<<<<<< Updated upstream
         content: this.data.inputSendMsg,
+=======
+        content: this.data.inputLeaveMsg,
+>>>>>>> Stashed changes
         landlordId: this.data.house.userId
       }
     })
