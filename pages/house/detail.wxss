@@ -79,83 +79,17 @@
   flex: 1;
 }
 
-.message-list {
-  padding: 0;
-}
-.message-item {
-  display: flex;
-  padding: 20rpx 30rpx;
-  border-bottom: 1px solid #e8e8e8;
+.message-item .content {
+  margin-bottom: 10rpx;
 }
 .message-item .date {
-  width: 140rpx;
-  color: #999899;
-}
-.message-item .text {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #666666;
 }
 .message-item .reply {
-  width: 80rpx;
-  text-align: right;
+  margin-left: 10rpx;
   color: #3191f1;
 }
 
 .opt {
   margin: 56rpx 40rpx 100rpx;
-}
-
-.message-form {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: none;
-  background-color: rgba(0,0,0,.5);
-}
-.message-form.show {
-  display: block;
-}
-.message-box {
-  display: flex;
-  flex-direction: row;
-  padding: 20rpx 30rpx;
-  background-color: #fff;
-}
-.message-input {
-  flex: 1;
-}
-.message-input textarea {
-  height: 146rpx; 
-  padding: 10rpx;  
-  border: 1px solid #e8e8e8;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  line-height: 1.5;
-}
-.message-opt {  
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 110rpx;
-}
-.message-opt button {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  line-height: 1;
-  font-size: 30rpx;
-  color: #666666;
-  background-color: transparent;
-  white-space: nowrap;
-}
-.message-opt button::after {
-  display: none;
-}
-.message-opt button.button-hover {
-  color: #000000;
 }

@@ -15,14 +15,15 @@ Page({
     currHouseImgIndex: 0,
     resourcesURI: '',
     houseImgs: [],
+    house: {},
     houseInfo: {},
     premiseInfo: {},
     unit: {},
     build: {},
     leaveMsg: null,
     detailCollapsed: false,
-    showLeaveMsg: false,
-    inputLeaveMsg: ''
+    showSendMsg: false,
+    inputSendMsg: ''
   },
 
   // 页面加载
@@ -52,12 +53,19 @@ Page({
           throw new Error(data.msg)
         }
         wx.hideLoading()
+        if (data.data.leaveMsg) {
+          data.data.leaveMsg.createDate = data.data.leaveMsg.createTime.substring(5, 16)
+          data.data.leaveMsg.replyMsg.forEach(item => {
+            item.createDate = item.createTime.substring(5, 16)
+          })
+        }
         this.setData({
           resourcesURI: data.data.resourcesURI,
           houseImgs: data.data.houseImg.map(a => {
             a.date = (a.time || '').substring(0, 10)
             return a
           }),
+          house: data.data.house,
           houseInfo: data.data.houseInfo,
           premiseInfo: data.data.premises,
           build: data.data.build,
@@ -87,35 +95,35 @@ Page({
   },
 
   // 留言
-  doLeaveMsg() {
-    this.setData({ showLeaveMsg: true, inputLeaveMsg: '' })
-  },
-
-  // 点击空白处取消留言
-  cancelDoLeaveMsg() {
-    this.setData({ showLeaveMsg: false })
-  },
-
-  // 输入留言
-  onInputLeaveMsg(e) {
-    this.setData({ inputLeaveMsg: e.detail.value });
-  },
-
-  // 发送留言
   sendLeaveMsg() {
-    if (!this.data.inputLeaveMsg) {
+    this.setData({ showLeaveMsg: true, inputSendMsg: '' })
+  },
+
+  // 点击空白处取消消息输入框
+  cancelSendMsg() {
+    this.setData({ showSendMsg: false })
+  },
+
+  // 输入消息
+  onInputSendMsg(e) {
+    this.setData({ inputSendMsg: e.detail.value });
+  },
+
+  // 发送消息
+  sendMsg() {
+    if (!this.data.inputSendMsg) {
       this.setData({ showLeaveMsg: false })
       return;
     }
-    showLoading('正在提交...')
+    showLoading('留言...')
     request({
       url: apiUrl + 'leaveMsg/leave',
       method: 'POST',
       data: {
         access_token: this.access_token,
         houseId: app.globalData.houseId,
-        content: this.data.inputLeaveMsg,
-        landlordId: ''
+        content: this.data.inputSendMsg,
+        landlordId: this.data.house.userId
       }
     })
       .then((data) => {
@@ -123,14 +131,24 @@ Page({
           throw new Error(data.msg)
         }
         wx.hideLoading()
-        showSuccess('留言成功');
-        this.setData();
-        this.getHouseDetail();
+        wx.showToast({
+          title: '回复成功'
+        })
+        this.setData({ showLeaveMsg: false })
+        this.getHouseDetail()
       })
       .catch((err) => {
         wx.hideLoading()
         showError(err)
       })
+  },
+
+  // 回复消息
+  toReplyMsg() {
+    app.globalData.leaveMsg = this.data.leaveMsg
+    wx.navigateTo({
+      url: './replyMsg'
+    })
   },
 
   // 去微聊

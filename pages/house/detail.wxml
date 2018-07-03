@@ -22,10 +22,10 @@
         <text>关注<text style="color: #ff6600;margin: 0 5rpx;font-weight: bold;">{{houseInfo.followCount}}</text>人</text>
       </view>
     </view>
-    <view class="flex-item house-brief-item" bindtap="doLeaveMsg">
+    <view class="flex-item house-brief-item" bindtap="toWechat">
       <text class="icon iconfont icon-wechat"></text>
       <view class="text">        
-          <text>留言</text>
+          <text>微聊</text>
       </view>
     </view>
   </view>
@@ -120,12 +120,17 @@
       <text class="icon iconfont icon-upcircle"></text>
     </view>
     <view class="area-body">
-      <view class="area-content message-list" wx:if="{{leaveMsg}}">
-        <view class="message-item" wx:for="{{leaveMsg}}" wx:key="{{id}}">
-          <text class="date">1月3日</text>
-          <text class="text">价格没有少哦，你可以吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</text>
-          <text class="reply">回复</text>
+      <view class="area-content" wx:if="{{leaveMsg}}">
+        <view class="message-item">
+          <view class="content">
+            <text>{{leaveMsg.content}}</text>
+          </view>
+          <text class="date">{{leaveMsg.createDate}}</text>
+          <text class="reply" catchtap="toReplyMsg">回复{{leaveMsg.replyMsg.length > 0 ? '(' + leaveMsg.replyMsg.length + ')' : ''}}</text>
         </view>
+      </view>
+      <view wx:else>
+
       </view>
     </view>
   </view>
@@ -133,17 +138,17 @@
     <button class="btn btn-block" bindtap="toApply">申请看房</button>
   </view>
 
-  <view class="message-form {{showLeaveMsg ? 'show' : ''}}" bindtap="cancelDoLeaveMsg">
+  <view class="message-form {{showSendMsg ? 'show' : ''}}" bindtap="cancelSendMsg">
     <view class="message-box" catchtap>
       <view class="message-input">
         <textarea
-          value="{{inputLeaveMsg}}"
+          value="{{inputSendMsg}}"
           cursor-spacing="18"
           placeholder="写下想说的话..."
-          bindinput="onInputLeaveMsg"></textarea>
+          bindinput="onInputSendMsg"></textarea>
       </view>
       <view class="message-opt">
-        <button bindtap="sendLeaveMsg">发送</button>
+        <button bindtap="sendMsg">发送</button>
       </view>
     </view>    
   </view>
