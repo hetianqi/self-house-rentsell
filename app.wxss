@@ -274,7 +274,7 @@ button[disabled],
   outline: 0;
   line-height: 1;
   font-size: 30rpx;
-  color: #666666;
+  color: #1AAD16;
   background-color: transparent;
   white-space: nowrap;
 }

@@ -24,6 +24,7 @@
   width: 60rpx;
   font-size: 30rpx;
   text-align: center;
+  color: #999;
 }
 .cancel {
   margin-left: 20rpx;

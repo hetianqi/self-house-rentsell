@@ -16,9 +16,9 @@
            <cover-image class="ic_search" src="../../images/ic_search.png"></cover-image> 
         </cover-view>
         <cover-view class="search-tips">请输入想要搜索的楼盘</cover-view>
-        <cover-view class="search-icon">
+        <!-- <cover-view class="search-icon">
           <cover-image class="ic_mic" src="../../images/ic_mic.png"></cover-image>
-        </cover-view>
+        </cover-view> -->
       </cover-view> 
 
       <!-- 右侧地图按钮 -->

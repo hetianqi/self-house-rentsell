@@ -7,7 +7,7 @@
         placeholder="请输入想要搜索的楼盘"
         focus
         bindinput="search"></input>
-      <text class="iconfont icon-mic"></text>
+      <!-- <text class="iconfont icon-mic"></text> -->
     </view>
     <text class="cancel" bindtap="back">取消</text>
   </view>
