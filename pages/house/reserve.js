@@ -81,7 +81,6 @@ Page({
         wx.showModal({
           content: '你的预约信息已发送至房东，\r\n请耐心等待，我们将以短信的方式\r\n通知你的预约情况，\r\n谢谢使用，祝生活愉快！',
           showCancel: false,
-          confirmColor: '#3191f1',
           success: () => {
             wx.redirectTo({
               url: '../index/index'
