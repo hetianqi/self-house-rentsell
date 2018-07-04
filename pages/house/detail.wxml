@@ -135,7 +135,7 @@
   <view class="opt">
     <button class="btn btn-block" wx:if="{{applyStatus === '-1'}}" bindtap="toApply">申请看房</button>
     <button class="btn btn-block btn-gray" wx:elif="{{applyStatus === '0'}}" disabled>等待授权</button>
-    <navigator class="btn btn-block" wx:elif="{{applyStatus === '1'}}" url="./self-house?houseId={{house.id}}">去看房</navigator>
+    <button class="btn btn-block" wx:elif="{{applyStatus === '1'}}" bindtap="toHouse">去看房</button>
     <button class="btn btn-block btn-gray" wx:elif="{{applyStatus === '3'}}" disabled>拒绝授权</button>
   </view>
 

@@ -8,10 +8,10 @@ const app = getApp()
 Page({
   access_token: '',
   validate: '',
+  payResult: '',
 
   // 页面数据
   data: {
-    emptyStr: '',
     currHouseImgIndex: 0,
     resourcesURI: '',
     houseImgs: [],
@@ -38,9 +38,10 @@ Page({
   // 页面显示
   onShow() {
     app.login()
-      .then(({ access_token, validate }) => {
+      .then(({ access_token, validate, payResult }) => {
         this.access_token = access_token
         this.validate = validate
+        this.payResult = payResult
         this.getHouseDetail()
       })
   },
@@ -178,6 +179,21 @@ Page({
       wx.navigateTo({
         url: './reserve'
       })
+    }
+  },
+
+  // 去看房，根据支付状态跳转
+  toHouse() {
+    if (this.payResult === '0' || this.payResult === '2' || this.payResult === '3') {
+      wx.navigateTo({
+        url: '../deposit/pay'
+      })
+    } else if (this.payResult === '1') {
+      wx.navigateTo({
+        url: './self-house?houseId=' + app.globalData.houseId
+      })
+    } else if (this.payResult === '4') {
+      showError('退款过程中不能去看房')
     }
   }
 })

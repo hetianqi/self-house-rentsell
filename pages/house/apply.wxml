@@ -1,4 +1,3 @@
-<!--pages/mp-applications/index.wxml-->
 <view class="container">
   <tab active-index="{{activeIndex}}" bindtabchange="onTabChange">
     <tab-item index="rent">求租</tab-item>

@@ -72,12 +72,6 @@ cover-image {
 .locate {
   bottom: 200rpx;
 }
-.zoom-in cover-image,
-.zoom-out cover-image,
-.locate cover-image {
-  width: 100%;
-  height: 100%;
-}
 
 .bottom-btn-group {
   position: absolute;
@@ -97,6 +91,8 @@ cover-image {
   align-items: center;
   justify-content: center;
   font-size: 0;
+  vertical-align: middle;
+  height: 36rpx;
 }
 .scan-code .btn-icon {
   margin-top: -2rpx;
@@ -142,10 +138,6 @@ cover-image {
   font-size: 50rpx;
   color: #666;
   font-weight: 100;
-}
-.marker-close cover-image {
-  width: 30rpx;
-  height: 30rpx;
 }
 .marker-body {
   max-height: 780rpx;

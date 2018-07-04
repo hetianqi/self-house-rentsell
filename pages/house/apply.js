@@ -41,8 +41,10 @@ Page({
 
   // 设置显示的列表
   setShowList() {
+    const showList = this.list.filter(a => a.houseType === this.data.activeIndex)
     this.setData({
-      showList: this.list.filter(a => a.houseType === this.data.activeIndex)
+      showList: showList,
+      showPayTips: showList.findIndex(a => a.status === '1') > -1 && (this.payResult === '0' || this.payResult === '2' || this.payResult === '3')
     })
   },
 
@@ -67,9 +69,6 @@ Page({
             start_time: formatTime(item.start_time),
             end_time: formatTime(item.end_time)
           }
-        })
-        this.setData({
-          showPayTips: data.data.findIndex(a => a.status === '1') > -1 && (this.payResult === '0' || this.payResult === '2' || this.payResult === '3')
         })
         this.setShowList()
       })
