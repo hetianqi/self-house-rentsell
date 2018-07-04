@@ -8,12 +8,12 @@
     </swiper>
     <text class="desc" space="nbsp" wx:if="{{houseImgs.length}}">{{houseImgs[currHouseImgIndex].date}}    {{currHouseImgIndex + 1}}/{{houseImgs.length}}</text>
   </view>
-  <!-- <view class="flex house-brief">
+  <view class="flex house-brief">
     <view class="flex-item house-brief-item">
       <text class="icon iconfont icon-usergroup-add"></text>
       <view class="text">        
         <text class="block">房源发布人</text>
-        <text class="block">XXX</text>
+        <text class="block">{{linkMan.name}}</text>
       </view>
     </view>
     <view class="flex-item house-brief-item">
@@ -22,13 +22,7 @@
         <text>关注<text style="color: #ff6600;margin: 0 5rpx;font-weight: bold;">{{houseInfo.followCount}}</text>人</text>
       </view>
     </view>
-    <view class="flex-item house-brief-item" bindtap="toWechat">
-      <text class="icon iconfont icon-wechat"></text>
-      <view class="text">        
-          <text>微聊</text>
-      </view>
-    </view>
-  </view> -->
+  </view> 
   <view class="area">
     <view class="area-header">
       <text class="text">房源详情</text>
@@ -139,7 +133,10 @@
     </view>
   </view>
   <view class="opt">
-    <button class="btn btn-block" bindtap="toApply">申请看房</button>
+    <button class="btn btn-block" wx:if="{{applyStatus === '-1'}}" bindtap="toApply">申请看房</button>
+    <button class="btn btn-block btn-gray" wx:elif="{{applyStatus === '0'}}" disabled>等待授权</button>
+    <navigator class="btn btn-block" wx:elif="{{applyStatus === '1'}}" url="./self-house?houseId={{house.id}}">去看房</navigator>
+    <button class="btn btn-block btn-gray" wx:elif="{{applyStatus === '3'}}" disabled>拒绝授权</button>
   </view>
 
   <view class="message-form {{showSendMsg ? 'show' : ''}}" bindtap="cancelSendMsg">

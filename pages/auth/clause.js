@@ -13,8 +13,8 @@ Page({
     agreement: ''
   },
 
-  // 页面加载
-  onLoad: function () {
+  // 页面显示
+  onShow: function () {
     // app.login()
     //   .then(({ access_token, payResult }) => {
     //     this.access_token = access_token

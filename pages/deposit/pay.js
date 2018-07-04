@@ -15,11 +15,16 @@ Page({
     loading: false
   },
 
-  // 页面加载
-  onLoad() {
+  // 页面显示
+  onShow() {
     app.login()
-      .then(({ access_token }) => {
+      .then(({ access_token, payResult }) => {
         this.access_token = access_token
+        if (payResult === '1') {
+          wx.redirectTo({
+            url: '../house/apply'
+          })
+        }
       })
   },
 

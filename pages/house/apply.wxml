@@ -19,7 +19,7 @@
       <text class="">您还没有申请过看房哟~</text>
     </view>
   </view>
-  <view class="pay-tips" wx:if="{{payResult !== '1'}}">
+  <view class="pay-tips" wx:if="{{showPayTips}}">
     <text class="ps">提示：</text>
     <text class="note">您需要支付押金才可以看房哦~</text>
     <button class="btn" bindtap="toPay">

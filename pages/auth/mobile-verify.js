@@ -19,8 +19,8 @@ Page({
     smsCode: ''
   },
 
-  // 页面加载
-  onLoad() {
+  // 页面显示
+  onShow() {
     app.login()
       .then(({ access_token, payResult }) => {
         this.access_token = access_token

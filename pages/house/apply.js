@@ -7,28 +7,28 @@ const app = getApp()
 
 Page({
   access_token: '',
+  payResult: '',
+  list: [],
 
   // 页面数据
   data: {
     activeIndex: 'rent',
-    list: [],
+    showList: [],
     stateMap: {
       0: '拒绝授权',
       1: '已授权',
       2: '未授权'
     },
-    payResult: '',
+    showPayTips: false,
     apiUrl: apiUrl
   },
 
-  // 页面加载
-  onLoad() {
+  // 页面显示
+  onShow() {
     app.login()
       .then(({ access_token, payResult }) => {
         this.access_token = access_token
-        this.setData({
-          payResult
-        })
+        this.payResult = payResult
         this.getList()
       })
   },
@@ -36,7 +36,14 @@ Page({
   // tab切换
   onTabChange(e) {
     this.setData({ activeIndex: e.detail.index })
-    this.getList()
+    this.setShowList()
+  },
+
+  // 设置显示的列表
+  setShowList() {
+    this.setData({
+      showList: this.list.filter(a => a.houseType === this.data.activeIndex)
+    })
   },
 
   // 获取列表
@@ -45,8 +52,7 @@ Page({
     request({
       url: apiUrl + 'house/records',
       data: {
-        access_token: this.access_token,
-        houseType: this.data.activeIndex
+        access_token: this.access_token
       }
     })
       .then((data) => {
@@ -54,16 +60,18 @@ Page({
           throw new Error(data.msg)
         }
         wx.hideLoading()
-        this.setData({
-          list: data.data.map(item => {
-            return {
-              ...item,
-              status: item.status || '2',
-              start_time: formatTime(item.start_time),
-              end_time: formatTime(item.end_time)
-            }
-          })
+        this.list = data.data.map(item => {
+          return {
+            ...item,
+            status: item.status || '2',
+            start_time: formatTime(item.start_time),
+            end_time: formatTime(item.end_time)
+          }
         })
+        this.setData({
+          showPayTips: data.data.find(a => a.status === '1') > -1 && (this.payResult === '2' || this.payResult === '3')
+        })
+        this.setShowList()
       })
       .catch(err => {
         wx.hideLoading()
@@ -81,7 +89,7 @@ Page({
   // 房源跳转
   jump(e) {
     let item = e.currentTarget.dataset.item
-    if (this.data.payResult !== '1' || item.status !== '1') return
+    if (this.payResult !== '1' || item.status !== '1') return
     wx.navigateTo({
       url: '../house/self-house?houseId=' + item.houseId
     })

@@ -51,7 +51,7 @@ export function showError(msg) {
   wx.showModal({
     content: msg !== null ? msg.toString() : '',
     showCancel: false,
-    confirmColor: '#f00'
+    confirmColor: '#ff0000'
   })
 }
 

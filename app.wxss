@@ -69,12 +69,10 @@ navigator {
 .btn {
   display: inline-block;
   width: 260rpx;
-  padding: 22rpx 0;
-  line-height: 1;
+  height: 80rpx;
+  line-height: 80rpx;
   text-align: center;
   border-radius: 8rpx;
-  color: #fff;
-  background-color: #3191f1;
   font-size: 36rpx;
 }
 /* 去掉button的border */
@@ -82,7 +80,7 @@ navigator {
   display: none;
 }
 .btn-icon {
-  display: inline-block;
+  display: inline;
   margin-right: 14rpx;
   vertical-align: middle;
   line-height: inherit;
@@ -92,12 +90,11 @@ navigator {
   vertical-align: middle;
   line-height: inherit;
 }
-cover-view.btn-text {
-  line-height: 1.2;
-}
+/* cover-view.btn-text {
+  line-height: 1;
+} */
 .btn[loading] {  
   color: rgba(255, 255, 255, 0.6);
-  background-color: #2183E8;
 }
 .btn[loading]::before {
   position: relative;
@@ -107,22 +104,28 @@ cover-view.btn-text {
   display: block;
   width: 100%;
 }
-.btn.button-hover,
+.button-hover,
+button[disabled],
+.btn[loading] {
+  opacity: 0.7 !important;
+}
+.btn,
+.btn.button-hover
 .btn[disabled] {
-  color: #fff;
-  background-color: #3191f1;
-  opacity: 0.7;
+  background-color: #3191f1 !important;
+  color: #fff !important;
 }
 .btn-gray,
 .btn-gray.button-hover,
 .btn-gray[disabled]  {
-  background-color: #e9eaeb;
-  color: #999999;
+  background-color: #e9eaeb !important;
+  color: #999999 !important;
 }
 .btn-success,
 .btn-success.button-hover,
 .btn-success[disabled] {
-  background-color: #3CB035;
+  background-color: #3CB035 !important;
+  color: #fff !important;
 }
 
 .flex {

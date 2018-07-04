@@ -24,6 +24,10 @@ Page({
   // 页面加载
   onLoad(options) {
     this.setData({ houseId: options.houseId })
+  },
+
+  // 页面显示
+  onShow() {
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token

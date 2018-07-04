@@ -17,8 +17,13 @@ Page({
   // 页面显示
   onLoad: function () {
     app.login()
-      .then(({ access_token, validate }) => {
+      .then(({ access_token, payResult }) => {
         this.access_token = access_token
+        if (payResult !== '1') {
+          wx.redirectTo({
+            url: '../index/index'
+          })
+        }
       })
   },
 

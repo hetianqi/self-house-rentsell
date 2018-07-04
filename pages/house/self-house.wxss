@@ -20,8 +20,6 @@
 }
 .opt-1 .btn {
   width: 320rpx;
-  background-color: #d6d6d6;
-  color: #8d8d8d;
 }
 .opt-2 {
   margin: 54rpx 40rpx 0;

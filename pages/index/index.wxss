@@ -81,8 +81,8 @@ cover-image {
 
 .bottom-btn-group {
   position: absolute;
-  left: 30rpx;
-  right: 30rpx;
+  left: 40rpx;
+  right: 40rpx;
   bottom: 80rpx;
   display: flex;
   justify-content: space-between;
@@ -90,7 +90,6 @@ cover-image {
 .my-apply,
 .scan-code  {
   width: 260rpx;
-  padding: 20rpx 0;
 }
 .my-apply .btn-icon,
 .scan-code .btn-icon {
@@ -165,5 +164,5 @@ cover-image {
   display: none;
 }
 .marker-opt {
-  margin: 30rpx;
+  margin: 40rpx;
 }

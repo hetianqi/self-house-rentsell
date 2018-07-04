@@ -24,8 +24,8 @@ Page({
     resourcesURI: ''
   },  
 
-  // 页面加载
-  onLoad() {
+  // 页面显示
+  onShow() {
     mapCtx = wx.createMapContext('map')
     app.login()
       .then(({ access_token }) => {

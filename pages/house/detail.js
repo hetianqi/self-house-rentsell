@@ -20,7 +20,9 @@ Page({
     premiseInfo: {},
     unit: {},
     build: {},
+    linkMan: {},
     leaveMsg: null,
+    applyStatus: null,
     detailCollapsed: false,
     landlordLeaveMsgCollapsed: false,
     leaveMsgCollapsed: false,
@@ -31,6 +33,10 @@ Page({
   // 页面加载
   onLoad(options) {
     app.globalData.houseId = options.houseId
+  },
+
+  // 页面显示
+  onShow() {
     app.login()
       .then(({ access_token, validate }) => {
         this.access_token = access_token
@@ -72,10 +78,12 @@ Page({
           premiseInfo: data.data.premises,
           build: data.data.build,
           unit: data.data.unit,
-          leaveMsg: data.data.leaveMsg
+          linkMan: data.data.LinkMan,
+          leaveMsg: data.data.leaveMsg,
+          applyStatus: data.data.apply
         })
-        app.globalData.houseImgs = this.data.houseImgs
-        app.globalData.resourcesURI = this.data.resourcesURI
+        app.globalData.resourcesURI = data.data.resourcesURI
+        app.globalData.houseImgs = data.data.houseImg
       })
       .catch(err => {
         wx.hideLoading()

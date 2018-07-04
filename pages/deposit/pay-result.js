@@ -13,16 +13,17 @@ Page({
   // 页面加载
   onLoad(options) {
     this.setData({ result: +options.result })
+    app.globalData.loginData = null
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token
       })
   },
 
-  // 去看房
+  // 去看房，跳转到我的申请
   toHouse() {
     wx.navigateTo({
-      url: '../house/self-house'
+      url: '../house/apply'
     })
   },
 
