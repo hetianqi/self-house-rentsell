@@ -4,8 +4,8 @@
   <view class="tips-2">请选择你的下一步操作</view>
   <view class="opt-1">
     <navigator class="btn btn-gray" url="./unlock-example">
-      <text class="btn-icon iconfont icon-plus"></text>
-      <text class="btn-text">开锁示意图>></text>
+      <text class="btn-icon iconfont icon-unlock"></text> 
+      <text class="btn-text">开锁示意图 >></text>
     </navigator>
   </view>
   <view class="opt-2">

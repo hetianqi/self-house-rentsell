@@ -41,7 +41,7 @@
   display: none;
   justify-content: center;
   align-items: center;
-  transition: opacity ease-in .5s;
+  transition: opacity ease-in .2s;
 }
 .open-lock-progress.show {
   display: flex;
@@ -60,6 +60,7 @@
   z-index: 1002;
   width: 400rpx;
   background-color: #fff;
+  border-radius: 6rpx;
 }
 .open-lock-progress .body {
   padding: 30rpx;

@@ -60,7 +60,7 @@ Page({
 
   // 留言
   reply() {
-    this.setData({ showSendMsg: true, inputSendMsg: '' })
+    this.setData({ showSendMsg: true })
   },
 
   // 点击空白处取消消息输入框
@@ -98,7 +98,7 @@ Page({
         wx.showToast({
           title: '回复成功'
         })
-        this.setData({ showSendMsg: false })
+        this.setData({ showSendMsg: false, inputSendMsg: '' })
         this.getHouseDetail()
       })
       .catch((err) => {

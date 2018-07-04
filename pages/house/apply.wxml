@@ -4,8 +4,8 @@
     <tab-item index="rent">求租</tab-item>
     <tab-item index="sell">求购</tab-item>
   </tab>
-  <media class="apply-list" wx:if="{{list.length}}">
-    <media-item wx:for="{{list}}" wx:key="{{index}}" icon-path="{{apiUrl + item.img.imgUrl}}" data-item="{{item}}" bindtap="jump">
+  <media class="apply-list" wx:if="{{showList.length}}">
+    <media-item wx:for="{{showList}}" wx:key="{{index}}" icon-path="{{apiUrl + item.img.imgUrl}}" data-item="{{item}}" bindtap="jump">
       <text class="title">{{item.premisesName.name}}</text>
       <text class="desc">{{item.buildName.name + item.unitName.name+ item.houseNum}}</text>
       <text class="desc" wx:if="{{item.status === '1'}}">授权开房时间：</text>

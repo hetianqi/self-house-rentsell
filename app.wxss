@@ -118,8 +118,8 @@ button[disabled],
 .btn-gray,
 .btn-gray.button-hover,
 .btn-gray[disabled]  {
-  background-color: #e9eaeb !important;
-  color: #999999 !important;
+  background-color: #BFBFBF !important;
+  color: #fff !important;
 }
 .btn-success,
 .btn-success.button-hover,
@@ -262,6 +262,10 @@ button[disabled],
   border-radius: 8rpx;
   font-size: 28rpx;
   line-height: 1.5;
+  color: transparent; 
+}
+.message-form.show textarea {
+  color: #000; 
 }
 .message-opt {  
   display: flex;

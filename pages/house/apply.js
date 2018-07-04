@@ -69,7 +69,7 @@ Page({
           }
         })
         this.setData({
-          showPayTips: data.data.find(a => a.status === '1') > -1 && (this.payResult === '2' || this.payResult === '3')
+          showPayTips: data.data.findIndex(a => a.status === '1') > -1 && (this.payResult === '0' || this.payResult === '2' || this.payResult === '3')
         })
         this.setShowList()
       })

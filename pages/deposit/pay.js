@@ -8,9 +8,7 @@ const app = getApp()
 Page({
   access_token: '',
 
-  /**
-   * 页面的初始数据
-   */
+  // 页面数据
   data: {
     loading: false
   },

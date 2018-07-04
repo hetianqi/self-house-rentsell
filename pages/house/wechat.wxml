@@ -16,7 +16,7 @@
     </view>
   </view>
   <button class="send-house-link">
-    <text class="iconfont icon icon-random"></text>
+    <text class="iconfont icon-random"></text>
     <text>发送房源链接</text>
   </button>
   <scroll-view class="message-list" scroll-y scroll-into-view="{{scrollIntoId}}">
