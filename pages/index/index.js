@@ -44,7 +44,7 @@ Page({
           this.getPremises()
           this.getHouses(searchItem.premisesId)
           app.globalData.searchItem = null
-        } else if (!initialFlag) {
+        } else if (!this.initialFlag) {
           this.initialFlag = true
           this.locate()
         }
