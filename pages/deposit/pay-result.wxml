@@ -1,4 +1,4 @@
-<!--pages/pay-deposit/pay-deposit-result.wxml-->
+<!--pages/deposit/pay-result.wxml-->
 <view class="container">
   <view class="success" wx:if="{{result === 1}}">
     <view class="tips">

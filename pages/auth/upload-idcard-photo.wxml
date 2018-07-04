@@ -1,5 +1,4 @@
 <!--pages/auth/upload-idcard-photo.wxml-->
-<!--pages/auth/real-name-auth.wxml-->
 <view class="container">
   <view class="tips">
     <text class="block">以下证件内容仅用于自主看房验证账</text>

@@ -1,4 +1,4 @@
-<!--pages/apply/pay-deposit.wxml-->
+<!--pages/deposit/pay.wxml-->
 <view class="container">
   <view class="tips-1">
     <text class="text-1">299元押金</text>

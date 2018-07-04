@@ -8,6 +8,7 @@ let mapCtx, getScaleTimer, regionChangeTimer
 
 Page({
   access_token: '',
+  initialFlag: false,
 
   // 数据
   data: {
@@ -43,7 +44,8 @@ Page({
           this.getPremises()
           this.getHouses(searchItem.premisesId)
           app.globalData.searchItem = null
-        } else {
+        } else if (!initialFlag) {
+          this.initialFlag = true
           this.locate()
         }
       })
