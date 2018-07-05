@@ -244,7 +244,7 @@ Page({
           url: apiUrl + 'house/scan',
           data: {
             access_token: this.access_token,
-            QRCode: '123123'
+            QRCode: result
           }
         })
           .then((data) => {
