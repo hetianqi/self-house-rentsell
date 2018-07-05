@@ -203,7 +203,6 @@ Page({
 
   // 去房源详情
   toHouseDetail(e) {
-    console.log(e)
     const item = e.currentTarget.dataset.item
     wx.navigateTo({
       url: '../house/detail?houseId=' + item.houseId
@@ -260,6 +259,11 @@ Page({
             wx.hideLoading()
             showError(err)
           })
+      },
+      fail: ({ errMsg }) => {
+        if (errMsg !== 'scanCode:fail cancel') {
+          showError('二维码扫描失败')
+        }        
       }
     })
   }

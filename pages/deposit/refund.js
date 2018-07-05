@@ -15,7 +15,7 @@ Page({
   },
 
   // 页面显示
-  onLoad: function () {
+  onShow: function () {
     app.login()
       .then(({ access_token, payResult }) => {
         this.access_token = access_token
@@ -65,7 +65,7 @@ Page({
       method: 'POST',
       data: {
         access_token: this.access_token,
-        imgName: this.data.photoSrc
+        imgName: '123'
       }
     })
       .then((data) => {
@@ -77,7 +77,6 @@ Page({
         wx.showModal({
           content: '你的退款申请已提交，\r\n请耐心等待！',
           showCancel: false,
-          confirmColor: '#3191f1',
           success: () => {
             wx.redirectTo({
               url: '../index/index'

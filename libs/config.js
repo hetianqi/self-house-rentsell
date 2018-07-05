@@ -1,1 +1,1 @@
-export const apiUrl = 'https://www.salepan.cn/independent/';
+export const apiUrl = 'https://www.fangpan.cc/independent/';
