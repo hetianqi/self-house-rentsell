@@ -239,24 +239,27 @@ Page({
     wx.scanCode({
       scanType: ['qrCode'],
       success: ({ result }) => {
-        console.log(result)
         showLoading('正在获取房源数据...')
-        // request({
-        //   url: apiUrl + 'house/scan',
-        //   data: {
-        //     access_token: this.globalData.loginData.access_token
-        //   }
-        // })
-        //   .then((data) => {
-        //     if (data.code !== '200') {
-        //       throw new Error(data.msg)
-        //     }
-        //     this.globalData.servicePhoneNumber = data.data
-        //     resolve(this.globalData.servicePhoneNumber)
-        //   })
-        //   .catch((err) => {
-        //     showError(err)
-        //   })
+        request({
+          url: apiUrl + 'house/scan',
+          data: {
+            access_token: this.access_token,
+            QRCode: '123123'
+          }
+        })
+          .then((data) => {
+            if (data.code !== '200') {
+              throw new Error(data.data)
+            }
+            wx.hideLoading()
+            wx.navigateTo({
+              url: '../house/detail?houseId=' + data.data
+            })
+          })
+          .catch((err) => {
+            wx.hideLoading()
+            showError(err)
+          })
       }
     })
   }
