@@ -139,7 +139,7 @@ Page({
     })
       .then((data) => {
         if (data.code !== '200') {
-          throw new Error(data.data)
+          throw new Error(data.msg)
         }
         wx.hideLoading()
         wx.showToast({

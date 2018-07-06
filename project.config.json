@@ -30,10 +30,10 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
-					"id": 1,
+					"id": 0,
 					"name": "开锁",
 					"pathName": "pages/house/self-house",
 					"query": "houseId=1001009418086281217"
@@ -41,7 +41,7 @@
 				{
 					"id": 1,
 					"name": "房源详情",
-					"pathName": "pages/deposit/refund",
+					"pathName": "pages/house/detail",
 					"query": "houseId=1001009418086281217"
 				}
 			]

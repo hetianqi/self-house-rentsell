@@ -105,9 +105,6 @@ Page({
         if (data.code !== '200') {
           throw new Error(data.msg)
         }
-        if (data.data.errcode !== '1') {
-          throw new Error(data.data.errmsg)
-        }
         app.globalData.loginData = null
         wx.hideLoading()
         wx.navigateTo({
