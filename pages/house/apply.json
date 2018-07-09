@@ -5,5 +5,6 @@
     "media": "../../components/media/media",
     "media-item": "../../components/media/media-item"
   },
-  "navigationBarTitleText": "我的申请"
+  "navigationBarTitleText": "我的申请",
+  "enablePullDownRefresh": true
 }

@@ -58,7 +58,7 @@ Page({
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err.message)
+        showError(err.message || err)
       })
   },
 
@@ -385,10 +385,10 @@ Page({
     })
       .then((data) => {
         if (data.code !== '200') {
-          return Promise.reject({ errCode: data.code, errMsg: data.msg })
+          return Promise.reject({ errCode: +data.code, errMsg: data.msg })
         }
         if (data.data.errcode !== '10000') {
-          return Promise.reject({ errCode: '500', errMsg: data.data.errmsg })
+          return Promise.reject({ errCode: 500, errMsg: data.data.errmsg })
         }
         return 'U1' + data.data.errmsg
       })

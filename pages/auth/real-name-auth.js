@@ -20,7 +20,12 @@ Page({
   // 页面显示
   onShow() {
     app.login()
-      .then(({ access_token }) => {
+      .then(({ access_token, validate }) => {
+        if (validate === '1') {
+          wx.redirectTo({
+            url: '../house/detail?houseId=' + app.globalData.houseId,
+          })
+        }
         this.access_token = access_token
       })
   },
@@ -113,7 +118,7 @@ Page({
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err)
+        showError(err.message || err)
       })
   }
 })

@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "房源详情"
+  "navigationBarTitleText": "房源详情",
+  "enablePullDownRefresh": true
 }

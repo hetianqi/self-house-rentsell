@@ -13,7 +13,6 @@ Page({
   // 页面加载
   onLoad(options) {
     this.setData({ result: +options.result })
-    app.globalData.loginData = null
     app.login()
       .then(({ access_token }) => {
         this.access_token = access_token

@@ -45,6 +45,11 @@ Page({
         this.getHouseDetail()
       })
   },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.getHouseDetail()
+  },
   
   // 获取房源详情
   getHouseDetail() {
@@ -85,10 +90,12 @@ Page({
         })
         app.globalData.resourcesURI = data.data.resourcesURI
         app.globalData.houseImgs = data.data.houseImg
+        wx.stopPullDownRefresh()
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err.message)
+        showError(err.message || err)
+        wx.stopPullDownRefresh()
       })
   },
 
@@ -150,7 +157,7 @@ Page({
       })
       .catch((err) => {
         wx.hideLoading()
-        showError(err)
+        showError(err.message || err)
       })
   },
 

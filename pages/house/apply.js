@@ -33,6 +33,11 @@ Page({
       })
   },
 
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.getList()
+  },
+
   // tab切换
   onTabChange(e) {
     this.setData({ activeIndex: e.detail.index })
@@ -71,10 +76,12 @@ Page({
           }
         })
         this.setShowList()
+        wx.stopPullDownRefresh()
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err)
+        showError(err.message || err)
+        wx.stopPullDownRefresh()
       })
   },
 

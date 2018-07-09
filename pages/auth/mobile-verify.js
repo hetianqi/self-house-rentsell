@@ -1,6 +1,6 @@
 // pages/auth/mobile-verify.js
 
-import { request, showLoading, showError, showWarning } from '../../libs/util.js'
+import { request, showLoading, showError, showWarning, showSuccess } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -14,7 +14,7 @@ Page({
     houseImgs: [],
     resourcesURI: '',
     currHouseImgIndex: 0,
-    getSmsCodeBtnText: '获取验证码',
+    getSmsCodeBtnText: '',
     phoneNumber: '',
     smsCode: ''
   },
@@ -27,7 +27,8 @@ Page({
       })
     this.setData({
       houseImgs: app.globalData.houseImgs,
-      resourcesURI: app.globalData.resourcesURI
+      resourcesURI: app.globalData.resourcesURI,
+      getSmsCodeBtnText: '获取验证码'
     })
   },
 
@@ -54,28 +55,31 @@ Page({
       showWarning('请输入正确的手机号码')
       return
     }
-    this.countNumber = 60
-    this.countDownGetSmsCode()
+    showLoading('发送验证码...')
     request({
       url: apiUrl + 'user/smsCode',
       data: {
         access_token: this.access_token,
-        type: '1',
-        codeType: '1',
-        phone: this.data.phoneNumber
+        type: 1,
+        codeType: 1,
+        phone: this.data.phoneNumber,
+        msgType: 1
       }
     })
       .then((data) => {
         if (data.code !== '200') {
           throw new Error(data.msg)
         }
+        wx.hideLoading()
         wx.showToast({
           title: '发送成功'
         })
+        this.countNumber = 60
+        this.countDownGetSmsCode()
       })
       .catch((err) => {
-        this.countNumber = 0
-        showError(err)
+        wx.hideLoading()
+        showError(err.message || err)
       })
   },
 
@@ -127,7 +131,7 @@ Page({
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err)
+        showError(err.message || err)
       })
   }
 });

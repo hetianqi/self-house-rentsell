@@ -159,7 +159,7 @@ Page({
         })
       })
       .catch(err => {
-        showError(err)
+        showError(err.message || err)
       })
   },
 
@@ -187,7 +187,7 @@ Page({
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err)
+        showError(err.message || err)
       })
   },
 
@@ -257,7 +257,7 @@ Page({
           })
           .catch((err) => {
             wx.hideLoading()
-            showError(err)
+            showError(err.message || err)
           })
       },
       fail: ({ errMsg }) => {

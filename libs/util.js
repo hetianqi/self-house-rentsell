@@ -1,6 +1,6 @@
 export const formatNumber = n => {
-  n = n.toString();
-  return n[1] ? n : '0' + n;
+  n = n.toString()
+  return n[1] ? n : '0' + n
 }
 
 // 格式化时间参数
@@ -8,13 +8,13 @@ export const formatNumber = n => {
 // 参数2： format 字符串，格式化形式，年月日用大写Y、M、D代表，时分秒分别用h、m、s代表，毫秒用S代表
 export function formatDate(date, format) {
   if (!(date instanceof Date)) {
-      date = new Date(date);
+      date = new Date(date)
   }
   if (isNaN(date.getDate())) {
-      return null;
+      return null
   }
 
-  format = format || 'yyyy-MM-dd';
+  format = format || 'yyyy-MM-dd'
 
   var o = {
       'M+': date.getMonth() + 1, // 月
@@ -27,16 +27,16 @@ export function formatDate(date, format) {
   }
 
   if (/(y+)/.test(format)) {      //格式化年份
-      format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+      format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
   }
 
   for (var k in o) {
       if (new RegExp('(' + k + ')').test(format)) {
-          format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
+          format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length))
       }
   }
 
-  return format;
+  return format
 }
 
 export function showLoading(msg) {

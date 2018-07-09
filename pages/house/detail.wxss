@@ -101,5 +101,5 @@
 }
 
 .opt {
-  margin: 56rpx 40rpx 100rpx;
+  padding: 56rpx 40rpx 100rpx;
 }

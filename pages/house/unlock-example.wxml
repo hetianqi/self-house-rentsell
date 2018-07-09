@@ -38,7 +38,7 @@
         <text class="step-text">手机连接蓝牙开启房门</text>
       </view>
       <view class="step-img">
-        <image src="../../images/unlock-1.png"></image>
+        <image src="../../images/unlock-2.png"></image>
       </view>
       <view class="step-desc">
         <text>使用蓝牙开锁后</text>

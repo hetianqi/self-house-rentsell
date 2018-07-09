@@ -36,6 +36,7 @@ Page({
   
   // 微信登录
   wechatLogin({ detail }) {
+    if (!detail.iv || !detail.encryptedData) return
     showLoading('登录中...')
     request({
       url: apiUrl + 'user/decrypt',
@@ -58,7 +59,7 @@ Page({
       })
       .catch(err => {
         wx.hideLoading()
-        showError(err)
+        showError(err.message || err)
       })
   }
 })
