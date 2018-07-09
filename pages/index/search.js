@@ -1,6 +1,6 @@
 // pages/index/search.js
 
-import { request, showLoading, showError } from '../../libs/util.js'
+import { request, showLoading, showError, debounce } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -27,7 +27,7 @@ Page({
     })
   },
 
-  search(e) {
+  search: debounce(function (e) {
     let keyword = e.detail.value.trim();
     if (!keyword) {
       return
@@ -50,7 +50,7 @@ Page({
       .catch(err => {
         console.log(err)
       })
-  },
+  }, 400),
 
   viewPremises(e) {
     app.globalData.searchItem = e.currentTarget.dataset.data
