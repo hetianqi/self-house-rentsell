@@ -65,7 +65,7 @@ Page({
       method: 'POST',
       data: {
         access_token: this.access_token,
-        imgName: '123'
+        imgName: this.data.photoSrc
       }
     })
       .then((data) => {
