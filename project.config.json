@@ -30,12 +30,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
 					"name": "开锁",
-					"pathName": "pages/deposit/refund",
+					"pathName": "pages/house/self-house",
 					"query": "houseId=1001009418086281217"
 				},
 				{
