@@ -1,6 +1,6 @@
 // pages/deposit/refund.js
 
-import { request, showLoading, showError } from '../../libs/util.js'
+import { request, showLoading, showError, showSuccess } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -74,14 +74,10 @@ Page({
         }
         app.globalData.loginData = null
         wx.hideLoading()
-        wx.showModal({
-          content: '你的退款申请已提交，\r\n请耐心等待！',
-          showCancel: false,
-          success: () => {
-            wx.redirectTo({
-              url: '../index/index'
-            })
-          }
+        showSuccess('你的退款申请已提交，\r\n请耐心等待！', () => {
+          wx.redirectTo({
+            url: '../index/index'
+          })
         })
       })
       .catch(err => {

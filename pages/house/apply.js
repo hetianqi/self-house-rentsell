@@ -17,10 +17,12 @@ Page({
     stateMap: {
       0: '拒绝授权',
       1: '已授权',
-      2: '未授权'
+      2: '未授权',
+      4: '已过期',
+      5: '请等待'
     },
     showPayTips: false,
-    apiUrl: apiUrl
+    resourcesURI: ''
   },
 
   // 页面显示
@@ -75,6 +77,7 @@ Page({
             end_time: formatTime(item.end_time)
           }
         })
+        this.setData({ resourcesURI: data.resourcesURI })
         this.setShowList()
         wx.stopPullDownRefresh()
       })

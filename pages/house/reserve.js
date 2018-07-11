@@ -1,6 +1,6 @@
 // pages/house/reserve.js
 
-import { request, showLoading, showWarning, showError } from '../../libs/util.js'
+import { request, showLoading, showWarning, showError, showSuccess } from '../../libs/util.js'
 import { apiUrl } from '../../libs/config.js'
 
 const app = getApp()
@@ -78,14 +78,10 @@ Page({
           throw new Error(data.msg)
         }
         wx.hideLoading()
-        wx.showModal({
-          content: '你的预约信息已发送至房东，\r\n请耐心等待，我们将以短信的方式\r\n通知你的预约情况，\r\n谢谢使用，祝生活愉快！',
-          showCancel: false,
-          success: () => {
-            wx.redirectTo({
-              url: '../index/index'
-            })
-          }
+        showSuccess('你的预约信息已发送至房东，\r\n请耐心等待，我们将以短信的方式\r\n通知你的预约情况，\r\n谢谢使用，祝生活愉快！', () => {
+          wx.redirectTo({
+            url: '../index/index'
+          })
         })
       })
       .catch(err => {

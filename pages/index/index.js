@@ -119,6 +119,18 @@ Page({
           centerLongitude: longitude
         })
         this.getPremises()
+      },
+      fail: (arg) => {
+        console.log(arg)
+        showError('定位失败，请确定已开启定位且已授权', () => {
+          this.setData({
+            latitude: 30.6574200000,
+            longitude: 104.0658400000,
+            centerLatitude: 30.6574200000,
+            centerLongitude: 104.0658400000
+          })
+          this.getPremises()
+        })
       }
     })
   },
@@ -238,7 +250,7 @@ Page({
     wx.scanCode({
       scanType: ['qrCode'],
       success: ({ result }) => {
-        showLoading('正在获取房源数据...')
+        showLoading('获取数据中...')
         request({
           url: apiUrl + 'house/scan',
           data: {

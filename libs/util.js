@@ -47,11 +47,12 @@ export function showLoading(msg) {
 }
 
 // 显示错误弹出框
-export function showError(msg) {
+export function showError(msg, cb) {
   wx.showModal({
     content: msg !== null ? msg.toString() : '',
     showCancel: false,
-    confirmColor: '#ff0000'
+    confirmColor: '#ff0000',
+    success: cb
   })
 }
 
@@ -62,10 +63,11 @@ export function showWarning(msg) {
   })
 }
 
-export function showSuccess(msg) {
+export function showSuccess(msg, cb) {
   wx.showModal({
     content: msg,
-    showCancel: false
+    showCancel: false,
+    success: cb
   })
 }
 
@@ -78,7 +80,7 @@ export function request(obj) {
     }
   }
   return new Promise((resolve, reject) => {
-    wx.request({
+    const requestTask = wx.request({
       ...obj,
       success: ({ data, statusCode, header }) => {
         if (statusCode === 200 || statusCode === 304) {
@@ -91,6 +93,10 @@ export function request(obj) {
         reject('请求失败')
       }
     })
+    setTimeout(() => {
+      requestTask.abort()
+      reject('请求超时')
+    }, obj.timeout || 60000)
   })
 }
 

@@ -66,11 +66,11 @@ navigator {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 260rpx;
   height: 80rpx;
-  line-height: 80rpx;
-  text-align: center;
   border-radius: 8rpx;
   font-size: 36rpx;
 }
@@ -81,20 +81,16 @@ navigator {
 .btn-icon {
   display: inline;
   margin-right: 14rpx;
-  vertical-align: middle;
-  line-height: inherit;
 }
 .btn-text {
   display: inline;
-  vertical-align: middle;
-  line-height: inherit;
 }
 .btn[loading]::before {
   position: relative;
   top: -4rpx;
 }
 .btn-block {
-  display: block;
+  display: flex;
   width: 100%;
 }
 .button-hover,

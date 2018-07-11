@@ -87,11 +87,6 @@ cover-image {
 }
 .my-apply .btn-icon,
 .scan-code .btn-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0;
-  vertical-align: middle;
   height: 36rpx;
 }
 .scan-code .btn-icon {
