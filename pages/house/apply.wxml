@@ -7,8 +7,8 @@
     <media-item wx:for="{{showList}}" wx:key="{{index}}" icon-path="{{resourcesURI + item.img.imgUrl}}" data-item="{{item}}" bindtap="jump">
       <text class="title">{{item.premisesName.name}}</text>
       <text class="desc">{{item.buildName.name + item.unitName.name+ item.houseNum}}</text>
-      <text class="desc" wx:if="{{item.status === '1'}}">授权开房时间：</text>
-      <text class="desc" wx:if="{{item.status === '1'}}">{{item.start_time + ' 至 ' + item.end_time}}</text>
+      <text class="desc">授权开房时间：</text>
+      <text class="desc">{{item.start_time + ' 至 ' + item.end_time}}</text>
       <text class="state state-{{item.status}}" slot="right">{{stateMap[item.status]}}</text>
     </media-item>
   </media>
